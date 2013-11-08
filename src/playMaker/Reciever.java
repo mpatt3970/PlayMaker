@@ -1,10 +1,15 @@
 package playMaker;
 
-public class Blocker extends Player {
+public class Reciever extends Player {
+	// I figure the running back can be represented as a reciever
 	
+	private boolean isOpen;
 	
+	public Reciever() {
+		
+	}
 	
-	public Blocker() {
+	public void grabBall() {
 		
 	}
 
@@ -19,5 +24,4 @@ public class Blocker extends Player {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }
