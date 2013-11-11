@@ -1,12 +1,14 @@
 package playMaker;
 
-public class Reciever extends Player {
-	// I figure the running back can be represented as a reciever
+import java.awt.Point;
+
+public class Receiver extends Player {
+	// I figure the running back can be represented as a receiver
 	
 	private boolean isOpen;
 	
-	public Reciever() {
-		
+	public Receiver(int speed, boolean hasBall, Point location) {
+		super(speed,hasBall,location);
 	}
 	
 	public void grabBall() {

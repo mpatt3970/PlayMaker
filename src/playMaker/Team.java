@@ -1,13 +1,18 @@
 package playMaker;
 
+import java.util.ArrayList;
+
 public class Team {
+	
+	private ArrayList<Player> players;
 	
 	public Team() {
 		
 	}
 	
-	public void loadPlay() {
+	public void loadPlay(String fileName) {
 		// probably get the current selection from a combo box, load a config file with that fileName, initialize two teams...
+		// button listener will pass the correct file name to this function
 	}
 	
 	public void hike() {

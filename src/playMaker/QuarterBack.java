@@ -1,9 +1,11 @@
 package playMaker;
 
+import java.awt.Point;
+
 public class QuarterBack extends Player {
 	
-	public QuarterBack() {
-		
+	public QuarterBack(int speed, boolean hasBall, Point location) {
+		super(speed,hasBall,location);
 	}
 	
 	public void throwBall() {
