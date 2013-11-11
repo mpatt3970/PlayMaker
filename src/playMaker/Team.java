@@ -18,4 +18,18 @@ public class Team {
 	public void hike() {
 		// when the user clicks run
 	}
+
+	/*
+	 * Getters and Setters
+	 */
+	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
+	}
+	
+	
 }

@@ -10,11 +10,14 @@ public class PlayMaker extends JFrame {
 	private JPanel sideBar;
 	private JPanel field;
 	
+	private Team offense;
+	private Team defense;
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
 	}
 	
-	PlayMaker() {
+	public PlayMaker() {
 		
 	}
 	
@@ -28,6 +31,29 @@ public class PlayMaker extends JFrame {
 
 	}
 	
+	/*
+	 * Getters and Setters
+	 */
+	
+	public Team getOffense() {
+		return offense;
+	}
+
+	public void setOffense(Team offense) {
+		this.offense = offense;
+	}
+
+	public Team getDefense() {
+		return defense;
+	}
+
+	public void setDefense(Team defense) {
+		this.defense = defense;
+	}
+
+	/*
+	 * 
+	 */
 	
 	private static void main(String[] args0) {
 		PlayMaker gui = new PlayMaker();

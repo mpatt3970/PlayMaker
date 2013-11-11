@@ -16,4 +16,37 @@ public abstract class Player {
 	public abstract void move();
 	
 	public abstract void draw();
+
+	/*
+	 * Getters and Setters
+	 */
+	
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public boolean isHasBall() {
+		return hasBall;
+	}
+
+	public void setHasBall(boolean hasBall) {
+		this.hasBall = hasBall;
+	}
+
+	public Point getLocation() {
+		return location;
+	}
+
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+	
+	/*
+	 * 
+	 */
+	
 }

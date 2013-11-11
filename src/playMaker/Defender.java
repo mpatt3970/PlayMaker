@@ -1,9 +1,11 @@
 package playMaker;
 
+import java.awt.Point;
+
 public class Defender extends Player {
 	
-	public Defender() {
-		
+	public Defender(int speed, boolean hasBall, Point location) {
+		super(speed, hasBall, location);
 	}
 	
 	
