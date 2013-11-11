@@ -1,5 +1,7 @@
 package playMaker;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -7,6 +9,10 @@ public class PlayMaker extends JFrame {
 	
 	private JPanel sideBar;
 	private JPanel field;
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponents(g);
+	}
 	
 	PlayMaker() {
 		
