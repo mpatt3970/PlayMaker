@@ -7,6 +7,7 @@ public class Team {
 	private ArrayList<Player> players;
 	
 	public Team() {
+		players = new ArrayList<Player>();
 		
 	}
 	

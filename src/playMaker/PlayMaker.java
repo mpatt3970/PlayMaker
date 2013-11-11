@@ -18,7 +18,8 @@ public class PlayMaker extends JFrame {
 	}
 	
 	public PlayMaker() {
-		
+		offense = new Team();
+		defense = new Team();
 	}
 	
 	public void processPlay() {
