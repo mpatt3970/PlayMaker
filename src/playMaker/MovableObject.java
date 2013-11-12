@@ -15,6 +15,13 @@ public abstract class MovableObject {
 	 * @return
 	 */
 	
+	protected Point location;
+	
+	public void move(Point direction, int speed) {
+		
+	}
+	
+	/*
 	public Point moveForward(Point start, int speed) {
 		return new Point(5, 5);
 	}
@@ -54,4 +61,5 @@ public abstract class MovableObject {
 	public Point moveRight60degrees(Point start, int speed) {
 		return new Point(0, 0);
 	}
+	*/
 }

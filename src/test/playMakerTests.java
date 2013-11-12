@@ -28,10 +28,11 @@ public class playMakerTests {
 		Point current;
 		Point target;
 		
+		
 		// test players move
 		for (Player p : playMaker.getOffense().getPlayers()) {
 			current = p.getLocation();
-			p.move();
+			p.move(new Point(100,100),p.getSpeed());
 			assertFalse(p.getLocation().equals(current));
 		}
 		

@@ -3,19 +3,14 @@ package playMaker;
 import java.awt.Point;
 
 public class Ball extends MovableObject {
-	private Point currentLocation;
 	private Point targetLocation;
 	
 	public Ball(Point locationNow, Point locationEnd) {
-		this.currentLocation = locationNow;
+		this.location = locationNow;
 		this.targetLocation = locationEnd;
 	}
 	
 	public void draw() {
-		
-	}
-	
-	public void move() {
 		
 	}
 
@@ -24,11 +19,11 @@ public class Ball extends MovableObject {
 	 */
 	
 	public Point getCurrentLocation() {
-		return currentLocation;
+		return location;
 	}
 
 	public void setCurrentLocation(Point currentLocation) {
-		this.currentLocation = currentLocation;
+		this.location = currentLocation;
 	}
 
 	public Point getTargetLocation() {

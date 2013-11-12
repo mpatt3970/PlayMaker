@@ -12,13 +12,6 @@ public class Blocker extends Player {
 	}
 
 	@Override
-	public boolean move() {
-		return false;
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
 		
