@@ -42,5 +42,35 @@ public class playMakerTests {
 		assertFalse(ball.getCurrentLocation().equals(current));
 		assertTrue(ball.getTargetLocation().equals(target));
 	}
+	
+	@Test
+	public void testFullTeams() {
+		// test if each team has 11 players.
+		
+	}
+	
+	@Test
+	public void testLoadPlay() {
+		// test that the load functions initialize some values correctly
+		
+	}
+	
+	@Test
+	public void testLoadDefense() {
+		// test that the defense gets initialized correctly
+		
+	}
+	
+	@Test
+	public void testCollisionDetection() {
+		// test to check if 2 players in the same place is detected
+		
+	}
+	
+	@Test
+	public void testStartPlay() {
+		// test for 2 teams, a hiked ball, and players starting to move simultaneously
+		
+	}
 
 }
