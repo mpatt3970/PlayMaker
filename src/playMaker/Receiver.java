@@ -16,7 +16,8 @@ public class Receiver extends Player {
 	}
 
 	@Override
-	public void move() {
+	public boolean move() {
+		return isOpen;
 		// TODO Auto-generated method stub
 		
 	}

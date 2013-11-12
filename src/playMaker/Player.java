@@ -13,7 +13,7 @@ public abstract class Player extends MovableObject {
 		this.location = location;
 	}
 	
-	public abstract void move();
+	public abstract boolean move();
 	
 	public abstract void draw();
 
@@ -41,8 +41,9 @@ public abstract class Player extends MovableObject {
 		return location;
 	}
 
-	public void setLocation(Point location) {
+	public boolean setLocation(Point location) {
 		this.location = location;
+		return true;
 	}
 	
 	/*
