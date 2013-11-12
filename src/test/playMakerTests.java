@@ -28,6 +28,8 @@ public class playMakerTests {
 		Point current;
 		Point target;
 		
+		// ball movement speed, adjustable as needed
+		int speed = 10;
 		
 		// test players move
 		for (Player p : playMaker.getOffense().getPlayers()) {
@@ -39,7 +41,7 @@ public class playMakerTests {
 		// test ball moves but does not change its target
 		current = ball.getCurrentLocation();
 		target = ball.getTargetLocation();
-		ball.move();
+		ball.move(target,5);
 		assertFalse(ball.getCurrentLocation().equals(current));
 		assertTrue(ball.getTargetLocation().equals(target));
 	}
@@ -68,11 +70,7 @@ public class playMakerTests {
 	@Test
 	public void testCollisionDetection() {
 		// test to check if 2 players in the same place is detected
-		// moving a player returns a boolean value. true if the move was successful and false if there is already a player there or the move fails
-		// put an offensive player at 10, 10. should return true. noone is in that square
-		assertTrue(playMaker.getOffense().getPlayers().get(0).setLocation(new Point(10, 10)));
-		// attempt to move a defensive player to 10, 10. should retrun false.
-		assertFalse(playMaker.getDefense().getPlayers().get(0).setLocation(new Point(10, 10)));
+		
 	}
 	
 	@Test
