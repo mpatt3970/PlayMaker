@@ -15,6 +15,23 @@ public abstract class MovableObject {
 	 * @return
 	 */
 	
+	protected Point location;
+	
+	public void move(Point direction, int speed) {
+		// vector along direction
+		Point unit = new Point( direction.x - location.x, direction.y - location.y);
+		// scale to unit length
+		double magnitude = Math.sqrt((unit.x)^2+(unit.y)^2);
+		unit.x = unit.x/((int) magnitude);
+		unit.y = unit.y/((int) magnitude);
+		
+		// add to current position
+		location.x += speed*unit.x;
+		location.y += speed*unit.y;
+		
+	}
+	
+	/*
 	public Point moveForward(Point start, int speed) {
 		return new Point(5, 5);
 	}
@@ -54,4 +71,5 @@ public abstract class MovableObject {
 	public Point moveRight60degrees(Point start, int speed) {
 		return new Point(0, 0);
 	}
+	*/
 }

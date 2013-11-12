@@ -5,15 +5,14 @@ import java.awt.Point;
 public abstract class Player extends MovableObject {
 	private int speed;
 	private boolean hasBall;
-	private Point location;
+	private Point direction;
 	
 	public Player(int speed, boolean hasBall, Point location) {
 		this.speed = speed;
 		this.hasBall = hasBall;
 		this.location = location;
+		direction = null;
 	}
-	
-	public abstract boolean move();
 	
 	public abstract void draw();
 
@@ -41,9 +40,16 @@ public abstract class Player extends MovableObject {
 		return location;
 	}
 
-	public boolean setLocation(Point location) {
+	public void setLocation(Point location) {
 		this.location = location;
-		return true;
+	}
+	
+	public Point getDirection() {
+		return direction;
+	}
+	
+	public void setDirection(Point direction) {
+		this.direction = direction;
 	}
 	
 	/*
