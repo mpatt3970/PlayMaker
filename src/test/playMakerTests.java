@@ -46,7 +46,10 @@ public class playMakerTests {
 	@Test
 	public void testFullTeams() {
 		// test if each team has 11 players.
-		
+		int offenseTotal = 11;
+		int defenseTotal = 11;
+		assertEquals(offenseTotal, playMaker.getOffense().getPlayers().size());
+		assertEquals(defenseTotal, playMaker.getDefense().getPlayers().size());
 	}
 	
 	@Test
