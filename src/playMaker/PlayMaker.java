@@ -1,6 +1,7 @@
 package playMaker;
 
 import java.awt.Graphics;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,7 +30,44 @@ public class PlayMaker extends JFrame {
 		 * 2) Repainting
 		 */
 		
+		// this handles players making appropriate movement direction choices
+		// offensive moves first since they know their route, defense is trying to compensate afterwords
+		for (Player p : offense.getPlayers()) {
+			Point direction = findBestDirection(p,true);
+			p.move(direction, p.getSpeed());
+		}
+		for (Player p : defense.getPlayers()) {
+			Point direction = findBestDirection(p,false);
+			p.move(direction, p.getSpeed());
+		}
+		
+		// repaint now that all players have new locations
+		repaint();
+		
 
+	}
+	
+	public Point findBestDirection(Player player, boolean isOffense) {
+		// this function loops over all other players to determine which direction the passed player should move
+		// it then returns that direction so it can be passed to the move function of player p
+		if (isOffense) {
+			// offensive players care about avoiding defensive players
+			for (Player p : defense.getPlayers()) {
+				Point distance = null;
+				// find distance between, find magnitude of that distance, determine if player should continue on their
+				// local direction, or return the better direction to be used in the move function
+			}
+		}
+		else {
+			// defensive players care about tackling offensive
+			for (Player p : offense.getPlayers()) {
+				Point distance = null;
+				// find distance between, find magnitude of that distance, determine if player should continue on their
+				// local direction, or return the better direction to be used in the move function
+			}
+		}
+		
+		return null;
 	}
 	
 	/*
