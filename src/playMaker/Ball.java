@@ -2,7 +2,7 @@ package playMaker;
 
 import java.awt.Point;
 
-public class Ball {
+public class Ball extends MovableObject {
 	private Point currentLocation;
 	private Point targetLocation;
 	

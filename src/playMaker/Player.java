@@ -2,7 +2,7 @@ package playMaker;
 
 import java.awt.Point;
 
-public abstract class Player {
+public abstract class Player extends MovableObject {
 	private int speed;
 	private boolean hasBall;
 	private Point location;
