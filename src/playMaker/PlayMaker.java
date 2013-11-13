@@ -16,6 +16,9 @@ public class PlayMaker extends JFrame {
 
 	// This can be adjusted later
 	private final int PLAYERSIZE = 50;
+	
+	// this determines how many loops need to occur before the ball gets thrown
+	private int throwCount = 100;
 
 	private boolean playOver;
 
@@ -38,6 +41,9 @@ public class PlayMaker extends JFrame {
 		 * 3) Repaint
 		 */
 
+		// used to tell the quarterback to throw the ball after so many loops
+		int loopCounter = 0;
+		
 		if (!playOver) {
 
 			// this handles players making appropriate movement direction choices
@@ -53,6 +59,16 @@ public class PlayMaker extends JFrame {
 
 			// repaint now that all players have new locations
 			repaint();
+			
+			// loop through receivers to throwBall() or handOff() to anyone open or even run if no one is open
+			if(loopCounter > throwCount) {
+				
+				
+			}
+			
+			// increment the loop count toward ball throwing time
+			loopCounter++;
+				
 		}
 
 
@@ -102,7 +118,6 @@ public class PlayMaker extends JFrame {
 				}
 			}
 		}
-
 		else { // this is for a defensive player
 			// defensive players care about tackling offensive
 			for (Player p : offense.getPlayers()) {
