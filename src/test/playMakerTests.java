@@ -14,6 +14,7 @@ import playMaker.Blocker;
 import playMaker.Defender;
 import playMaker.PlayMaker;
 import playMaker.Player;
+import playMaker.Team;
 
 public class playMakerTests {
 	PlayMaker playMaker;
@@ -114,9 +115,38 @@ public class playMakerTests {
 	}
 	
 	@Test
-	public void testStartPlay() {
+	public void testProcessPlay() {
 		// test for 2 teams, a hiked ball, and players starting to move simultaneously
-		fail("not implemented");
+		
+		// two teams test
+		assertTrue(playMaker.getOffense() != null);
+		assertTrue(playMaker.getOffense().getPlayers().size() > 0);
+		assertTrue(playMaker.getDefense()!= null);
+		assertTrue(playMaker.getDefense().getPlayers().size() > 0);
+		
+		// test that ball is hiked (someone has it on the offense)
+		playMaker.loadPlayConfig("testOffensePlay.txt", "testDefensePlay.txt");
+		boolean foundBall = false;
+		for (Player p : playMaker.getOffense().getPlayers()) {
+			if (p.isHasBall())
+				foundBall = true;
+		}
+		assertTrue(foundBall);
+		
+		// test that a play processes correctly
+		Team testOffense = playMaker.getOffense();
+		Team testDefense = playMaker.getDefense();
+		playMaker.processPlay();
+		// assure all players moved and play is over
+		assertTrue(playMaker.getPlayOver());
+		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); ++i) {
+			assertFalse(testOffense.getPlayers().get(i).getLocation().equals(playMaker.getOffense().getPlayers().get(i).getLocation()));
+		}
+		
+		for (int i = 0; i < playMaker.getDefense().getPlayers().size(); ++i) {
+			assertFalse(testDefense.getPlayers().get(i).getLocation().equals(playMaker.getDefense().getPlayers().get(i).getLocation()));
+		}
+		
 	}
 
 }

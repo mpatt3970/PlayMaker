@@ -212,6 +212,9 @@ public class PlayMaker extends JFrame {
 		this.defense = defense;
 	}
 
+	public boolean getPlayOver() {
+		return playOver;
+	}
 	/*
 	 * 
 	 */

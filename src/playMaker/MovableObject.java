@@ -10,9 +10,7 @@ public abstract class MovableObject {
 	/**
 	 * My idea for this class is to provide basic move functions that Player and Ball can extend and use for themselves with a common syntax
 	 * 
-	 * @param start
-	 * @param speed
-	 * @return
+	 * 
 	 */
 	
 	protected Point location;
@@ -72,4 +70,5 @@ public abstract class MovableObject {
 		return new Point(0, 0);
 	}
 	*/
+	
 }
