@@ -69,10 +69,12 @@ public class PlayMaker extends JFrame {
 					// continue as normal, return players route direction
 				}
 				else if (magnitude > 2*playerSize) {
-					// return adjusted direction away from defensive player
+					// return adjusted direction away from defensive player by adding a component to the players
+					// current direction that points away from the defensive player
 				}
 				else {
 					// 	COLLISION
+					// call a collision function which will sometimes stop the player's movement, sometimes let them through
 				}
 			}
 		}
@@ -98,6 +100,13 @@ public class PlayMaker extends JFrame {
 		}
 		
 		return null;
+	}
+	
+	// this can be called when the user selects new play options from the combo boxes on the GUI
+	// the team loadPlay functions will initialize all positions and directions
+	public void loadPlayConfig(String offensePlay, String defensePlay) {
+		offense.loadPlay(offensePlay);
+		defense.loadPlay(defensePlay);
 	}
 	
 	/*

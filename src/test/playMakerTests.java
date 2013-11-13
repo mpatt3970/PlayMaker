@@ -70,6 +70,7 @@ public class playMakerTests {
 	@Test
 	public void testCollisionDetection() {
 		// test to check if 2 players in the same place is detected
+		// this is tested with playMaker.findBestDirection(player,true) which will know when a collision happens
 		
 	}
 	
