@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.*;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import junit.framework.Assert;
 
@@ -14,6 +15,7 @@ import playMaker.Blocker;
 import playMaker.Defender;
 import playMaker.PlayMaker;
 import playMaker.Player;
+import playMaker.Receiver;
 import playMaker.Team;
 
 public class playMakerTests {
@@ -22,8 +24,8 @@ public class playMakerTests {
 	
 	@Before
 	public void setUp() {
-		PlayMaker playMaker = new PlayMaker();
-		Ball ball = new Ball(new Point(50,50), new Point(100,100));
+		playMaker = new PlayMaker();
+		ball = new Ball(new Point(50,50), new Point(100,100));
 	}
 
 	@Test
@@ -61,7 +63,28 @@ public class playMakerTests {
 	@Test
 	public void testLoadPlay() {
 		// test that the load functions initializes some values correctly
-		fail("not implemented");
+		playMaker.loadPlayConfig("testOffensePlay.txt", "testDefensePlay.txt");
+		
+		assertTrue(playMaker.getOffense().getPlayers().size() > 0);
+		assertTrue(playMaker.getDefense().getPlayers().size() > 0);
+		
+		
+		// the test plays will just line every player up horizontally, 50 pixels apart, and everyone head up/down
+		// and then left/right
+		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); i++) {
+			assertEquals(50*(i+1),playMaker.getOffense().getPlayers().get(i).getLocation().x);
+			assertEquals(200,playMaker.getOffense().getPlayers().get(i).getLocation().y);
+			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection1().equals(new Point(0,-1)));
+			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection2().equals(new Point(1,0)));
+		}
+		// defense testing
+		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); i++) {
+			assertEquals(50*(i+1),playMaker.getDefense().getPlayers().get(i).getLocation().x);
+			assertEquals(150,playMaker.getDefense().getPlayers().get(i).getLocation().y);
+			assertTrue(playMaker.getDefense().getPlayers().get(i).getRouteDirection1().equals(new Point(0,1)));
+			assertTrue(playMaker.getDefense().getPlayers().get(i).getRouteDirection2().equals(new Point(-1,0)));
+		}
+		
 	}
 	
 	@Test
@@ -91,8 +114,41 @@ public class playMakerTests {
 	
 	@Test
 	public void testCollisionDetection() {
-		// test to check if 2 players in the same place is detected
-		fail("not implemented");
+		// make offense and defense of one known player with similar locations
+		ArrayList<Player> testOffensePlayer = new ArrayList<Player>();
+		ArrayList<Player> testDefensePlayer = new ArrayList<Player>();
+		
+		// add two players that are a magnitude of 5 apart
+		testOffensePlayer.add(new Receiver(10,false,new Point(50,50)));
+		testDefensePlayer.add(new Defender(10,false,new Point(47,46)));
+		
+		Team testOffenseTeam = new Team(true);
+		Team testDefenseTeam = new Team(false);
+		
+		testOffenseTeam.setPlayers(testOffensePlayer);
+		testDefenseTeam.setPlayers(testDefensePlayer);
+		
+		playMaker.setOffense(testOffenseTeam);
+		playMaker.setDefense(testDefenseTeam);
+		
+		// find best direction and make sure it detects the collision and returns
+		// a direction of (0,0) occasionally to indicate a collision and block
+		int nullDirectionCount = 0;
+		int otherCount = 0;
+		Point direction = null;
+		for (int i = 0; i < 100; ++i) {
+			direction = playMaker.findBestDirection(testOffensePlayer.get(0), true);
+			
+			assertTrue(direction != null);
+			
+			if (direction.equals(new Point(0,0)))
+				nullDirectionCount++;
+			else
+				otherCount++;
+		}
+		assertTrue(nullDirectionCount > 20);
+		// turns out this also sort of tests blocked() since that function is called in the
+		// findBestDirection() function
 	}
 	
 	@Test
