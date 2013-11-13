@@ -19,7 +19,7 @@ public class Team {
 			// add QB and receivers and such to array
 		}
 		else {
-			// add blockers and such to array
+			// add defenders and such to array
 		}
 	}
 	

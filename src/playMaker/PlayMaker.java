@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class PlayMaker extends JFrame {
 
-	private JPanel sideBar;
-	private JPanel field;
+	private SideBar sideBar;
+	private Field field;
 
 	private Team offense;
 	private Team defense;
@@ -27,14 +27,15 @@ public class PlayMaker extends JFrame {
 
 	private boolean playOver;
 
-	public void paintComponent(Graphics g) {
-		super.paintComponents(g);
-	}
-
 	public PlayMaker() {
+		// instantiate gui components
+		sideBar = new SideBar(this);
+		field = new Field(this);
+		
 		// passing true initializes the team as offense
 		offense = new Team(true);
 		defense = new Team(false);
+		
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
 	}
@@ -215,8 +216,9 @@ public class PlayMaker extends JFrame {
 	 * 
 	 */
 
-	private static void main(String[] args0) {
+	public static void main(String[] args) {
 		PlayMaker gui = new PlayMaker();
+		gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		gui.setVisible(true);
 	}
 }
