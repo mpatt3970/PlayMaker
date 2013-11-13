@@ -14,11 +14,16 @@ public class PlayMaker extends JFrame {
 	private Team offense;
 	private Team defense;
 
-	// This can be adjusted later
+	// This can be adjusted later, just how big to draw players
 	private final int PLAYERSIZE = 50;
-	
+
 	// this determines how many loops need to occur before the ball gets thrown
 	private int throwCount = 100;
+
+	// this is how many loops until player execute the turn in their routes which they
+	// have stored as routeDirection2
+	private int routeUpdateCount = 50;
+	private boolean routeUpdated;
 
 	private boolean playOver;
 
@@ -27,8 +32,9 @@ public class PlayMaker extends JFrame {
 	}
 
 	public PlayMaker() {
-		offense = new Team();
-		defense = new Team();
+		// passing true initializes the team as offense
+		offense = new Team(true);
+		defense = new Team(false);
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
 	}
@@ -43,8 +49,17 @@ public class PlayMaker extends JFrame {
 
 		// used to tell the quarterback to throw the ball after so many loops
 		int loopCounter = 0;
-		
+		// used to determine if players are on the second half of their route or not
+		// so they can turn if wanted
+		routeUpdated = false;
+
+
 		if (!playOver) {
+
+			// Start following turn after a certain amount of loops
+			if (loopCounter > routeUpdateCount) {
+				routeUpdated = true;
+			}
 
 			// this handles players making appropriate movement direction choices
 			// offensive moves first since they know their route, defense is trying to compensate afterwords
@@ -59,16 +74,18 @@ public class PlayMaker extends JFrame {
 
 			// repaint now that all players have new locations
 			repaint();
-			
+
 			// loop through receivers to throwBall() or handOff() to anyone open or even run if no one is open
 			if(loopCounter > throwCount) {
-				
-				
+				/**
+				 * We will probably need a reference to the quarterback, and the QB will also possibly need a
+				 * reference to the ball since it had a throwBall() function
+				 */
 			}
-			
+
 			// increment the loop count toward ball throwing time
 			loopCounter++;
-				
+
 		}
 
 
@@ -91,7 +108,10 @@ public class PlayMaker extends JFrame {
 				// if statements to determine what is the best direction to return according to the magnitude of the distance
 				if (magnitude > 3*PLAYERSIZE) {
 					// continue as normal, return players route direction
-					return player.getDirection();
+					if (routeUpdated)
+						return player.getRouteDirection2();
+					else
+						return player.getRouteDirection1();
 				}
 				else if (magnitude > 2*PLAYERSIZE) {
 					// return adjusted direction away from defensive player by adding a component to the players
@@ -129,7 +149,10 @@ public class PlayMaker extends JFrame {
 				// if statements to determine what is the best direction to return according to the magnitude of the distance
 				if (magnitude > 3*PLAYERSIZE) {
 					// continue as normal, return players route direction
-					return player.getDirection();
+					if (routeUpdated)
+						return player.getRouteDirection2();
+					else
+						return player.getRouteDirection1();
 				}
 				else if (magnitude > 2*PLAYERSIZE) {
 					// return adjusted direction away from defensive player

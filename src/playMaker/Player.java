@@ -5,13 +5,17 @@ import java.awt.Point;
 public abstract class Player extends MovableObject {
 	private int speed;
 	private boolean hasBall;
-	private Point direction;
+	
+	// This allows for one turn, we can add more if needed
+	private Point routeDirection1;
+	private Point routeDirection2;
 	
 	public Player(int speed, boolean hasBall, Point location) {
 		this.speed = speed;
 		this.hasBall = hasBall;
 		this.location = location;
-		direction = null;
+		routeDirection1 = null;
+		routeDirection2 = null;
 	}
 	
 	public abstract void draw();
@@ -44,12 +48,19 @@ public abstract class Player extends MovableObject {
 		this.location = location;
 	}
 	
-	public Point getDirection() {
-		return direction;
+	public Point getRouteDirection1() {
+		return routeDirection1;
 	}
 	
-	public void setDirection(Point direction) {
-		this.direction = direction;
+	public Point getRouteDirection2() {
+		return routeDirection2;
+	}
+	
+	public void setRouteDirection1(Point direction) {
+		 routeDirection1 = direction;
+	}
+	public void setRouteDirection2(Point direction) {
+		routeDirection2 = direction;
 	}
 	
 	/*
