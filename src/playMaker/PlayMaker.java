@@ -57,7 +57,7 @@ public class PlayMaker extends JFrame {
 
 		if (!playOver) {
 
-			// Start following turn after a certain amount of loops
+			// Start following second half of route after a certain amount of loops
 			if (loopCounter > routeUpdateCount) {
 				routeUpdated = true;
 			}
@@ -115,6 +115,10 @@ public class PlayMaker extends JFrame {
 			else if (magnitude > 2*PLAYERSIZE) {
 				// return adjusted direction away from defensive player by adding a component to the players
 				// current direction that points away from the defensive player
+				
+				// I wouldn't modify the route variables in players, just return something like
+				// return getRouteDirection() + someChange
+				// This way once they are far enough from the defender, they will continue on their planned route
 			}
 			else {
 				// COLLISION
@@ -160,7 +164,8 @@ public class PlayMaker extends JFrame {
 					return player.getRouteDirection1();
 			}
 			else if (magnitude > 2*PLAYERSIZE) {
-				// return adjusted direction away from defensive player
+				// return adjusted direction toward offensive player
+				// again, probably wouldn't change the route variables in players, just return them with a slight change
 			}
 			else {
 				// COLLISION
