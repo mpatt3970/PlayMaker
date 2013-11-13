@@ -137,7 +137,7 @@ public class playMakerTests {
 		int otherCount = 0;
 		Point direction = null;
 		for (int i = 0; i < 100; ++i) {
-			direction = playMaker.findBestDirection(testOffensePlayer.get(0), true);
+			direction = playMaker.findBestOffensiveDirection(testOffensePlayer.get(0));
 			
 			assertTrue(direction != null);
 			
