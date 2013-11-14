@@ -7,7 +7,7 @@ public class Receiver extends Player {
 	
 	private boolean isOpen;
 	
-	public Receiver(int speed, boolean hasBall, Point location) {
+	public Receiver(int speed, boolean hasBall, Vector2D location) {
 		super(speed,hasBall,location);
 	}
 	

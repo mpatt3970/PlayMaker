@@ -3,9 +3,9 @@ package playMaker;
 import java.awt.Point;
 
 public class Ball extends MovableObject {
-	private Point targetLocation;
+	private Vector2D targetLocation;
 	
-	public Ball(Point locationNow, Point locationEnd) {
+	public Ball(Vector2D locationNow, Vector2D locationEnd) {
 		this.location = locationNow;
 		this.targetLocation = locationEnd;
 	}
@@ -18,19 +18,19 @@ public class Ball extends MovableObject {
 	 * Getters and Setters
 	 */
 	
-	public Point getCurrentLocation() {
+	public Vector2D getCurrentLocation() {
 		return location;
 	}
 
-	public void setCurrentLocation(Point currentLocation) {
+	public void setCurrentLocation(Vector2D currentLocation) {
 		this.location = currentLocation;
 	}
 
-	public Point getTargetLocation() {
+	public Vector2D getTargetLocation() {
 		return targetLocation;
 	}
 
-	public void setTargetLocation(Point targetLocation) {
+	public void setTargetLocation(Vector2D targetLocation) {
 		this.targetLocation = targetLocation;
 	}
 	

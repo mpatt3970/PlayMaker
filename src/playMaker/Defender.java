@@ -4,12 +4,11 @@ import java.awt.Point;
 
 public class Defender extends Player {
 	
-	public Defender(int speed, boolean hasBall, Point location) {
+	
+	public Defender(int speed, boolean hasBall, Vector2D location) {
 		super(speed, hasBall, location);
 	}
-	
-	
-	
+
 	public void grabBall() {
 		// get the ball if it is nearby
 	}

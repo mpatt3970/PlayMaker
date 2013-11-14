@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class QuarterBack extends Player {
 	
-	public QuarterBack(int speed, boolean hasBall, Point location) {
+	public QuarterBack(int speed, boolean hasBall, Vector2D location) {
 		super(speed,hasBall,location);
 	}
 	

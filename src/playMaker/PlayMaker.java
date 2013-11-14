@@ -2,6 +2,7 @@ package playMaker;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -52,11 +53,11 @@ public class PlayMaker extends JFrame {
 			// this handles players making appropriate movement direction choices
 			// offensive moves first since they know their route, defense is trying to compensate after words
 			for (Player p : offense.getPlayers()) {
-				Point direction = findBestOffensiveDirection(p);
+				Vector2D direction = findBestDirection(p,true);
 				p.move(direction, p.getSpeed());
 			}
 			for (Player p : defense.getPlayers()) {
-				Point direction = findBestDefensiveDirection(p);
+				Vector2D direction = findBestDirection(p,false);
 				p.move(direction, p.getSpeed());
 			}
 
@@ -79,27 +80,36 @@ public class PlayMaker extends JFrame {
 
 	}
 
-
-	// these functions loop over all other players to determine which direction the passed player should move
+	// this function loops over all other players to determine which direction the passed player should move
 	// it then returns that direction so it can be passed to the move function of player p
-	public Point findBestOffensiveDirection(Player player) {
-		Point distance = null;
-		// offensive players care about avoiding defensive players
-		for (Player p : defense.getPlayers()) {
+	public Vector2D findBestDirection(Player p, boolean isOffense) {
+		Vector2D distance = null;
+		Vector2D netDirection = new Vector2D(0,0);
+		ArrayList<Player> otherPlayers;
+
+		// Pick which players to iterate through 
+		if (isOffense)
+			otherPlayers = defense.getPlayers();
+		else
+			otherPlayers = offense.getPlayers();
+
+
+		for (Player player : otherPlayers) {
 			// find distance between, find magnitude of that distance, determine if player should continue on their
 			// local direction, or return the better direction to be used in the move function
-			distance = new Point(p.getLocation().x - player.getLocation().x,p.getLocation().y - player.getLocation().y);
-			double magnitude = Math.sqrt((distance.x)^2+(distance.y)^2);
+			distance = new Vector2D(p.getLocation().x - player.getLocation().x,p.getLocation().y - player.getLocation().y);
+			double magnitude = distance.getMagnitude();
 
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*PLAYERSIZE) {
 				// continue as normal, return players correct direction
-				player.getDirection();
+				netDirection.x += p.getDirection().x;
+				netDirection.y += p.getDirection().y;
 			}
-			else if (magnitude > 2*PLAYERSIZE) {
+			else if (magnitude > PLAYERSIZE) {
 				// return adjusted direction away from defensive player by adding a component to the players
 				// current direction that points away from the defensive player
-				
+
 				// I wouldn't modify the route variables in players, just return something like
 				// return getRouteDirection() + someChange
 				// This way once they are far enough from the defender, they will continue on their planned route
@@ -112,11 +122,11 @@ public class PlayMaker extends JFrame {
 				if (blocked()) {
 
 					// play ends if player that has ball is tackled
-					if (player.isHasBall())
+					if (p.isHasBall())
 						playOver = true;
 
 					// return zero for direction so player doesn't move
-					return new Point(0,0);
+					return new Vector2D(0,0);
 				} 
 				else {
 					// made it through the collision, continue on desired route
@@ -128,47 +138,7 @@ public class PlayMaker extends JFrame {
 		return null;
 	}
 
-
-
-	public Point findBestDefensiveDirection(Player player) {
-		Point distance = null;
-		// defensive players care about tackling offensive
-		for (Player p : offense.getPlayers()) {
-			// find distance between, find magnitude of that distance, determine if player should continue on their
-			// local direction, or return the better direction to be used in the move function
-			distance = new Point(p.getLocation().x - player.getLocation().x,p.getLocation().y - player.getLocation().y);
-			double magnitude = Math.sqrt((distance.x)^2+(distance.y)^2);
-
-			// if statements to determine what is the best direction to return according to the magnitude of the distance
-			if (magnitude > 3*PLAYERSIZE) {
-				// continue as normal, return players route direction
-				return player.getDirection();
-			}
-			else if (magnitude > 2*PLAYERSIZE) {
-				// return adjusted direction toward offensive player
-				// again, probably wouldn't change the route variables in players, just return them with a slight change
-			}
-			else {
-				// COLLISION
-
-				if (blocked()) {
-
-					// play ends if player that has ball is tackled
-					if (player.isHasBall())
-						playOver = true;
-
-					// return zero for direction so player doesn't move
-					return new Point(0,0);
-				} 
-				else {
-					// made it through the collision, continue on desired route
-				}
-			}
-		}
-
-		return null;
-	}
-
+	
 	// this can be called when the user selects new play options from the combo boxes on the GUI
 	// the team loadPlay functions will initialize all positions and directions
 	public void loadPlayConfig(String offensePlay, String defensePlay) {

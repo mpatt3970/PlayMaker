@@ -13,63 +13,33 @@ public abstract class MovableObject {
 	 * 
 	 */
 	
-	protected Point location;
-	protected Point initialLocation;
+	protected Vector2D location;
+	protected Vector2D initialLocation;
 	
-	public void move(Point direction, int speed) {
+	public void move(Vector2D direction, int speed) {
 		// vector along direction
-		Point unit = new Point( direction.x - location.x, direction.y - location.y);
-		// scale to unit length
-		double magnitude = Math.sqrt((unit.x)^2+(unit.y)^2);
-		unit.x = unit.x/((int) magnitude);
-		unit.y = unit.y/((int) magnitude);
-		
+		Vector2D unit = direction.getUnitVector();
 		// add to current position
 		location.x += speed*unit.x;
 		location.y += speed*unit.y;
 		
 	}
-	
-	/*
-	public Point moveForward(Point start, int speed) {
-		return new Point(5, 5);
+
+	public Vector2D getLocation() {
+		return location;
+	}
+
+	public void setLocation(Vector2D location) {
+		this.location = location;
+	}
+
+	public Vector2D getInitialLocation() {
+		return initialLocation;
+	}
+
+	public void setInitialLocation(Vector2D initialLocation) {
+		this.initialLocation = initialLocation;
 	}
 	
-	public Point moveBackwards(Point start, int speed) {
-		return new Point(5, 5);
-	}
-	
-	public Point moveLeft90degrees(Point start, int speed) {
-		return new Point(5, 5);
-	}
-	
-	public Point moveLeft30degrees(Point start, int speed) {
-		return new Point(5, 5);
-	}
-	
-	public Point moveLeft45degrees(Point start, int speed) {
-		return new Point(0, 0);
-	}
-	
-	public Point moveLeft60degrees(Point start, int speed) {
-		return new Point(0, 0);
-	}
-	
-	public Point moveRight90degrees(Point start, int speed) {
-		return new Point(0,0);
-	}
-	
-	public Point moveRight30degrees(Point start, int speed) {
-		return new Point(5, 5);
-	}
-	
-	public Point moveRight45degrees(Point start, int speed) {
-		return new Point(0, 0);
-	}
-	
-	public Point moveRight60degrees(Point start, int speed) {
-		return new Point(0, 0);
-	}
-	*/
 	
 }

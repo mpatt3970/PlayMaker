@@ -6,7 +6,7 @@ public class Blocker extends Player {
 	
 	
 	
-	public Blocker(int speed, boolean hasBall, Point location) {
+	public Blocker(int speed, boolean hasBall, Vector2D location) {
 		super(speed,hasBall,location);
 		
 	}

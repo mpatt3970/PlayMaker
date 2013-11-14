@@ -17,6 +17,7 @@ import playMaker.PlayMaker;
 import playMaker.Player;
 import playMaker.Receiver;
 import playMaker.Team;
+import playMaker.Vector2D;
 
 public class playMakerTests {
 	PlayMaker playMaker;
@@ -25,13 +26,13 @@ public class playMakerTests {
 	@Before
 	public void setUp() {
 		playMaker = new PlayMaker();
-		ball = new Ball(new Point(50,50), new Point(100,100));
+		ball = new Ball(new Vector2D(50,50), new Vector2D(100,100));
 	}
 
 	@Test
 	public void testMoveFunctions() {
-		Point current;
-		Point target;
+		Vector2D current;
+		Vector2D target;
 		
 		// ball movement speed, adjustable as needed
 		int speed = 10;
@@ -39,7 +40,7 @@ public class playMakerTests {
 		// test players move
 		for (Player p : playMaker.getOffense().getPlayers()) {
 			current = p.getLocation();
-			p.move(new Point(100,100),p.getSpeed());
+			p.move(new Vector2D(100,100),p.getSpeed());
 			assertFalse(p.getLocation().equals(current));
 		}
 		
@@ -74,15 +75,15 @@ public class playMakerTests {
 		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); i++) {
 			assertEquals(50*(i+1),playMaker.getOffense().getPlayers().get(i).getLocation().x);
 			assertEquals(200,playMaker.getOffense().getPlayers().get(i).getLocation().y);
-			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection1().equals(new Point(0,-1)));
-			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection2().equals(new Point(1,0)));
+			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection1().equals(new Vector2D(0,-1)));
+			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection2().equals(new Vector2D(1,0)));
 		}
 		// defense testing
 		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); i++) {
 			assertEquals(50*(i+1),playMaker.getDefense().getPlayers().get(i).getLocation().x);
 			assertEquals(150,playMaker.getDefense().getPlayers().get(i).getLocation().y);
-			assertTrue(playMaker.getDefense().getPlayers().get(i).getRouteDirection1().equals(new Point(0,1)));
-			assertTrue(playMaker.getDefense().getPlayers().get(i).getRouteDirection2().equals(new Point(-1,0)));
+			assertTrue(playMaker.getDefense().getPlayers().get(i).getRouteDirection1().equals(new Vector2D(0,1)));
+			assertTrue(playMaker.getDefense().getPlayers().get(i).getRouteDirection2().equals(new Vector2D(-1,0)));
 		}
 		
 	}
@@ -119,8 +120,8 @@ public class playMakerTests {
 		ArrayList<Player> testDefensePlayer = new ArrayList<Player>();
 		
 		// add two players that are a magnitude of 5 apart
-		testOffensePlayer.add(new Receiver(10,false,new Point(50,50)));
-		testDefensePlayer.add(new Defender(10,false,new Point(47,46)));
+		testOffensePlayer.add(new Receiver(10,false,new Vector2D(50,50)));
+		testDefensePlayer.add(new Defender(10,false,new Vector2D(47,46)));
 		
 		Team testOffenseTeam = new Team(true);
 		Team testDefenseTeam = new Team(false);
@@ -135,13 +136,13 @@ public class playMakerTests {
 		// a direction of (0,0) occasionally to indicate a collision and block
 		int nullDirectionCount = 0;
 		int otherCount = 0;
-		Point direction = null;
+		Vector2D direction = null;
 		for (int i = 0; i < 100; ++i) {
-			direction = playMaker.findBestOffensiveDirection(testOffensePlayer.get(0));
+			direction = playMaker.findBestDirection(testOffensePlayer.get(0),true);
 			
 			assertTrue(direction != null);
 			
-			if (direction.equals(new Point(0,0)))
+			if (direction.equals(new Vector2D(0,0)))
 				nullDirectionCount++;
 			else
 				otherCount++;
