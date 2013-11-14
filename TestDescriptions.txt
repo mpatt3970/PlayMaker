@@ -1,0 +1,46 @@
+Walter Schlosser
+Mike Patterson
+Thomas Powell
+Benjamin
+
+/*********************************
+
+TESTING STRATEGIES
+
+Our program simulates football plays, and thus we have selected the following
+higher level aspects to test:
+
+-Player movement
+	
+	We are testing that players move correctly and that the ball moves but does not
+	change its target location.
+
+-Full Teams
+
+	We are testing that the offensive and defensive teams are setup with 11 players
+	each so that there are no unexpected null pointer exceptions later
+
+-Loading Plays
+	
+	The next test loads a known play text file for the offense and defense, and
+	ensures that each player’s location and routes were initialized correctly
+
+-Loading Defense
+
+	This test makes sure the defense is only initialized with blockers and defenders
+	and that no defensive players start with the ball
+
+-Collision Detection
+
+	This test makes sure that when two players are next to eachother, the correct
+	collison consequences occur.  This means sometimes a player does not move.
+
+-Blocking
+
+	We tested that the collision blocking function sometimes stops the player, and
+	sometimes lets the player through
+
+-Processing plays
+
+	This test ensures everyone is initialized and moves during a play, that the ball 
+	is in someone’s possesion, and that the play ends.

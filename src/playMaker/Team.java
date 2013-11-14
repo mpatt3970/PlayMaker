@@ -31,7 +31,8 @@ public class Team {
 		
 		/**
 		 * I'm thinking the config files could look like 
-		 * (xLocation,yLocation),(xDirection1,yDirection1),(xDirection2,yDirection2),(xLocation,yLocation),(...
+		 * (xLocation,yLocation),(xDirection1,yDirection1),(xDirection2,yDirection2),
+		 * (xLocation,yLocation),(...
 		 * and we could read in the current location and direction like that
 		 */
 	}

@@ -58,6 +58,7 @@ public class PlayMaker extends JFrame {
 		if (!playOver) {
 
 			// Start following second half of route after a certain amount of loops
+			// MAKE PART OF PLAYER ROUTE SO THEY TURN AT DIFFERENT TIMES
 			if (loopCounter > routeUpdateCount) {
 				routeUpdated = true;
 			}
