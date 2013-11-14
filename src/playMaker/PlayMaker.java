@@ -102,17 +102,24 @@ public class PlayMaker extends JFrame {
 
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*PLAYERSIZE) {
-				// continue as normal, return players correct direction
-				netDirection.x += p.getDirection().x;
-				netDirection.y += p.getDirection().y;
+				// continue as normal, add players correct direction
+				netDirection.x += p.getDirection().getUnitVector().x;
+				netDirection.y += p.getDirection().getUnitVector().y;
 			}
 			else if (magnitude > PLAYERSIZE) {
 				// return adjusted direction away from defensive player by adding a component to the players
 				// current direction that points away from the defensive player
 
-				// I wouldn't modify the route variables in players, just return something like
-				// return getRouteDirection() + someChange
-				// This way once they are far enough from the defender, they will continue on their planned route
+				// the two is so this has more influence on motion direction
+				if (isOffense) {
+					//move away
+					netDirection.x += 2*distance.getUnitVector().x;
+					netDirection.y += 2*distance.getUnitVector().y;
+				} else {
+					// move towards
+					netDirection.x -= 2*distance.getUnitVector().x;
+					netDirection.y -= 2*distance.getUnitVector().y;
+				}
 			}
 			else {
 				// COLLISION
@@ -130,15 +137,19 @@ public class PlayMaker extends JFrame {
 				} 
 				else {
 					// made it through the collision, continue on desired route
+					// this can be changed as needed depending on how it makes players move once
+					// we see it in action
+					netDirection.x += p.getDirection().getUnitVector().x;
+					netDirection.y += p.getDirection().getUnitVector().y;
 				}
 
 			}
 		}
 
-		return null;
+		return netDirection;
 	}
 
-	
+
 	// this can be called when the user selects new play options from the combo boxes on the GUI
 	// the team loadPlay functions will initialize all positions and directions
 	public void loadPlayConfig(String offensePlay, String defensePlay) {
