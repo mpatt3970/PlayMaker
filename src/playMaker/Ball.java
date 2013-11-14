@@ -5,9 +5,12 @@ import java.awt.Point;
 public class Ball extends MovableObject {
 	private Vector2D targetLocation;
 	
-	public Ball(Vector2D locationNow, Vector2D locationEnd) {
-		this.location = locationNow;
-		this.targetLocation = locationEnd;
+	public Ball(Vector2D location, Vector2D targetLocation) {
+		this.location = location;
+		
+		Vector2D copy = new Vector2D(location.x,location.y);
+		initialLocation = copy;
+		this.targetLocation = targetLocation;
 	}
 	
 	public void draw() {
@@ -17,14 +20,6 @@ public class Ball extends MovableObject {
 	/*
 	 * Getters and Setters
 	 */
-	
-	public Vector2D getCurrentLocation() {
-		return location;
-	}
-
-	public void setCurrentLocation(Vector2D currentLocation) {
-		this.location = currentLocation;
-	}
 
 	public Vector2D getTargetLocation() {
 		return targetLocation;

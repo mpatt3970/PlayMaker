@@ -59,6 +59,12 @@ public class Vector2D {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Vector2D [x=" + x + ", y=" + y + "]";
+	}
+	
 	
 	
 

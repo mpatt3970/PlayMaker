@@ -26,29 +26,34 @@ public class playMakerTests {
 	@Before
 	public void setUp() {
 		playMaker = new PlayMaker();
-		ball = new Ball(new Vector2D(50,50), new Vector2D(100,100));
+		ball = new Ball(new Vector2D(50,50), new Vector2D(90,100));
 	}
 
 	@Test
 	public void testMoveFunctions() {
 		Vector2D current;
 		Vector2D target;
+		Vector2D ballDirection = new Vector2D();
 		
 		// ball movement speed, adjustable as needed
-		int speed = 10;
+		int speed = 5;
 		
 		// test players move
 		for (Player p : playMaker.getOffense().getPlayers()) {
-			current = p.getLocation();
+			current = p.getInitialLocation();
 			p.move(new Vector2D(100,100),p.getSpeed());
 			assertFalse(p.getLocation().equals(current));
 		}
 		
 		// test ball moves but does not change its target
-		current = ball.getCurrentLocation();
+		current = ball.getInitialLocation();
 		target = ball.getTargetLocation();
-		ball.move(target,5);
-		assertFalse(ball.getCurrentLocation().equals(current));
+		ballDirection.x = target.x - current.x;
+		ballDirection.y = target.y - current.y;
+		
+		ball.move(ballDirection,speed);
+		
+		assertFalse(ball.getLocation().equals(current));
 		assertTrue(ball.getTargetLocation().equals(target));
 	}
 	
@@ -123,6 +128,12 @@ public class playMakerTests {
 		testOffensePlayer.add(new Receiver(10,false,new Vector2D(50,50)));
 		testDefensePlayer.add(new Defender(10,false,new Vector2D(47,46)));
 		
+		//set their routes to a known value
+		testOffensePlayer.get(0).setRouteDirection1(new Vector2D(2,3));
+		testOffensePlayer.get(0).setRouteDirection2(new Vector2D(2,3));
+		testDefensePlayer.get(0).setRouteDirection1(new Vector2D(2,3));
+		testDefensePlayer.get(0).setRouteDirection2(new Vector2D(2,3));
+		
 		Team testOffenseTeam = new Team(true);
 		Team testDefenseTeam = new Team(false);
 		
@@ -136,7 +147,7 @@ public class playMakerTests {
 		// a direction of (0,0) occasionally to indicate a collision and block
 		int nullDirectionCount = 0;
 		int otherCount = 0;
-		Vector2D direction = null;
+		Vector2D direction;
 		for (int i = 0; i < 100; ++i) {
 			direction = playMaker.findBestDirection(testOffensePlayer.get(0),true);
 			

@@ -18,6 +18,10 @@ public abstract class Player extends MovableObject {
 		this.speed = speed;
 		this.hasBall = hasBall;
 		this.location = location;
+		
+		Vector2D copy = new Vector2D(location.x,location.y);
+		initialLocation = copy;
+		
 		routeDirection1 = null;
 		routeDirection2 = null;
 	}
@@ -46,14 +50,13 @@ public abstract class Player extends MovableObject {
 
 	// returns the correct unit direction based on if the route should be update or not
 	public Vector2D getDirection() {
-		Vector2D distanceVector = new Vector2D();
-		double routeMagnitude;
-		distanceVector.x = location.x - initialLocation.x;
-		distanceVector.y = location.y - initialLocation.y;
+		Vector2D displacement = new Vector2D();
+		displacement.x = location.x - initialLocation.x;
+		displacement.y = location.y - initialLocation.y;
 
-		double distance = distanceVector.getMagnitude();
+		double magnitude = displacement.getMagnitude();
 
-		if (distance > routeUpdateDistance) {
+		if (magnitude > routeUpdateDistance) {
 			return routeDirection2.getUnitVector();
 		}
 		else {

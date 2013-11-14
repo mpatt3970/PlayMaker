@@ -3,6 +3,7 @@ package playMaker;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -159,7 +160,12 @@ public class PlayMaker extends JFrame {
 
 	// This function just decides if the player gets through or not
 	public boolean blocked() {
-		return false;
+		Random generator = new Random();
+		int chance = generator.nextInt(10);
+		if (chance < 5)
+			return true;
+		else
+			return false;
 	}
 
 	/*
