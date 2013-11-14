@@ -20,11 +20,6 @@ public class PlayMaker extends JFrame {
 	// this determines how many loops need to occur before the ball gets thrown
 	private int throwCount = 100;
 
-	// this is how many loops until player execute the turn in their routes which they
-	// have stored as routeDirection2
-	private int routeUpdateCount = 50;
-	private boolean routeUpdated;
-
 	private boolean playOver;
 
 	public PlayMaker() {
@@ -50,18 +45,9 @@ public class PlayMaker extends JFrame {
 
 		// used to tell the quarterback to throw the ball after so many loops
 		int loopCounter = 0;
-		// used to determine if players are on the second half of their route or not
-		// so they can turn if wanted
-		routeUpdated = false;
 
 
 		if (!playOver) {
-
-			// Start following second half of route after a certain amount of loops
-			// MAKE PART OF PLAYER ROUTE SO THEY TURN AT DIFFERENT TIMES
-			if (loopCounter > routeUpdateCount) {
-				routeUpdated = true;
-			}
 
 			// this handles players making appropriate movement direction choices
 			// offensive moves first since they know their route, defense is trying to compensate after words
@@ -107,11 +93,8 @@ public class PlayMaker extends JFrame {
 
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*PLAYERSIZE) {
-				// continue as normal, return players route direction
-				if (routeUpdated)
-					return player.getRouteDirection2();
-				else
-					return player.getRouteDirection1();
+				// continue as normal, return players correct direction
+				player.getDirection();
 			}
 			else if (magnitude > 2*PLAYERSIZE) {
 				// return adjusted direction away from defensive player by adding a component to the players
@@ -159,10 +142,7 @@ public class PlayMaker extends JFrame {
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*PLAYERSIZE) {
 				// continue as normal, return players route direction
-				if (routeUpdated)
-					return player.getRouteDirection2();
-				else
-					return player.getRouteDirection1();
+				return player.getDirection();
 			}
 			else if (magnitude > 2*PLAYERSIZE) {
 				// return adjusted direction toward offensive player

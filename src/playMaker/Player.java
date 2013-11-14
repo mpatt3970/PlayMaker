@@ -10,6 +10,10 @@ public abstract class Player extends MovableObject {
 	private Point routeDirection1;
 	private Point routeDirection2;
 	
+	// Determines how far from initial location player is before they run the second
+	// half of their route
+	private int routeUpdateDistance;
+	
 	public Player(int speed, boolean hasBall, Point location) {
 		this.speed = speed;
 		this.hasBall = hasBall;
@@ -40,6 +44,19 @@ public abstract class Player extends MovableObject {
 		this.hasBall = hasBall;
 	}
 
+	// returns the correct direction based on if the route should be update or not
+	public Point getDirection() {
+		Point distanceVector = new Point();
+		distanceVector.x = location.x - initialLocation.x;
+		distanceVector.y = location.y - initialLocation.y;
+		
+		int distance = (int) Math.sqrt((distanceVector.x)^2+(distanceVector.y)^2);
+		
+		if (distance > routeUpdateDistance)
+			return routeDirection2;
+		else
+			return routeDirection1;
+	}
 	public Point getLocation() {
 		return location;
 	}

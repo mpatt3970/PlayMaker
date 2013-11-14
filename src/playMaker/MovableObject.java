@@ -14,6 +14,7 @@ public abstract class MovableObject {
 	 */
 	
 	protected Point location;
+	protected Point initialLocation;
 	
 	public void move(Point direction, int speed) {
 		// vector along direction
