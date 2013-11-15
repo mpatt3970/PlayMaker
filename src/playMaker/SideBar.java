@@ -17,18 +17,11 @@ public class SideBar extends JPanel {
 	
 	private PlayMaker playMaker;
 	
-	private JButton hike;
-	
 	public SideBar(PlayMaker playMaker, int x, int y) {
 		this.playMaker = playMaker;
 		// set layout to a single column
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		addButtons();
-	}
-	
-	public void addButtons() {
 		this.add(new ImageButton("/images/playIcon.png", "/images/pauseIcon.png"));
 	}
-	
 	
 }

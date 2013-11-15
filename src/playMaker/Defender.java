@@ -5,8 +5,8 @@ import java.awt.Point;
 public class Defender extends Player {
 	
 	
-	public Defender(int speed, boolean hasBall, Vector2D location) {
-		super(speed, hasBall, location);
+	public Defender(int speed, boolean hasBall, Vector2D location, Team team) {
+		super(speed, hasBall, location, team);
 	}
 
 	public void grabBall() {
@@ -28,9 +28,5 @@ public class Defender extends Player {
 
 
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

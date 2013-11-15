@@ -6,15 +6,11 @@ public class Blocker extends Player {
 	
 	
 	
-	public Blocker(int speed, boolean hasBall, Vector2D location) {
-		super(speed,hasBall,location);
+	public Blocker(int speed, boolean hasBall, Vector2D location, Team team) {
+		super(speed,hasBall,location, team);
 		
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }

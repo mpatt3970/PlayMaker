@@ -10,7 +10,7 @@ public abstract class MovableObject {
 	/**
 	 * My idea for this class is to provide basic move functions that Player and Ball can extend and use for themselves with a common syntax
 	 * 
-	 * 
+	 * Since anything that moves, also should be drawn, i put draw in here
 	 */
 	
 	protected Vector2D location;
@@ -42,4 +42,5 @@ public abstract class MovableObject {
 	}
 	
 	
+	public abstract void draw();
 }

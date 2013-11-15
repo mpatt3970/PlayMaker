@@ -19,8 +19,13 @@ public class PlayMaker extends JFrame {
 
 	private Team offense;
 	private Team defense;
+	
+	private Ball ball;
+	
+	private ArrayList<MovableObject> drawable;
 
 	// This can be adjusted later, just how big to draw players
+	// For detectCollision
 	private final int PLAYERSIZE = 50;
 
 	// this determines how many loops need to occur before the ball gets thrown
@@ -33,7 +38,14 @@ public class PlayMaker extends JFrame {
 		// passing true initializes the team as offense
 		offense = new Team(true);
 		defense = new Team(false);
-
+		
+		// initialize ball
+		
+		// make a drawable(ie movable) list to pass to paintComponent
+		drawable = new ArrayList<MovableObject>();
+		drawable.addAll(offense.getPlayers());
+		drawable.addAll(defense.getPlayers());
+		drawable.add(ball);
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
 	}
@@ -43,10 +55,10 @@ public class PlayMaker extends JFrame {
 		// instantiate gui components
 		sideBar = new SideBar(this, DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
 		field = new Field(this, DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
-		add(sideBar, BorderLayout.WEST);
-		add(field, BorderLayout.CENTER);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
+		this.add(sideBar, BorderLayout.WEST);
+		this.add(field, BorderLayout.CENTER);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 	public void processPlay() {
@@ -183,6 +195,10 @@ public class PlayMaker extends JFrame {
 	/*
 	 * Getters and Setters
 	 */
+	
+	public ArrayList<MovableObject> getDrawable() {
+		return drawable;
+	}
 
 	public Team getOffense() {
 		return offense;

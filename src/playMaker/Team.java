@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Team {
 	
 	private ArrayList<Player> players;
+	private boolean isOffense;
 	
 	/**
 	 * We could also make this an abstract class and make child classes of OffensiveTeam
@@ -16,9 +17,11 @@ public class Team {
 	public Team(boolean isOffense) {
 		players = new ArrayList<Player>();
 		if (isOffense) {
+			isOffense = true;
 			// add QB and receivers and such to array
 		}
 		else {
+			isOffense = false;
 			// add defenders and such to array
 		}
 	}
@@ -44,6 +47,10 @@ public class Team {
 	/*
 	 * Getters and Setters
 	 */
+	
+	public boolean isOffense() {
+		return isOffense();
+	}
 	
 	public ArrayList<Player> getPlayers() {
 		return players;

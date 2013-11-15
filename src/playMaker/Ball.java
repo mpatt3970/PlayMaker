@@ -13,6 +13,7 @@ public class Ball extends MovableObject {
 		this.targetLocation = targetLocation;
 	}
 	
+	@Override
 	public void draw() {
 		
 	}

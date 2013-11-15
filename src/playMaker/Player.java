@@ -5,6 +5,7 @@ import java.awt.Point;
 public abstract class Player extends MovableObject {
 	private int speed;
 	private boolean hasBall;
+	private Team team;
 
 	// This allows for one turn, we can add more if needed
 	private Vector2D routeDirection1;
@@ -14,10 +15,11 @@ public abstract class Player extends MovableObject {
 	// half of their route
 	private double routeUpdateDistance;
 
-	public Player(int speed, boolean hasBall, Vector2D location) {
+	public Player(int speed, boolean hasBall, Vector2D location, Team team) {
 		this.speed = speed;
 		this.hasBall = hasBall;
 		this.location = location;
+		this.team = team;
 		
 		Vector2D copy = new Vector2D(location.x,location.y);
 		initialLocation = copy;
@@ -25,8 +27,18 @@ public abstract class Player extends MovableObject {
 		routeDirection1 = null;
 		routeDirection2 = null;
 	}
+	
+	@Override
+	public void draw() {
+		// draw different colors for different teams
+		if (team.isOffense()) {
+			
+		} else {
+			
+		}
+	}
 
-	public abstract void draw();
+	
 
 	/*
 	 * Getters and Setters

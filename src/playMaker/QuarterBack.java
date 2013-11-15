@@ -4,8 +4,8 @@ import java.awt.Point;
 
 public class QuarterBack extends Player {
 	
-	public QuarterBack(int speed, boolean hasBall, Vector2D location) {
-		super(speed,hasBall,location);
+	public QuarterBack(int speed, boolean hasBall, Vector2D location, Team team) {
+		super(speed,hasBall,location, team);
 	}
 	
 	public void throwBall() {
@@ -16,9 +16,5 @@ public class QuarterBack extends Player {
 		
 	}
 
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
