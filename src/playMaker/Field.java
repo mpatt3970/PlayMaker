@@ -8,14 +8,22 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JComponent;
 
 public class Field extends JComponent {
+	// Chose these numbers becuase the field is about 50 wide and the length we will show is 25 yards.
+	// I don't enforce this ratio above these sizes though
+	private final int MIN_X = 150;
+	private final int MIN_Y = 300;
 	private int sizeX, sizeY;
+	
 	private PlayMaker playMaker;
 
-	public Field(PlayMaker playMaker) {
+	public Field(PlayMaker playMaker, int x, int y) {
 		this.playMaker = playMaker;
-		this.sizeX = getWidth();
-		this.sizeY = getHeight();
+		this.sizeX = x;
+		this.sizeY = y;
+		// add a listener for resizing
 		addComponentListener(new SizeAdapter(this));
+		// add a repaint Thread
+		addThread();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -26,6 +34,26 @@ public class Field extends JComponent {
 		drawLines(g);
 		// draw each player on each team
 
+	}
+	
+	public void addThread() {
+		// I think this will help for animation purposes.
+		// Thank you Vulcan for http://stackoverflow.com/questions/10535061/jpanel-is-not-refreshing-until-i-resize-the-app-window
+		Thread repainter = new Thread(new Runnable() {
+		    @Override
+		    public void run() {
+		        while (true) { 
+		            repaint();
+		            try {
+		                Thread.sleep(30);
+		            } catch (InterruptedException ignored) {
+		            }
+		        }
+		    }
+		});
+		repainter.setName("Panel repaint");
+		repainter.setPriority(Thread.MIN_PRIORITY);
+		repainter.start();
 	}
 
 	public void drawLines(Graphics g) {
@@ -41,10 +69,6 @@ public class Field extends JComponent {
 	private class SizeAdapter extends ComponentAdapter {
 		// A private class in charge of resizing the field when the window is resized.
 		private JComponent parent;
-		// Chose these numbers becuase the field is about 50 wide and the length we will show is 25 yards.
-		// I don't enforce this ratio above these sizes though
-		private final int MIN_X = 150;
-		private final int MIN_Y = 300;
 
 		public SizeAdapter(JComponent parent) {
 			this.parent = parent;	

@@ -1,14 +1,18 @@
 package playMaker;
 
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class PlayMaker extends JFrame {
+	private final int DEFAULT_SIZE_X = 900;
+	private final int DEFAULT_SIZE_Y = 600;
+	private final int DEFAULT_SIDEBAR_X = 150;
 
 	private SideBar sideBar;
 	private Field field;
@@ -25,16 +29,24 @@ public class PlayMaker extends JFrame {
 	private boolean playOver;
 
 	public PlayMaker() {
-		// instantiate gui components
-		sideBar = new SideBar(this);
-		field = new Field(this);
-
+		initGui();
 		// passing true initializes the team as offense
 		offense = new Team(true);
 		defense = new Team(false);
 
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
+	}
+
+	public void initGui() {
+		this.setSize(DEFAULT_SIZE_X, DEFAULT_SIZE_Y);
+		// instantiate gui components
+		sideBar = new SideBar(this, DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
+		field = new Field(this, DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
+		add(sideBar, BorderLayout.WEST);
+		add(field, BorderLayout.CENTER);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 
 	public void processPlay() {
@@ -196,8 +208,11 @@ public class PlayMaker extends JFrame {
 	 */
 
 	public static void main(String[] args) {
-		PlayMaker gui = new PlayMaker();
-		gui.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		gui.setVisible(true);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				PlayMaker gui = new PlayMaker();
+				
+			}
+		});
 	}
 }
