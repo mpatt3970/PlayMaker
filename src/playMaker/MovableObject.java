@@ -1,5 +1,6 @@
 package playMaker;
 
+import java.awt.Graphics;
 import java.awt.Point;
 
 
@@ -42,5 +43,6 @@ public abstract class MovableObject {
 	}
 	
 	
-	public abstract void draw();
+	public abstract void draw(Graphics g);
+	
 }

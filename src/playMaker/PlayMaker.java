@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class PlayMaker extends JFrame {
-	private final int DEFAULT_SIZE_X = 900;
-	private final int DEFAULT_SIZE_Y = 600;
-	private final int DEFAULT_SIDEBAR_X = 150;
+	public static final int DEFAULT_SIZE_X = 900;
+	public static final int DEFAULT_SIZE_Y = 600;
+	public static final int DEFAULT_SIDEBAR_X = 150;
 
 	private SideBar sideBar;
 	private Field field;
@@ -24,9 +24,7 @@ public class PlayMaker extends JFrame {
 	
 	private ArrayList<MovableObject> drawable;
 
-	// This can be adjusted later, just how big to draw players
-	// For detectCollision
-	private final int PLAYERSIZE = 50;
+
 
 	// this determines how many loops need to occur before the ball gets thrown
 	private int throwCount = 100;
@@ -40,12 +38,13 @@ public class PlayMaker extends JFrame {
 		defense = new Team(false);
 		
 		// initialize ball
-		
+		ball = new Ball(new Vector2D(50, 50), new Vector2D(50, 50));
 		// make a drawable(ie movable) list to pass to paintComponent
 		drawable = new ArrayList<MovableObject>();
 		drawable.addAll(offense.getPlayers());
 		drawable.addAll(defense.getPlayers());
 		drawable.add(ball);
+		
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
 	}
@@ -126,12 +125,12 @@ public class PlayMaker extends JFrame {
 			double magnitude = distance.getMagnitude();
 
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
-			if (magnitude > 3*PLAYERSIZE) {
+			if (magnitude > 3*Player.PLAYER_SIZE_X) {
 				// continue as normal, add players correct direction
 				netDirection.x += p.getDirection().getUnitVector().x;
 				netDirection.y += p.getDirection().getUnitVector().y;
 			}
-			else if (magnitude > PLAYERSIZE) {
+			else if (magnitude > Player.PLAYER_SIZE_X) {
 				// return adjusted direction away from defensive player by adding a component to the players
 				// current direction that points away from the defensive player
 

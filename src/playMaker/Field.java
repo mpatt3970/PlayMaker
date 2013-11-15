@@ -34,7 +34,7 @@ public class Field extends JComponent {
 		drawLines(g);
 		// draw each drawableObject on each team
 		for (MovableObject toDraw : playMaker.getDrawable()) {
-			toDraw.draw();
+			toDraw.draw(g);
 		}
 	}
 	

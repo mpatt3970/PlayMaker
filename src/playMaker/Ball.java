@@ -1,5 +1,6 @@
 package playMaker;
 
+import java.awt.Graphics;
 import java.awt.Point;
 
 public class Ball extends MovableObject {
@@ -14,7 +15,7 @@ public class Ball extends MovableObject {
 	}
 	
 	@Override
-	public void draw() {
+	public void draw(Graphics g) {
 		
 	}
 
