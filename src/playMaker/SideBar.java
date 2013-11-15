@@ -21,7 +21,7 @@ public class SideBar extends JPanel {
 		this.playMaker = playMaker;
 		// set layout to a single column
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.add(new ImageButton("/images/playIcon.png", "/images/pauseIcon.png"));
+		this.add(new ImageButton("/images/playIcon.png", "/images/pauseIcon.png", playMaker));
 	}
 	
 }
