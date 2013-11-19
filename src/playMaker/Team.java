@@ -22,7 +22,7 @@ public class Team {
 			// add QB and receivers and such to array
 			
 			// for testing drawing
-			players.add(new QuarterBack(0, true, new Vector2D(150, 150), this));
+			//players.add(new QuarterBack(0, true, new Vector2D(150, 150), this));
 			
 		}
 		else {
@@ -30,7 +30,7 @@ public class Team {
 			// add defenders and such to array
 			
 			// for testing drawing
-			players.add(new Defender(0, false, new Vector2D(200, 150), this));
+			//players.add(new Defender(0, false, new Vector2D(200, 150), this));
 			
 		}
 	}
