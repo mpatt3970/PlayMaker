@@ -23,7 +23,19 @@ public class Team {
 		if (isOffense) {
 			isOffense = true;
 			// add QB and receivers and such to array
+			players.add(new Receiver(0, true, new Vector2D(100, 300), this));
+			players.add(new Receiver(0, true, new Vector2D(150, 300), this));
+			players.add(new Blocker(0, true, new Vector2D(200, 300), this));
+			players.add(new Blocker(0, true, new Vector2D(250, 300), this));
+			players.add(new Blocker(0, true, new Vector2D(300, 300), this));
+			players.add(new QuarterBack(0, true, new Vector2D(350, 300), this));
+			players.add(new Blocker(0, true, new Vector2D(400, 300), this));
+			players.add(new Blocker(0, true, new Vector2D(450, 300), this));
+			players.add(new Blocker(0, true, new Vector2D(500, 300), this));
+			players.add(new Receiver(0, true, new Vector2D(550, 300), this));
+			players.add(new Receiver(0, true, new Vector2D(600, 300), this));
 			
+
 			// for testing drawing
 			//players.add(new QuarterBack(0, true, new Vector2D(150, 150), this));
 			
@@ -31,6 +43,17 @@ public class Team {
 		else {
 			isOffense = false;
 			// add defenders and such to array
+			players.add(new Defender(0, false, new Vector2D(200, 150), this));
+			players.add(new Defender(0, false, new Vector2D(150, 150), this));
+			players.add(new Blocker(0, false, new Vector2D(100, 150), this));
+			players.add(new Blocker(0, false, new Vector2D(600, 150), this));
+			players.add(new Blocker(0, false, new Vector2D(550, 150), this));
+			players.add(new Blocker(0, false, new Vector2D(250, 150), this));
+			players.add(new Defender(0, false, new Vector2D(300, 150), this));
+			players.add(new Defender(0, false, new Vector2D(350, 150), this));
+			players.add(new Defender(0, false, new Vector2D(400, 150), this));
+			players.add(new Defender(0, false, new Vector2D(450, 150), this));
+			players.add(new Defender(0, false, new Vector2D(500, 150), this));
 			
 			// for testing drawing
 			//players.add(new Defender(0, false, new Vector2D(200, 150), this));
@@ -110,6 +133,7 @@ public class Team {
 		}
 		
 		
+		//As coded now 1 = -> and then counter clockwise at 45 degree amounts(like the unit circle)
 		
 		/**
 		 * I'm thinking the config files could look like 
