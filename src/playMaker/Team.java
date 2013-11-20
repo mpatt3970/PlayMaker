@@ -1,6 +1,9 @@
 package playMaker;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Team {
 	
@@ -40,6 +43,73 @@ public class Team {
 		// initialize the players with their locations and directions
 		
 		// button listener will pass the correct file name to this function
+		Scanner scanner;
+		try {
+			FileReader reader = new FileReader(fileName);
+			scanner = new Scanner(reader);
+			for (Player current : players){
+				int direction = scanner.nextInt();
+				int direction2 = scanner.nextInt();
+				switch(direction) {
+				case 1:
+					current.setRouteDirection1(new Vector2D(1,0));
+					break;
+				case 2:
+					current.setRouteDirection1(new Vector2D(.5,.5));
+					break;
+				case 3:
+					current.setRouteDirection1(new Vector2D(0,1));
+					break;
+				case 4:
+					current.setRouteDirection1(new Vector2D(-.5,.5));
+					break;
+				case 5:
+					current.setRouteDirection1(new Vector2D(-1,0));
+					break;
+				case 6:
+					current.setRouteDirection1(new Vector2D(-.5,-.5));
+					break;
+				case 7:
+					current.setRouteDirection1(new Vector2D(0,-1));
+					break;
+				case 8:
+					current.setRouteDirection1(new Vector2D(.5,-.5));
+					break;	
+				}
+				
+				switch(direction2) {
+				case 1:
+					current.setRouteDirection1(new Vector2D(1,0));
+					break;
+				case 2:
+					current.setRouteDirection1(new Vector2D(.5,.5));
+					break;
+				case 3:
+					current.setRouteDirection1(new Vector2D(0,1));
+					break;
+				case 4:
+					current.setRouteDirection1(new Vector2D(-.5,.5));
+					break;
+				case 5:
+					current.setRouteDirection1(new Vector2D(-1,0));
+					break;
+				case 6:
+					current.setRouteDirection1(new Vector2D(-.5,-.5));
+					break;
+				case 7:
+					current.setRouteDirection1(new Vector2D(0,-1));
+					break;
+				case 8:
+					current.setRouteDirection1(new Vector2D(.5,-.5));
+					break;	
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		/**
 		 * I'm thinking the config files could look like 
