@@ -209,11 +209,11 @@ public class playMakerTests {
 		// assure all players moved and play is over
 		assertTrue(playMaker.getPlayOver());
 		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); ++i) {
-			assertFalse(testOffense.getPlayers().get(i).getLocation().equals(playMaker.getOffense().getPlayers().get(i).getLocation()));
+			assertFalse(testOffense.getPlayers().get(i).getInitialLocation().equals(playMaker.getOffense().getPlayers().get(i).getLocation()));
 		}
 		
 		for (int i = 0; i < playMaker.getDefense().getPlayers().size(); ++i) {
-			assertFalse(testDefense.getPlayers().get(i).getLocation().equals(playMaker.getDefense().getPlayers().get(i).getLocation()));
+			assertFalse(testDefense.getPlayers().get(i).getInitialLocation().equals(playMaker.getDefense().getPlayers().get(i).getLocation()));
 		}
 		
 	}
