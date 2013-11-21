@@ -102,28 +102,28 @@ public class Team {
 				
 				switch(direction2) {
 				case 1:
-					current.setRouteDirection1(new Vector2D(1,0));
+					current.setRouteDirection2(new Vector2D(1,0));
 					break;
 				case 2:
-					current.setRouteDirection1(new Vector2D(.5,.5));
+					current.setRouteDirection2(new Vector2D(.5,.5));
 					break;
 				case 3:
-					current.setRouteDirection1(new Vector2D(0,1));
+					current.setRouteDirection2(new Vector2D(0,1));
 					break;
 				case 4:
-					current.setRouteDirection1(new Vector2D(-.5,.5));
+					current.setRouteDirection2(new Vector2D(-.5,.5));
 					break;
 				case 5:
-					current.setRouteDirection1(new Vector2D(-1,0));
+					current.setRouteDirection2(new Vector2D(-1,0));
 					break;
 				case 6:
-					current.setRouteDirection1(new Vector2D(-.5,-.5));
+					current.setRouteDirection2(new Vector2D(-.5,-.5));
 					break;
 				case 7:
-					current.setRouteDirection1(new Vector2D(0,-1));
+					current.setRouteDirection2(new Vector2D(0,-1));
 					break;
 				case 8:
-					current.setRouteDirection1(new Vector2D(.5,-.5));
+					current.setRouteDirection2(new Vector2D(.5,-.5));
 					break;	
 				}
 			}
