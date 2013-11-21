@@ -80,8 +80,6 @@ public class playMakerTests {
 		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); i++) {
 			//assertEquals(50*(i+2),playMaker.getOffense().getPlayers().get(i).getLocation().x);
 			//assertEquals(300,playMaker.getOffense().getPlayers().get(i).getLocation().y);
-			System.out.println(playMaker.getOffense().getPlayers().get(i).getRouteDirection1());
-			System.out.println(playMaker.getOffense().getPlayers().get(i).getRouteDirection2());
 			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection1().equals(new Vector2D(0,-1)));
 			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection2().equals(new Vector2D(1,0)));
 		}
@@ -100,24 +98,25 @@ public class playMakerTests {
 		// test that the defense gets initialized correctly
 		int defenderCount = 0;
 		int blockerCount = 0;
-		int otherCount = 0;
 		
 		// test that no defender gets the ball initially
 		for (Player p : playMaker.getDefense().getPlayers()) {
 			assertFalse(p.isHasBall());
 		}
+		
 		// make sure defense has only defenders and blockers
 		for (Player p : playMaker.getDefense().getPlayers()) {
-			if (p instanceof Defender)
+			if (p instanceof Defender) {
 				defenderCount++;
-			if (p instanceof Blocker)
+			}
+			if (p instanceof Blocker) {
 				blockerCount++;
-			else
-				otherCount++;
+			}
+			
 		}
 		assertTrue(defenderCount > 0);
 		assertTrue(blockerCount > 0);
-		assertTrue(otherCount == 0);
+		assertEquals(11,defenderCount + blockerCount);
 	}
 	
 	@Test

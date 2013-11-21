@@ -70,7 +70,7 @@ public class PlayMaker extends JFrame {
 
 		// used to tell the quarterback to throw the ball after so many loops
 		int loopCounter = 0;
-
+		playOver = false;
 
 		if (!playOver) {
 
@@ -170,7 +170,14 @@ public class PlayMaker extends JFrame {
 			}
 		}
 
+		//FOR TESTING ONLY
+		playOver = true;
+		//---------------
+		
 		return netDirection;
+		
+		
+		
 	}
 
 

@@ -18,10 +18,9 @@ public class Team {
 	 */
 	
 	public Team(boolean offense) {
-		this.isOffense = offense;
+		isOffense = offense;
 		players = new ArrayList<Player>();
 		if (isOffense) {
-			isOffense = true;
 			// add QB and receivers and such to array
 			players.add(new Receiver(5, false, new Vector2D(100, 300), this));
 			players.add(new Receiver(5, false, new Vector2D(150, 300), this));
@@ -41,7 +40,6 @@ public class Team {
 			
 		}
 		else {
-			isOffense = false;
 			// add defenders and such to array
 			players.add(new Defender(5, false, new Vector2D(200, 150), this));
 			players.add(new Defender(5, false, new Vector2D(150, 150), this));
