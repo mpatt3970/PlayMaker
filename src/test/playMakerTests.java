@@ -78,8 +78,8 @@ public class playMakerTests {
 		// the test plays will just line every player up horizontally, 50 pixels apart, and everyone head up/down
 		// and then left/right
 		for (int i = 0; i < playMaker.getOffense().getPlayers().size(); i++) {
-			assertEquals(50*(i+1),playMaker.getOffense().getPlayers().get(i).getLocation().x);
-			assertEquals(200,playMaker.getOffense().getPlayers().get(i).getLocation().y);
+			assertEquals(50*(i+2),playMaker.getOffense().getPlayers().get(i).getLocation().x);
+			assertEquals(300,playMaker.getOffense().getPlayers().get(i).getLocation().y);
 			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection1().equals(new Vector2D(0,-1)));
 			assertTrue(playMaker.getOffense().getPlayers().get(i).getRouteDirection2().equals(new Vector2D(1,0)));
 		}
