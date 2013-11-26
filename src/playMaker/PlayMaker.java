@@ -129,6 +129,7 @@ public class PlayMaker extends JFrame {
 				// continue as normal, add players correct direction
 				netDirection.x += p.getDirection().getUnitVector().x;
 				netDirection.y += p.getDirection().getUnitVector().y;
+				p.setIsOpen(true);
 			}
 			else if (magnitude > Player.PLAYER_SIZE_X) {
 				// return adjusted direction away from defensive player by adding a component to the players
@@ -150,6 +151,8 @@ public class PlayMaker extends JFrame {
 				// call a collision function which will sometimes stop the player's movement, sometimes let them through
 				// if the collision involves a player that has the ball, the play should end
 
+				p.setIsOpen(false);
+				
 				if (blocked()) {
 
 					// play ends if player that has ball is tackled

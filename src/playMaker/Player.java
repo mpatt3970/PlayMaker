@@ -12,6 +12,7 @@ public abstract class Player extends MovableObject {
 	private int speed;
 	private boolean hasBall;
 	private Team team;
+	private boolean isOpen;
 	
 	// store the buffered images, using static to save space
 	public static Image offensiveDraw;
@@ -36,6 +37,8 @@ public abstract class Player extends MovableObject {
 		
 		routeDirection1 = null;
 		routeDirection2 = null;
+		
+		isOpen = true;
 		
 		loadImages();
 	}
@@ -65,6 +68,14 @@ public abstract class Player extends MovableObject {
 	/*
 	 * Getters and Setters
 	 */
+	
+	public boolean isOpen() {
+		return isOpen;
+	}
+	
+	public void setIsOpen(boolean b) {
+		isOpen = b;
+	}
 
 	public int getSpeed() {
 		return speed;
