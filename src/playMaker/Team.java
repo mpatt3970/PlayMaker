@@ -36,7 +36,7 @@ public class Team {
 			
 
 			// for testing drawing
-			//players.add(new QuarterBack(0, true, new Vector2D(150, 150), this));
+			// players.add(new QuarterBack(0, true, new Vector2D(150, 150), this));
 			
 		}
 		else {
@@ -136,9 +136,6 @@ public class Team {
 		
 	}
 	
-	public void hike() {
-		// when the user clicks run
-	}
 
 	/*
 	 * Getters and Setters

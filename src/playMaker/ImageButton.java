@@ -3,6 +3,7 @@ package playMaker;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
@@ -24,25 +25,10 @@ public class ImageButton extends JPanel {
 		button.setIcon(icon);
 		icon = getIcon(pauseImage);
 		button.setSelectedIcon(icon);
-		addMouseListener(new MouseListener() {
-
+		button.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				frame.processPlay();
-			}
-			
-			// unneccesary for this button
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-			}
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-			}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.flipPlayOver();
 			}
 		});
 		add(button);

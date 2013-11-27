@@ -22,8 +22,6 @@ public class Field extends JComponent {
 		this.sizeY = y;
 		// add a listener for resizing
 		addComponentListener(new SizeAdapter(this));
-		// add a repaint Thread
-		addThread();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -36,26 +34,6 @@ public class Field extends JComponent {
 		for (MovableObject toDraw : playMaker.getDrawable()) {
 			toDraw.draw(g);
 		}
-	}
-
-	public void addThread() {
-		// I think this will help for animation purposes.
-		// Thank you Vulcan for http://stackoverflow.com/questions/10535061/jpanel-is-not-refreshing-until-i-resize-the-app-window
-		Thread repainter = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while (true) { 
-					repaint();
-					try {
-						Thread.sleep(30);
-					} catch (InterruptedException ignored) {
-					}
-				}
-			}
-		});
-		repainter.setName("Panel repaint");
-		repainter.setPriority(Thread.MIN_PRIORITY);
-		repainter.start();
 	}
 
 	public void drawLines(Graphics g) {

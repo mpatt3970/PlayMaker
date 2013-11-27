@@ -3,11 +3,15 @@ package playMaker;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 public class PlayMaker extends JFrame {
 	public static final int DEFAULT_SIZE_X = 900;
@@ -23,19 +27,21 @@ public class PlayMaker extends JFrame {
 	private Ball ball;
 	
 	private ArrayList<MovableObject> drawable;
+	
+	private Timer animationTimer;
 
 
 
 	// this determines how many loops need to occur before the ball gets thrown
-	private int throwCount = 100;
+	private static int THROW_COUNT = 100;
 
 	private boolean playOver;
 
 	public PlayMaker() {
-		initGui();
 		// passing true initializes the team as offense
 		offense = new Team(true);
 		defense = new Team(false);
+		
 		
 		// initialize ball
 		ball = new Ball(new Vector2D(50, 50), new Vector2D(50, 50));
@@ -90,7 +96,7 @@ public class PlayMaker extends JFrame {
 			repaint();
 
 			// loop through receivers to throwBall() or handOff() to anyone open or even run if no one is open
-			if(loopCounter > throwCount) {
+			if(loopCounter > THROW_COUNT) {
 				/**
 				 * We will probably need a reference to the QB, and the QB will also possibly need a
 				 * reference to the ball since it had a throwBall() function
@@ -99,9 +105,7 @@ public class PlayMaker extends JFrame {
 
 			// increment the loop count toward ball throwing time
 			loopCounter++;
-
 		}
-
 
 	}
 
@@ -173,15 +177,7 @@ public class PlayMaker extends JFrame {
 
 			}
 		}
-
-		//FOR TESTING ONLY
-		playOver = true;
-		//---------------
-		
 		return netDirection;
-		
-		
-		
 	}
 
 
@@ -200,6 +196,21 @@ public class PlayMaker extends JFrame {
 			return true;
 		else
 			return false;
+	}
+	
+	public void animate() {
+		// Thanks to http://stackoverflow.com/questions/9800968/ball-animation-in-swing
+		initGui();
+		ActionListener actionTimer = new ActionListener() {
+			// called when the timer triggers an action
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				processPlay();
+				repaint();
+			}
+		};
+		
+		animationTimer = new Timer(500, actionTimer);
 	}
 
 	/*
@@ -229,6 +240,17 @@ public class PlayMaker extends JFrame {
 	public boolean getPlayOver() {
 		return playOver;
 	}
+	
+	public void flipPlayOver() {
+		// also start and stop the timer
+		if (playOver == true) {
+			animationTimer.start();
+			playOver = false;
+		} else {
+			animationTimer.stop();
+			playOver = true;
+		}
+	}
 	/*
 	 * 
 	 */
@@ -237,7 +259,7 @@ public class PlayMaker extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				PlayMaker gui = new PlayMaker();
-				
+				gui.animate();
 			}
 		});
 	}

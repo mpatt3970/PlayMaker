@@ -9,7 +9,7 @@ import javax.swing.border.TitledBorder;
 public class SelectPlaysPanel extends JPanel {
 	
 	private PlayMaker frame;
-	private GenericComboBox base, secondary;
+	private GenericComboBox base, secondary, offense;
 	
 	public SelectPlaysPanel(PlayMaker frame) {
 		this.frame = frame;
@@ -25,11 +25,18 @@ public class SelectPlaysPanel extends JPanel {
 		this.add(secondary);
 		String[] plays = {"run", "pass"};
 		title = "Plays";
-		this.add(new GenericComboBox(plays, title, this));
+		offense = new GenericComboBox(plays, title, this);
+		this.add(offense);
+		// load a default play
+		updateChoices();
 	}
 	
 	public void updateChoices() {
 		String formation = base.getChoice();
-		String coverage = secondary.getChoice();
+		//String coverage = secondary.getChoice();
+		//String play = offense.getChoice();
+		String coverage = "testDefensePlay.txt";
+		String play = "testOffensePlay.txt";
+		frame.loadPlayConfig(play, coverage);
 	}
 }
