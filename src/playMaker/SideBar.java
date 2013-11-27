@@ -1,5 +1,6 @@
 package playMaker;
 
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -21,8 +22,7 @@ public class SideBar extends JPanel {
 		this.playMaker = playMaker;
 		// set layout to a single column
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.add(new DefensePanel(playMaker));
-		this.add(new OffensePanel(playMaker));
+		this.add(new SelectPlaysPanel(playMaker));
 		this.add(new ImageButton("/images/playIcon.png", "/images/pauseIcon.png", playMaker));
 	}
 	

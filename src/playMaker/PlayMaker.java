@@ -56,6 +56,7 @@ public class PlayMaker extends JFrame {
 		field = new Field(this, DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
 		this.add(sideBar, BorderLayout.WEST);
 		this.add(field, BorderLayout.CENTER);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
