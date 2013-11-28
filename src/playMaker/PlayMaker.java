@@ -38,6 +38,8 @@ public class PlayMaker extends JFrame {
 	int loopCounter = 0;
 	private boolean thrown;
 	private boolean playOver;
+	
+	//
 
 	public PlayMaker() {
 		// passing true initializes the team as offense

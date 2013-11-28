@@ -1,5 +1,6 @@
 package playMaker;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -11,6 +12,8 @@ public class Ball extends MovableObject {
 	private Image ballDraw;
 	private Vector2D targetLocation;
 	private int speed = 10;
+	
+	private int catchRadius = 25;
 	
 	public Ball(Vector2D location, Vector2D targetLocation) {
 		this.location = location;
@@ -29,6 +32,12 @@ public class Ball extends MovableObject {
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(ballDraw, (int)location.x, (int)location.y, null);
+		drawCatchRadius(g);
+	}
+	
+	public void drawCatchRadius(Graphics g) {
+		g.setColor(Color.ORANGE);
+		g.drawOval((int) targetLocation.x - catchRadius,(int) targetLocation.y - catchRadius, 2*catchRadius, 2*catchRadius);
 	}
 
 	/*
