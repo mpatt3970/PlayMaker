@@ -10,6 +10,7 @@ public class Ball extends MovableObject {
 	
 	private Image ballDraw;
 	private Vector2D targetLocation;
+	private int speed = 10;
 	
 	public Ball(Vector2D location, Vector2D targetLocation) {
 		this.location = location;
@@ -33,6 +34,14 @@ public class Ball extends MovableObject {
 	/*
 	 * Getters and Setters
 	 */
+	
+	public int getSpeed() {
+		return speed;
+	}
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
 
 	public Vector2D getTargetLocation() {
 		return targetLocation;

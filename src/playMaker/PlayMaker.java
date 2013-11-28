@@ -23,36 +23,38 @@ public class PlayMaker extends JFrame {
 
 	private Team offense;
 	private Team defense;
-	
+	//so we have a reference to the quarterback
+	private int qbIndex = 5;
+
 	private Ball ball;
-	
+
 	private ArrayList<MovableObject> drawable;
-	
+
 	private Timer animationTimer;
 
 
 
 	// this determines how many loops need to occur before the ball gets thrown
 	private static int THROW_COUNT = 100;
-
+	private boolean thrown;
 	private boolean playOver;
 
 	public PlayMaker() {
 		// passing true initializes the team as offense
 		offense = new Team(true);
 		defense = new Team(false);
+
+
 		
-		
-		// initialize ball
-		ball = new Ball(new Vector2D(50, 50), new Vector2D(50, 50));
 		// make a drawable(ie movable) list to pass to paintComponent
 		drawable = new ArrayList<MovableObject>();
 		drawable.addAll(offense.getPlayers());
 		drawable.addAll(defense.getPlayers());
-		drawable.add(ball);
 		
+
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
+		thrown = true;
 	}
 
 	public void initGui() {
@@ -77,6 +79,7 @@ public class PlayMaker extends JFrame {
 
 		// used to tell the quarterback to throw the ball after so many loops
 		int loopCounter = 0;
+		thrown = false;
 		playOver = false;
 
 		if (!playOver) {
@@ -92,16 +95,24 @@ public class PlayMaker extends JFrame {
 				p.move(direction, p.getSpeed());
 			}
 
-			// repaint now that all players have new locations
-			repaint();
 
 			// loop through receivers to throwBall() or handOff() to anyone open or even run if no one is open
 			if(loopCounter > THROW_COUNT) {
-				/**
-				 * We will probably need a reference to the QB, and the QB will also possibly need a
-				 * reference to the ball since it had a throwBall() function
-				 */
+				if(!thrown) {
+					// Cast to reference the QB
+					QuarterBack qb = (QuarterBack) offense.getPlayers().get(qbIndex);
+					// initialize ball to throw.  initializing here makes it easier to start from the qb
+					// instead of having the ball track the qb before it is thrown
+					ball = new Ball(new Vector2D(qb.getLocation().x, qb.getLocation().y), new Vector2D(qb.getRouteDirection1().x, qb.getRouteDirection1().y));
+					// Sets up the target accordingly to an open receiver
+					qb.throwBall(ball, offense);
+					// Now the ball can be drawn
+					drawable.add(ball);
+				}
+				//Update ball location
+				ball.move(ball.getTargetLocation(), ball.getSpeed());
 			}
+
 
 			// increment the loop count toward ball throwing time
 			loopCounter++;
@@ -157,7 +168,7 @@ public class PlayMaker extends JFrame {
 				// if the collision involves a player that has the ball, the play should end
 
 				p.setIsOpen(false);
-				
+
 				if (blocked()) {
 
 					// play ends if player that has ball is tackled
@@ -197,7 +208,7 @@ public class PlayMaker extends JFrame {
 		else
 			return false;
 	}
-	
+
 	public void animate() {
 		// Thanks to http://stackoverflow.com/questions/9800968/ball-animation-in-swing
 		initGui();
@@ -209,14 +220,15 @@ public class PlayMaker extends JFrame {
 				repaint();
 			}
 		};
-		
-		animationTimer = new Timer(500, actionTimer);
+
+		//Made the timer a little shorter to animate faster
+		animationTimer = new Timer(100, actionTimer);
 	}
 
 	/*
 	 * Getters and Setters
 	 */
-	
+
 	public ArrayList<MovableObject> getDrawable() {
 		return drawable;
 	}
@@ -240,7 +252,7 @@ public class PlayMaker extends JFrame {
 	public boolean getPlayOver() {
 		return playOver;
 	}
-	
+
 	public void flipPlayOver() {
 		// also start and stop the timer
 		if (playOver == true) {
