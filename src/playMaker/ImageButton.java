@@ -28,7 +28,7 @@ public class ImageButton extends JPanel {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				frame.flipPlayOver();
+				frame.flipPaused();
 			}
 		});
 		add(button);

@@ -37,7 +37,7 @@ public class PlayMaker extends JFrame {
 	private static int THROW_COUNT = 100;
 	int loopCounter = 0;
 	private boolean thrown;
-	private boolean playOver;
+	private boolean paused;
 	
 	//
 
@@ -55,7 +55,7 @@ public class PlayMaker extends JFrame {
 
 
 		// We can set this to false and call the processPlay when the GUI start button is pressed
-		playOver = true;
+		paused = true;
 		thrown = false;
 	}
 
@@ -79,7 +79,7 @@ public class PlayMaker extends JFrame {
 		 */
 
 
-		if (!playOver) {
+		if (!paused) {
 
 			// this handles players making appropriate movement direction choices
 			// offensive moves first since they know their route, defense is trying to compensate after words
@@ -180,7 +180,7 @@ public class PlayMaker extends JFrame {
 
 					// play ends if player that has ball is tackled
 					if (p.isHasBall())
-						playOver = true;
+						paused = true;
 
 					// return zero for direction so player doesn't move
 					return new Vector2D(0,.01);
@@ -264,7 +264,7 @@ public class PlayMaker extends JFrame {
 	}
 
 	public boolean getPlayOver() {
-		return playOver;
+		return paused;
 	}
 
 	public void setLoopCounter(int num) {
@@ -280,14 +280,14 @@ public class PlayMaker extends JFrame {
 		ball = null;
 	}
 
-	public void flipPlayOver() {
+	public void flipPaused() {
 		// also start and stop the timer
-		if (playOver == true) {
+		if (paused == true) {
 			animationTimer.start();
-			playOver = false;
+			paused = false;
 		} else {
 			animationTimer.stop();
-			playOver = true;
+			paused = true;
 		}
 	}
 	/*
