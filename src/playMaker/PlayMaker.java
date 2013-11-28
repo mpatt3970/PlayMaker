@@ -33,7 +33,6 @@ public class PlayMaker extends JFrame {
 	private Timer animationTimer;
 
 
-
 	// this determines how many loops need to occur before the ball gets thrown
 	private static int THROW_COUNT = 100;
 	int loopCounter = 0;
@@ -196,6 +195,9 @@ public class PlayMaker extends JFrame {
 	public void loadPlayConfig(String offensePlay, String defensePlay) {
 		offense.loadPlay(offensePlay);
 		defense.loadPlay(defensePlay);
+		
+		//repaint is here to update locations and draw the route lines
+		repaint();
 	}
 
 	// This function just decides if the player gets through or not
@@ -252,6 +254,19 @@ public class PlayMaker extends JFrame {
 
 	public boolean getPlayOver() {
 		return playOver;
+	}
+	
+	public void setLoopCounter(int num) {
+		loopCounter = num;
+	}
+	
+	public void setThrown(boolean b) {
+		thrown = b;
+	}
+	
+	public void resetBall() {
+		drawable.remove(ball);
+		ball = null;
 	}
 
 	public void flipPlayOver() {

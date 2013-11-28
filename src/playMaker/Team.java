@@ -37,9 +37,6 @@ public class Team {
 			players.add(new Receiver(5, false, new Vector2D(600, 300), this));
 
 
-			// for testing drawing
-			// players.add(new QuarterBack(0, true, new Vector2D(150, 150), this));
-
 		}
 		else {
 			// add defenders and such to array
@@ -55,9 +52,64 @@ public class Team {
 			players.add(new Blocker(1, false, new Vector2D(480, 240), this));
 			players.add(new Defender(5, false, new Vector2D(600, 230), this));
 
-			// for testing drawing
-			//players.add(new Defender(0, false, new Vector2D(200, 150), this));
 
+		}
+	}
+
+	public void loadDefaultFormation(boolean offense) {
+		if (offense) {
+			players.get(0).setAbsoluteLocation(new Vector2D(100,300));
+			players.get(1).setAbsoluteLocation(new Vector2D(300,370));
+			players.get(2).setAbsoluteLocation(new Vector2D(250,300));
+			players.get(3).setAbsoluteLocation(new Vector2D(300,300));
+			players.get(4).setAbsoluteLocation(new Vector2D(350,300));
+			players.get(5).setAbsoluteLocation(new Vector2D(350,330));
+			players.get(6).setAbsoluteLocation(new Vector2D(400,300));
+			players.get(7).setAbsoluteLocation(new Vector2D(450,300));
+			players.get(8).setAbsoluteLocation(new Vector2D(500,320));
+			players.get(9).setAbsoluteLocation(new Vector2D(350,420));
+			players.get(10).setAbsoluteLocation(new Vector2D(600,300));
+		} else {
+			// this happens to be 4-3 for defense
+			players.get(0).setAbsoluteLocation(new Vector2D(100,230));
+			players.get(1).setAbsoluteLocation(new Vector2D(220,240));
+			players.get(2).setAbsoluteLocation(new Vector2D(255,130));
+			players.get(3).setAbsoluteLocation(new Vector2D(265,210));
+			players.get(4).setAbsoluteLocation(new Vector2D(310,240));
+			players.get(5).setAbsoluteLocation(new Vector2D(350,200));
+			players.get(6).setAbsoluteLocation(new Vector2D(390,240));
+			players.get(7).setAbsoluteLocation(new Vector2D(435,210));
+			players.get(8).setAbsoluteLocation(new Vector2D(445,150));
+			players.get(9).setAbsoluteLocation(new Vector2D(480,240));
+			players.get(10).setAbsoluteLocation(new Vector2D(600,230));
+		}
+	}
+
+	//loads four three defense
+	public void loadFourThree() {
+		players.get(0).setAbsoluteLocation(new Vector2D(100,230));
+		players.get(1).setAbsoluteLocation(new Vector2D(220,240));
+		players.get(2).setAbsoluteLocation(new Vector2D(255,130));
+		players.get(3).setAbsoluteLocation(new Vector2D(265,210));
+		players.get(4).setAbsoluteLocation(new Vector2D(310,240));
+		players.get(5).setAbsoluteLocation(new Vector2D(350,200));
+		players.get(6).setAbsoluteLocation(new Vector2D(390,240));
+		players.get(7).setAbsoluteLocation(new Vector2D(435,210));
+		players.get(8).setAbsoluteLocation(new Vector2D(445,150));
+		players.get(9).setAbsoluteLocation(new Vector2D(480,240));
+		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
+	}
+
+
+	//The passed character just routes the function to the correct version
+	public void loadFormation(String name) {
+		//Default
+		if (name.equalsIgnoreCase("Default")) {
+			loadDefaultFormation(isOffense);
+		}
+		//Add others here and call there functions
+		if (name.equalsIgnoreCase("4-3")) {
+			loadFourThree();
 		}
 	}
 
@@ -66,10 +118,15 @@ public class Team {
 		// initialize the players with their locations and directions
 
 		// button listener will pass the correct file name to this function
+
+
 		Scanner scanner;
 		try {
 			FileReader reader = new FileReader(fileName);
 			scanner = new Scanner(reader);
+			//first line is the formation
+			loadFormation(scanner.nextLine());
+			//now load routes
 			for (Player current : players){
 				int direction = scanner.nextInt();
 				int direction2 = scanner.nextInt();

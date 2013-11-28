@@ -48,6 +48,15 @@ public abstract class MovableObject {
 		this.initialLocation = initialLocation;
 	}
 	
+	// Sets initialLocation as well as location
+	public void setAbsoluteLocation(Vector2D position) {
+		setInitialLocation(position);
+		Vector2D copy = new Vector2D();
+		copy.x = position.x;
+		copy.y = position.y;
+		setLocation(copy);
+	}
+	
 	
 	public abstract void draw(Graphics g);
 	

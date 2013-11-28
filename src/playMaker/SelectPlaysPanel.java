@@ -43,6 +43,10 @@ public class SelectPlaysPanel extends JPanel {
 		
 		
 		frame.loadPlayConfig(play, coverage);
+		// Reset the throwing loop and boolean for a new play
+		frame.setLoopCounter(0);
+		frame.setThrown(false);
+		frame.resetBall();
 
 	}
 }
