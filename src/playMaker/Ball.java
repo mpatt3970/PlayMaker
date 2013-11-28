@@ -36,7 +36,7 @@ public class Ball extends MovableObject {
 	}
 	
 	public void drawCatchRadius(Graphics g) {
-		g.setColor(Color.ORANGE);
+		g.setColor(Color.BLACK);
 		g.drawOval((int) targetLocation.x - catchRadius,(int) targetLocation.y - catchRadius, 2*catchRadius, 2*catchRadius);
 	}
 

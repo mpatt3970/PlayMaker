@@ -24,7 +24,7 @@ public abstract class Player extends MovableObject {
 
 	// Determines how far from initial location player is before they run the second
 	// half of their route
-	private double routeUpdateDistance = 40;
+	private double routeUpdateDistance = 50;
 
 	public Player(int speed, boolean hasBall, Vector2D location, Team team) {
 		this.speed = speed;

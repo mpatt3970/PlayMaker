@@ -236,7 +236,7 @@ public class PlayMaker extends JFrame {
 			}
 		};
 
-		animationTimer = new Timer(200, actionTimer);
+		animationTimer = new Timer(150, actionTimer);
 	}
 
 	/*
