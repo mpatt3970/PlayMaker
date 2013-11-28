@@ -18,11 +18,17 @@ public abstract class MovableObject {
 	protected Vector2D initialLocation;
 	
 	public void move(Vector2D direction, int speed) {
+		// This works with collision blocking
+		if(direction.getMagnitude() < .1) {
+			
+		} else {
+		// This is for all other movement
 		// vector along direction
 		Vector2D unit = direction.getUnitVector();
 		// add to current position
 		location.x += speed*unit.x;
 		location.y += speed*unit.y;
+		}
 		
 	}
 

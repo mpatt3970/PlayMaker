@@ -38,8 +38,8 @@ public class SelectPlaysPanel extends JPanel {
 		//String coverage = secondary.getChoice();
 		//String play = offense.getChoice();
 		
-		String coverage = "testDefensePlay.txt";
-		String play = "testOffensePlay.txt";
+		String coverage = "defaultDefensePlay.txt";
+		String play = "defaultOffensePlay.txt";
 		
 		
 		frame.loadPlayConfig(play, coverage);

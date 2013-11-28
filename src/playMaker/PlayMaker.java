@@ -45,12 +45,12 @@ public class PlayMaker extends JFrame {
 		defense = new Team(false);
 
 
-		
+
 		// make a drawable(ie movable) list to pass to paintComponent
 		drawable = new ArrayList<MovableObject>();
 		drawable.addAll(offense.getPlayers());
 		drawable.addAll(defense.getPlayers());
-		
+
 
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
@@ -175,7 +175,9 @@ public class PlayMaker extends JFrame {
 						playOver = true;
 
 					// return zero for direction so player doesn't move
-					return new Vector2D(0.01,0.01);
+					return new Vector2D(0,.01);
+
+
 				} 
 				else {
 					// made it through the collision, continue on desired route
