@@ -1,5 +1,7 @@
 package playMaker;
 
+import java.io.FileNotFoundException;
+
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -7,10 +9,10 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class SelectPlaysPanel extends JPanel {
-	
+
 	private PlayMaker frame;
 	private GenericComboBox base, secondary, offense;
-	
+
 	public SelectPlaysPanel(PlayMaker frame) {
 		this.frame = frame;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -30,13 +32,17 @@ public class SelectPlaysPanel extends JPanel {
 		// load a default play
 		updateChoices();
 	}
-	
+
 	public void updateChoices() {
 		String formation = base.getChoice();
 		//String coverage = secondary.getChoice();
 		//String play = offense.getChoice();
+		
 		String coverage = "testDefensePlay.txt";
 		String play = "testOffensePlay.txt";
+		
+		
 		frame.loadPlayConfig(play, coverage);
+
 	}
 }

@@ -74,7 +74,6 @@ public class PlayMaker extends JFrame {
 		 * This function will step through the play
 		 * 1) Find best direction for players
 		 * 2) Move them accordingly
-		 * 3) Repaint
 		 */
 
 		// used to tell the quarterback to throw the ball after so many loops
@@ -176,7 +175,7 @@ public class PlayMaker extends JFrame {
 						playOver = true;
 
 					// return zero for direction so player doesn't move
-					return new Vector2D(0,0);
+					return new Vector2D(0.01,0.01);
 				} 
 				else {
 					// made it through the collision, continue on desired route
@@ -222,7 +221,7 @@ public class PlayMaker extends JFrame {
 		};
 
 		//Made the timer a little shorter to animate faster
-		animationTimer = new Timer(100, actionTimer);
+		animationTimer = new Timer(500, actionTimer);
 	}
 
 	/*
