@@ -7,7 +7,7 @@ import java.util.Random;
 public class QuarterBack extends Player {
 	// Time the ball takes to travel half the screen.  This will need to change if ball speed changes
 	// or if field size changes.  It could also just be fine tuned so balls are caught well
-	final double LEAD_TIME = 30;
+	final double LEAD_TIME = 50;
 	
 	public QuarterBack(int speed, boolean hasBall, Vector2D location, Team team) {
 		super(speed,hasBall,location, team);

@@ -106,7 +106,16 @@ public class PlayMaker extends JFrame {
 					}
 				}
 				//Update ball location
-				ball.move(ball.getTargetLocation(), ball.getSpeed());
+				if (ball != null) {
+					Vector2D ballDirection = new Vector2D();
+					Vector2D ballTarget = ball.getTargetLocation();
+					Vector2D ballLocation = ball.getLocation();
+					
+					ballDirection.x = ballTarget.x - ballLocation.x;
+					ballDirection.y = ballTarget.y - ballLocation.y;
+					
+					ball.move(ballDirection, ball.getSpeed());
+				}
 			}
 
 
@@ -195,7 +204,7 @@ public class PlayMaker extends JFrame {
 	public void loadPlayConfig(String offensePlay, String defensePlay) {
 		offense.loadPlay(offensePlay);
 		defense.loadPlay(defensePlay);
-		
+
 		//repaint is here to update locations and draw the route lines
 		repaint();
 	}
@@ -255,15 +264,15 @@ public class PlayMaker extends JFrame {
 	public boolean getPlayOver() {
 		return playOver;
 	}
-	
+
 	public void setLoopCounter(int num) {
 		loopCounter = num;
 	}
-	
+
 	public void setThrown(boolean b) {
 		thrown = b;
 	}
-	
+
 	public void resetBall() {
 		drawable.remove(ball);
 		ball = null;
