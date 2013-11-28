@@ -36,6 +36,7 @@ public class PlayMaker extends JFrame {
 
 	// this determines how many loops need to occur before the ball gets thrown
 	private static int THROW_COUNT = 100;
+	int loopCounter = 0;
 	private boolean thrown;
 	private boolean playOver;
 
@@ -54,7 +55,7 @@ public class PlayMaker extends JFrame {
 
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		playOver = true;
-		thrown = true;
+		thrown = false;
 	}
 
 	public void initGui() {
@@ -76,10 +77,6 @@ public class PlayMaker extends JFrame {
 		 * 2) Move them accordingly
 		 */
 
-		// used to tell the quarterback to throw the ball after so many loops
-		int loopCounter = 0;
-		thrown = false;
-		playOver = false;
 
 		if (!playOver) {
 
@@ -95,18 +92,19 @@ public class PlayMaker extends JFrame {
 			}
 
 
-			// loop through receivers to throwBall() or handOff() to anyone open or even run if no one is open
+			// Need to have loop counter reset and thrown set back to false when a new play is selected
 			if(loopCounter > THROW_COUNT) {
 				if(!thrown) {
+					thrown = true;
 					// Cast to reference the QB
 					QuarterBack qb = (QuarterBack) offense.getPlayers().get(qbIndex);
-					// initialize ball to throw.  initializing here makes it easier to start from the qb
-					// instead of having the ball track the qb before it is thrown
-					ball = new Ball(new Vector2D(qb.getLocation().x, qb.getLocation().y), new Vector2D(qb.getRouteDirection1().x, qb.getRouteDirection1().y));
+
 					// Sets up the target accordingly to an open receiver
-					qb.throwBall(ball, offense);
-					// Now the ball can be drawn
-					drawable.add(ball);
+					ball = qb.throwBall(offense);
+					// Now the ball can be drawn if it was thrown.  A null bull means the QB is running it
+					if (ball != null) {
+						drawable.add(ball);
+					}
 				}
 				//Update ball location
 				ball.move(ball.getTargetLocation(), ball.getSpeed());
@@ -217,13 +215,15 @@ public class PlayMaker extends JFrame {
 			// called when the timer triggers an action
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//moved loopCounter addition here since it used to keep getting reset by
+				// the beginning of processPlay().  Leave it here
+				loopCounter++;
 				processPlay();
 				repaint();
 			}
 		};
 
-		//Made the timer a little shorter to animate faster
-		animationTimer = new Timer(500, actionTimer);
+		animationTimer = new Timer(200, actionTimer);
 	}
 
 	/*
