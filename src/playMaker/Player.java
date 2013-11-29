@@ -48,8 +48,8 @@ public abstract class Player extends MovableObject {
 	public void loadImages() {
 		offensiveDraw = loadDraw("/images/offensePlayer.png");
 		defensiveDraw = loadDraw("/images/defensivePlayer.png");
-		offensiveDrawBall = loadDraw("/images/offensivePlayerBall.png");
-		defensiveDrawBall = loadDraw("/images/defensivePlayerBall.png");
+		offensiveDrawBall = loadDraw("/images/offensePlayerBall.png");
+		defensiveDrawBall = loadDraw("/images/defensePlayerBall.png");
 	}
 
 	public Image loadDraw(String fileLocale) {
