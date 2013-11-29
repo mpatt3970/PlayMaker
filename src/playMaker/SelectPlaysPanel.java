@@ -47,6 +47,7 @@ public class SelectPlaysPanel extends JPanel {
 		frame.setLoopCounter(0);
 		frame.setThrown(false);
 		frame.resetBall();
+		frame.setPlayOver(false);
 
 	}
 }

@@ -34,12 +34,13 @@ public class PlayMaker extends JFrame {
 
 
 	// this determines how many loops need to occur before the ball gets thrown
-	private static int THROW_COUNT = 100;
+	private static int THROW_COUNT = 120;
 	int loopCounter = 0;
 	private boolean thrown;
 	private boolean paused;
 	
-	//
+	//This new version of playOver is true when the ball carrier is tackled
+	private boolean playOver;
 
 	public PlayMaker() {
 		// passing true initializes the team as offense
@@ -57,6 +58,9 @@ public class PlayMaker extends JFrame {
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		paused = true;
 		thrown = false;
+		
+		//This one determines if the current play is over, ie the ball carrier was tackled
+		playOver = false;
 	}
 
 	public void initGui() {
@@ -79,7 +83,7 @@ public class PlayMaker extends JFrame {
 		 */
 
 
-		if (!paused) {
+		if (!playOver) {
 
 			// this handles players making appropriate movement direction choices
 			// offensive moves first since they know their route, defense is trying to compensate after words
@@ -115,6 +119,10 @@ public class PlayMaker extends JFrame {
 					
 					ballDirection.x = ballTarget.x - ballLocation.x;
 					ballDirection.y = ballTarget.y - ballLocation.y;
+					
+					//Test if the ball is at it's target, an incomplete pass
+					if (ballDirection.getMagnitude() < 10)
+						playOver = true;
 					
 					ball.move(ballDirection, ball.getSpeed());
 				}
@@ -180,7 +188,7 @@ public class PlayMaker extends JFrame {
 
 					// play ends if player that has ball is tackled
 					if (p.isHasBall())
-						paused = true;
+						playOver = true;
 
 					// return zero for direction so player doesn't move
 					return new Vector2D(0,.01);
@@ -278,6 +286,10 @@ public class PlayMaker extends JFrame {
 	public void resetBall() {
 		drawable.remove(ball);
 		ball = null;
+	}
+	
+	public void setPlayOver(boolean b) {
+		playOver = b;
 	}
 
 	public void flipPaused() {

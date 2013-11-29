@@ -7,8 +7,8 @@ import java.util.Random;
 public class QuarterBack extends Player {
 	//Fine tune this to determine how much the throw leads the intended target
 	final double LEAD_TIME_FAR = 55;
-	final double LEAD_TIME_CLOSE = 35;
-	final double CLOSE_FAR_CHANGING_DISTANCE = 270;
+	final double LEAD_TIME_CLOSE = 15;
+	final double CLOSE_FAR_CHANGING_DISTANCE = 200;
 
 	public QuarterBack(int speed, boolean hasBall, Vector2D location, Team team) {
 		super(speed,hasBall,location, team);
