@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class QuarterBack extends Player {
 	//Fine tune this to determine how much the throw leads the intended target
-	final double LEAD_TIME_FAR = 60;
+	final double LEAD_TIME_FAR = 65;
 	final double LEAD_TIME_CLOSE = 15;
 	final double CLOSE_FAR_CHANGING_DISTANCE = 200;
 
@@ -25,7 +25,9 @@ public class QuarterBack extends Player {
 
 		// Push open players to the array
 		for(Player player : offense.getPlayers()) {
-			openPlayers.add(player);
+			if (!this.equals(player)){
+				openPlayers.add(player);
+			}
 		}
 		// Select a player to throw to OR just run forward if no one is open
 		if (openPlayers.size() > 0) {
@@ -60,7 +62,7 @@ public class QuarterBack extends Player {
 
 
 	}
-	
+
 	@Override
 	public boolean catchBall(Ball ball) {
 		return false;

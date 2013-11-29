@@ -34,7 +34,7 @@ public class PlayMaker extends JFrame {
 
 
 	// this determines how many loops need to occur before the ball gets thrown
-	private static int THROW_COUNT = 120;
+	private static int THROW_COUNT = 115;
 	int loopCounter = 0;
 	private boolean thrown;
 	private boolean paused;
@@ -111,6 +111,7 @@ public class PlayMaker extends JFrame {
 					if (p.catchBall(ball)) {
 						drawable.remove(ball);
 						ball = null;
+						playOver = true;
 					}
 				}
 			}
