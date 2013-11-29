@@ -8,10 +8,6 @@ public class Receiver extends Player {
 	public Receiver(int speed, boolean hasBall, Vector2D location, Team team) {
 		super(speed,hasBall,location, team);
 	}
-	
-	public void catchBall() {
-		
-	}
 
 	
 }

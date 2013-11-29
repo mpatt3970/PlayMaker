@@ -38,7 +38,7 @@ public class PlayMaker extends JFrame {
 	int loopCounter = 0;
 	private boolean thrown;
 	private boolean paused;
-	
+
 	//This new version of playOver is true when the ball carrier is tackled
 	private boolean playOver;
 
@@ -58,7 +58,7 @@ public class PlayMaker extends JFrame {
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		paused = true;
 		thrown = false;
-		
+
 		//This one determines if the current play is over, ie the ball carrier was tackled
 		playOver = false;
 	}
@@ -96,6 +96,25 @@ public class PlayMaker extends JFrame {
 				p.move(direction, p.getSpeed());
 			}
 
+			//This loop is for catching the ball.  Offense gets the heads up once again.  The catch function
+			// takes care of setting hasBall correctly for each player
+			if (ball != null) {
+				//Offense
+				for (Player p : offense.getPlayers()) {
+					if (p.catchBall(ball)) {
+						drawable.remove(ball);
+						ball = null;
+					}
+				}
+				//Defense
+				for (Player p : defense.getPlayers()) {
+					if (p.catchBall(ball)) {
+						drawable.remove(ball);
+						ball = null;
+					}
+				}
+			}
+
 
 			// Need to have loop counter reset and thrown set back to false when a new play is selected
 			if(loopCounter > THROW_COUNT) {
@@ -116,14 +135,14 @@ public class PlayMaker extends JFrame {
 					Vector2D ballDirection = new Vector2D();
 					Vector2D ballTarget = ball.getTargetLocation();
 					Vector2D ballLocation = ball.getLocation();
-					
+
 					ballDirection.x = ballTarget.x - ballLocation.x;
 					ballDirection.y = ballTarget.y - ballLocation.y;
-					
+
 					//Test if the ball is at it's target, an incomplete pass
-					if (ballDirection.getMagnitude() < 10)
+					if (ballDirection.getMagnitude() < ball.getCatchRadius()/4)
 						playOver = true;
-					
+
 					ball.move(ballDirection, ball.getSpeed());
 				}
 			}
@@ -287,7 +306,7 @@ public class PlayMaker extends JFrame {
 		drawable.remove(ball);
 		ball = null;
 	}
-	
+
 	public void setPlayOver(boolean b) {
 		playOver = b;
 	}

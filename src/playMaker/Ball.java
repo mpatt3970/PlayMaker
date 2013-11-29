@@ -39,6 +39,16 @@ public class Ball extends MovableObject {
 		g.setColor(Color.BLACK);
 		g.drawOval((int) targetLocation.x - catchRadius,(int) targetLocation.y - catchRadius, 2*catchRadius, 2*catchRadius);
 	}
+	
+	public boolean canCatch() {
+		Vector2D distance = new Vector2D();
+		distance.x = targetLocation.x - location.x;
+		distance.y = targetLocation.y - location.y;
+		
+		if (distance.getMagnitude() < catchRadius)
+			return true;
+		else return false;
+	}
 
 	/*
 	 * Getters and Setters
@@ -58,6 +68,10 @@ public class Ball extends MovableObject {
 
 	public void setTargetLocation(Vector2D targetLocation) {
 		this.targetLocation = targetLocation;
+	}
+	
+	public int getCatchRadius() {
+		return catchRadius;
 	}
 	
 	/*
