@@ -17,6 +17,8 @@ public abstract class Player extends MovableObject {
 	// store the buffered images, using static to save space
 	public static Image offensiveDraw;
 	public static Image defensiveDraw;
+	public static Image offensiveDrawBall;
+	public static Image defensiveDrawBall;
 
 	// This allows for one turn, we can add more if needed
 	private Vector2D routeDirection1;
@@ -46,6 +48,8 @@ public abstract class Player extends MovableObject {
 	public void loadImages() {
 		offensiveDraw = loadDraw("/images/offensePlayer.png");
 		defensiveDraw = loadDraw("/images/defensivePlayer.png");
+		offensiveDrawBall = loadDraw("/images/offensivePlayerBall.png");
+		defensiveDrawBall = loadDraw("/images/defensivePlayerBall.png");
 	}
 
 	public Image loadDraw(String fileLocale) {
@@ -58,8 +62,10 @@ public abstract class Player extends MovableObject {
 		if (hasBall) {
 			if (team.isOffense()) {
 				//draw offense with the ball player
+				g.drawImage(offensiveDrawBall, (int)location.x, (int)location.y, null);
 			} else {
 				//draw defense with the ball player
+				g.drawImage(defensiveDrawBall, (int)location.x, (int)location.y, null);
 			}
 		} else {
 

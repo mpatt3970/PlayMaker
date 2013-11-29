@@ -8,7 +8,7 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JComponent;
 
 public class Field extends JComponent {
-	// Chose these numbers becuase the field is about 50 wide and the length we will show is 25 yards.
+	// Chose these numbers because the field is about 50 wide and the length we will show is 25 yards.
 	// I don't enforce this ratio above these sizes though
 	private final int MIN_X = 150;
 	private final int MIN_Y = 300;
