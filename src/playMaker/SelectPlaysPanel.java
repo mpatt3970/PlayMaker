@@ -48,6 +48,10 @@ public class SelectPlaysPanel extends JPanel {
 		frame.setThrown(false);
 		frame.resetBall();
 		frame.setPlayOver(false);
+		
+		if (frame.getPaused() == false) {
+			frame.getSideBar().toggle();
+		}
 
 	}
 }

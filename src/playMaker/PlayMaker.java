@@ -330,6 +330,14 @@ public class PlayMaker extends JFrame {
 	public void setPlayOver(boolean b) {
 		playOver = b;
 	}
+	
+	public boolean getPaused() {
+		return paused;
+	}
+	
+	public SideBar getSideBar() {
+		return sideBar;
+	}
 
 	public void flipPaused() {
 		// also start and stop the timer
