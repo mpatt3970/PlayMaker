@@ -90,6 +90,11 @@ public abstract class Player extends MovableObject {
 		} else
 			return false;
 	}
+	
+	public boolean isReceiver() {
+		// this will be overriden by blockers and qbs to return false
+		return true;
+	}
 
 
 

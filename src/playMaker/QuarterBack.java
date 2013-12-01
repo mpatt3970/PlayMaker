@@ -27,7 +27,7 @@ public class QuarterBack extends Player {
 
 		// Push open players to the array
 		for(Player player : offense.getPlayers()) {
-			if (!this.equals(player)){
+			if (!this.equals(player) && player.isReceiver() && player.isOpen()){
 				openPlayers.add(player);
 			}
 		}
@@ -63,6 +63,12 @@ public class QuarterBack extends Player {
 		}
 
 
+	}
+	
+	@Override
+	public boolean isReceiver() {
+		// because it aren't allowed to catch
+		return false;
 	}
 
 	@Override

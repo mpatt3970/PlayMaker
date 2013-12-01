@@ -12,6 +12,11 @@ public class Blocker extends Player {
 		this.hasBall = false;
 	}
 
+	@Override
+	public boolean isReceiver() {
+		// because it aren't allowed to catch
+		return false;
+	}
 	
 	
 }
