@@ -27,9 +27,9 @@ public class Field extends JComponent {
 		// add a listener for resizing
 		addComponentListener(new SizeAdapter(this));
 	}
-	
-	
-	
+
+
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// draw the background
@@ -81,10 +81,16 @@ public class Field extends JComponent {
 	}
 
 	public void drawRoutes(Graphics g) {
+		g.setColor(Color.BLUE);
 		for(Player p : playMaker.getOffense().getPlayers()) {
-			if(p.getClass() == Receiver.class) {
-				Receiver r = (Receiver)p;
-				r.drawRoute(g);
+			if(p.getClass() == Receiver.class || p.getClass() == QuarterBack.class) {
+				p.drawRoute(g);
+			}
+		}
+		g.setColor(Color.RED);
+		for(Player p : playMaker.getDefense().getPlayers()) {
+			if(p.getClass() == Defender.class) {
+				p.drawRoute(g);
 			}
 		}
 	}
