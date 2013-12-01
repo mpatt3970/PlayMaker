@@ -15,21 +15,31 @@ public class Field extends JComponent {
 	private int sizeX, sizeY;
 
 	private PlayMaker playMaker;
+	private boolean selected;
+	private boolean first;
 
 	public Field(PlayMaker playMaker, int x, int y) {
 		this.playMaker = playMaker;
 		this.sizeX = x;
 		this.sizeY = y;
+		this.selected = true;
+		this.first = true;
 		// add a listener for resizing
 		addComponentListener(new SizeAdapter(this));
 	}
-
+	
+	
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// draw the background
 		g.setColor(Color.green);
 		g.fillRect(0, 0, sizeX, sizeY);
 		drawLines(g);
+		if(selected || first) { 
+			drawRoutes(g);
+			first = false;
+		}
 		// draw each drawableObject on each team
 		for (MovableObject toDraw : playMaker.getDrawable()) {
 			toDraw.draw(g);
@@ -70,5 +80,18 @@ public class Field extends JComponent {
 		}
 	}
 
+	public void drawRoutes(Graphics g) {
+		for(Player p : playMaker.getOffense().getPlayers()) {
+			if(p.getClass() == Receiver.class) {
+				Receiver r = (Receiver)p;
+				r.drawRoute(g);
+			}
+		}
+	}
 
+
+
+	public void setSelected(boolean b) {
+		selected = b;
+	}
 }

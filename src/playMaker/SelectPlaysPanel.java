@@ -1,5 +1,6 @@
 package playMaker;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 
 import javax.swing.BoxLayout;
@@ -41,13 +42,12 @@ public class SelectPlaysPanel extends JPanel {
 		String coverage = "defaultDefensePlay.txt";
 		String play = "defaultOffensePlay.txt";
 		
-		
 		frame.loadPlayConfig(play, coverage);
 		// Reset the throwing loop and boolean for a new play
 		frame.setLoopCounter(0);
 		frame.setThrown(false);
 		frame.resetBall();
 		frame.setPlayOver(false);
-
+		frame.getField().setSelected(true);
 	}
 }

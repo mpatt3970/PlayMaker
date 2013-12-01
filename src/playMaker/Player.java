@@ -137,6 +137,21 @@ public abstract class Player extends MovableObject {
 		else {
 			return routeDirection1.getUnitVector();
 		}
+	}
+	
+	public Vector2D getDirection(double xx, double yy) {
+		Vector2D displacement = new Vector2D();
+		displacement.x = location.x - initialLocation.x;
+		displacement.y = location.y - initialLocation.y;
+
+		double magnitude = displacement.getMagnitude();
+
+		if (magnitude > routeUpdateDistance) {
+			return routeDirection2.getUnitVector();
+		}
+		else {
+			return routeDirection1.getUnitVector();
+		}
 
 	}
 
@@ -165,6 +180,4 @@ public abstract class Player extends MovableObject {
 	public void setRouteUpdateDistance(double routeUpdateDistance) {
 		this.routeUpdateDistance = routeUpdateDistance;
 	}
-
-
 }
