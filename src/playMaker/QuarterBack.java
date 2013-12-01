@@ -10,8 +10,8 @@ public class QuarterBack extends Player {
 	final double LEAD_TIME_CLOSE = 15;
 	final double CLOSE_FAR_CHANGING_DISTANCE = 200;
 
-	public QuarterBack(Vector2D location, Team team) {
-		super(location, team);
+	public QuarterBack(Vector2D location, Team team, PlayMaker playMaker) {
+		super(location, team, playMaker);
 		this.speed = 2;
 		this.hasBall = true;
 	}

@@ -38,16 +38,17 @@ public class PlayMaker extends JFrame {
 	private int loopCounter;
 	private boolean thrown;
 	private boolean paused;
+	private boolean caught;
 
 	//This new version of playOver is true when the ball carrier is tackled
 	private boolean playOver;
 
 	public PlayMaker() {
 		// passing true initializes the team as offense
-		offense = new Team(true);
-		defense = new Team(false);
+		offense = new Team(true, this);
+		defense = new Team(false, this);
 
-
+		caught = false;
 
 		// make a drawable(ie movable) list to pass to paintComponent
 		drawable = new ArrayList<MovableObject>();
@@ -80,8 +81,8 @@ public class PlayMaker extends JFrame {
 		if (paused == false) {
 			sideBar.toggle();
 		}
-		offense = new Team(true);
-		defense = new Team(false);
+		offense = new Team(true, this);
+		defense = new Team(false, this);
 		drawable = new ArrayList<MovableObject>();
 		drawable.addAll(offense.getPlayers());
 		drawable.addAll(defense.getPlayers());
@@ -171,6 +172,9 @@ public class PlayMaker extends JFrame {
 
 					ball.move(ballDirection, ball.getSpeed());
 				}
+				if (caught) {
+					sideBar.updateMessage("Ball is caught");
+				}
 			}
 
 
@@ -199,7 +203,16 @@ public class PlayMaker extends JFrame {
 			// local direction, or return the better direction to be used in the move function
 			distance = new Vector2D(p.getLocation().x - player.getLocation().x,p.getLocation().y - player.getLocation().y);
 			double magnitude = distance.getMagnitude();
-
+			
+			
+			if (thrown) {
+				// react to ball
+			}
+			
+			
+			
+			
+			
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*Player.PLAYER_SIZE_X) {
 				// continue as normal, add players correct direction
@@ -344,6 +357,10 @@ public class PlayMaker extends JFrame {
 	
 	public SideBar getSideBar() {
 		return sideBar;
+	}
+	
+	public void setCaught(boolean value) {
+		caught = value;
 	}
 
 	public void flipPaused() {

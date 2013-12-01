@@ -9,6 +9,8 @@ public abstract class Player extends MovableObject {
 	public static final int PLAYER_SIZE_X = 30;
 	public static final int PLAYER_SIZE_Y = 40;
 
+	private PlayMaker playMaker;
+	
 	protected int speed;
 	protected boolean hasBall;
 	private Team team;
@@ -28,9 +30,10 @@ public abstract class Player extends MovableObject {
 	// half of their route
 	private double routeUpdateDistance = 50;
 
-	public Player(Vector2D location, Team team) {
+	public Player(Vector2D location, Team team, PlayMaker playMaker) {
 		this.location = location;
 		this.team = team;
+		this.playMaker = playMaker;
 
 		Vector2D copy = new Vector2D(location.x,location.y);
 		initialLocation = copy;
@@ -85,6 +88,7 @@ public abstract class Player extends MovableObject {
 
 			if (ball.canCatch() && distance.getMagnitude() <= ball.getCatchRadius()) {
 				hasBall = true;
+				playMaker.setCaught(true);
 				return true;
 			} else return false;
 		} else
