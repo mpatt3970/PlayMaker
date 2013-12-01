@@ -20,8 +20,6 @@ public class Field extends JComponent {
 		this.playMaker = playMaker;
 		this.sizeX = x;
 		this.sizeY = y;
-		// add a listener for resizing
-		addComponentListener(new SizeAdapter(this));
 	}
 
 	public void paintComponent(Graphics g) {
@@ -43,30 +41,6 @@ public class Field extends JComponent {
 		for (int currentY = 0; currentY < sizeY; currentY += length) {
 			g.setColor(Color.white);
 			g.drawLine(0, currentY, sizeX, currentY);
-		}
-	}
-
-	private class SizeAdapter extends ComponentAdapter {
-		// A private class in charge of resizing the field when the window is resized.
-		private JComponent parent;
-
-		public SizeAdapter(JComponent parent) {
-			this.parent = parent;	
-		}
-
-		@Override
-		public void componentResized(ComponentEvent e) {
-			// When the size changes, update the sizeX and sizeY, then repaint
-			int prevX = sizeX;
-			int prevY = sizeY;
-			sizeX = parent.getWidth();
-			sizeY = parent.getHeight();
-			// Restore sizes if below 150 by 300
-			if (sizeX < MIN_X)
-				sizeX = prevX;
-			if (sizeY < MIN_Y)
-				sizeY = prevY;
-			repaint();
 		}
 	}
 

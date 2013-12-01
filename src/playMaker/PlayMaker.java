@@ -205,6 +205,8 @@ public class PlayMaker extends JFrame {
 			double magnitude = distance.getMagnitude();
 			
 			
+			
+			
 			if (thrown) {
 				// react to ball
 			}
