@@ -17,40 +17,40 @@ public class Team {
 	 * 
 	 */
 
-	public Team(boolean offense) {
+	public Team(boolean offense, PlayMaker playMaker) {
 		isOffense = offense;
 		players = new ArrayList<Player>();
 		if (isOffense) {
 			// add QB and receivers and such to array
-			players.add(new Receiver(4, false, new Vector2D(100, 300), this));
-			players.add(new Receiver(4, false, new Vector2D(300, 370), this));
-			players.add(new Blocker(1, false, new Vector2D(250, 300), this));
-			players.add(new Blocker(1, false, new Vector2D(300, 300), this));
+			players.add(new Receiver(new Vector2D(100, 300), this, playMaker));
+			players.add(new Receiver(new Vector2D(300, 370), this, playMaker));
+			players.add(new Blocker(new Vector2D(250, 300), this, playMaker));
+			players.add(new Blocker(new Vector2D(300, 300), this, playMaker));
 			//Center
-			players.add(new Blocker(1, false, new Vector2D(350, 300), this));
-			players.add(new QuarterBack(2, true, new Vector2D(350, 330), this));
-			players.add(new Blocker(1, false, new Vector2D(400, 300), this));
-			players.add(new Blocker(1, false, new Vector2D(450, 300), this));
+			players.add(new Blocker(new Vector2D(350, 300), this, playMaker));
+			players.add(new QuarterBack(new Vector2D(350, 330), this, playMaker));
+			players.add(new Blocker(new Vector2D(400, 300), this, playMaker));
+			players.add(new Blocker(new Vector2D(450, 300), this, playMaker));
 			//Tight end is a lil' faster
-			players.add(new Blocker(2, false, new Vector2D(500, 320), this));
-			players.add(new Receiver(4, false, new Vector2D(350, 420), this));
-			players.add(new Receiver(4, false, new Vector2D(600, 300), this));
+			players.add(new Blocker(new Vector2D(500, 320), this, playMaker));
+			players.add(new Receiver(new Vector2D(350, 420), this, playMaker));
+			players.add(new Receiver(new Vector2D(600, 300), this, playMaker));
 
 
 		}
 		else {
 			// add defenders and such to array
-			players.add(new Defender(4, false, new Vector2D(100, 230), this));
-			players.add(new Blocker(1, false, new Vector2D(220, 240), this));
-			players.add(new Defender(4, false, new Vector2D(255, 130), this));
-			players.add(new Defender(4, false, new Vector2D(265, 210), this));
-			players.add(new Blocker(1, false, new Vector2D(310, 240), this));
-			players.add(new Defender(4, false, new Vector2D(350, 200), this));
-			players.add(new Blocker(1, false, new Vector2D(390, 240), this));
-			players.add(new Defender(4, false, new Vector2D(435, 210), this));
-			players.add(new Defender(4, false, new Vector2D(445, 150), this));
-			players.add(new Blocker(1, false, new Vector2D(480, 240), this));
-			players.add(new Defender(4, false, new Vector2D(600, 230), this));
+			players.add(new Defender(new Vector2D(100, 230), this, playMaker));
+			players.add(new Blocker(new Vector2D(220, 240), this, playMaker));
+			players.add(new Defender(new Vector2D(255, 130), this, playMaker));
+			players.add(new Defender(new Vector2D(265, 210), this, playMaker));
+			players.add(new Blocker(new Vector2D(310, 240), this, playMaker));
+			players.add(new Defender(new Vector2D(350, 200), this, playMaker));
+			players.add(new Blocker(new Vector2D(390, 240), this, playMaker));
+			players.add(new Defender(new Vector2D(435, 210), this, playMaker));
+			players.add(new Defender(new Vector2D(445, 150), this, playMaker));
+			players.add(new Blocker(new Vector2D(480, 240), this, playMaker));
+			players.add(new Defender(new Vector2D(600, 230), this, playMaker));
 
 
 		}

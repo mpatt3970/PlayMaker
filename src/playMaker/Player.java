@@ -9,8 +9,10 @@ public abstract class Player extends MovableObject {
 	public static final int PLAYER_SIZE_X = 30;
 	public static final int PLAYER_SIZE_Y = 40;
 
-	private int speed;
-	private boolean hasBall;
+	private PlayMaker playMaker;
+	
+	protected int speed;
+	protected boolean hasBall;
 	private Team team;
 	private boolean isOpen;
 
@@ -28,11 +30,10 @@ public abstract class Player extends MovableObject {
 	// half of their route
 	private double routeUpdateDistance = 50;
 
-	public Player(int speed, boolean hasBall, Vector2D location, Team team) {
-		this.speed = speed;
-		this.hasBall = hasBall;
+	public Player(Vector2D location, Team team, PlayMaker playMaker) {
 		this.location = location;
 		this.team = team;
+		this.playMaker = playMaker;
 
 		Vector2D copy = new Vector2D(location.x,location.y);
 		initialLocation = copy;
@@ -49,7 +50,7 @@ public abstract class Player extends MovableObject {
 		offensiveDraw = loadDraw("/images/offensePlayer.png");
 		defensiveDraw = loadDraw("/images/defensivePlayer.png");
 		offensiveDrawBall = loadDraw("/images/offensePlayerBall.png");
-		defensiveDrawBall = loadDraw("/images/defensePlayerBall.png");
+		defensiveDrawBall = loadDraw("/images/defensivePlayerBall.png");
 	}
 
 	public Image loadDraw(String fileLocale) {
@@ -87,10 +88,16 @@ public abstract class Player extends MovableObject {
 
 			if (ball.canCatch() && distance.getMagnitude() <= ball.getCatchRadius()) {
 				hasBall = true;
+				playMaker.setCaught(true);
 				return true;
 			} else return false;
 		} else
 			return false;
+	}
+	
+	public boolean isReceiver() {
+		// this will be overriden by blockers and qbs to return false
+		return true;
 	}
 
 

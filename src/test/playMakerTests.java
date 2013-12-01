@@ -124,8 +124,8 @@ public class playMakerTests {
 		ArrayList<Player> testDefensePlayer = new ArrayList<Player>();
 		
 		// add two players that are a magnitude of 5 apart
-		testOffensePlayer.add(new Receiver(10,false,new Vector2D(50,50), playMaker.getOffense()));
-		testDefensePlayer.add(new Defender(10,false,new Vector2D(47,46), playMaker.getDefense()));
+		testOffensePlayer.add(new Receiver(new Vector2D(50,50), playMaker.getOffense(), playMaker));
+		testDefensePlayer.add(new Defender(new Vector2D(47,46), playMaker.getDefense(), playMaker));
 		
 		//set their routes to a known value
 		testOffensePlayer.get(0).setRouteDirection1(new Vector2D(2,3));
@@ -133,8 +133,8 @@ public class playMakerTests {
 		testDefensePlayer.get(0).setRouteDirection1(new Vector2D(2,3));
 		testDefensePlayer.get(0).setRouteDirection2(new Vector2D(2,3));
 		
-		Team testOffenseTeam = new Team(true);
-		Team testDefenseTeam = new Team(false);
+		Team testOffenseTeam = new Team(true, playMaker);
+		Team testDefenseTeam = new Team(false, playMaker);
 		
 		testOffenseTeam.setPlayers(testOffensePlayer);
 		testDefenseTeam.setPlayers(testDefensePlayer);

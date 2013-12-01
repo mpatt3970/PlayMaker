@@ -10,8 +10,10 @@ public class QuarterBack extends Player {
 	final double LEAD_TIME_CLOSE = 15;
 	final double CLOSE_FAR_CHANGING_DISTANCE = 200;
 
-	public QuarterBack(int speed, boolean hasBall, Vector2D location, Team team) {
-		super(speed,hasBall,location, team);
+	public QuarterBack(Vector2D location, Team team, PlayMaker playMaker) {
+		super(location, team, playMaker);
+		this.speed = 2;
+		this.hasBall = true;
 	}
 
 	// Sets the target for the ball to an open receiver
@@ -25,7 +27,7 @@ public class QuarterBack extends Player {
 
 		// Push open players to the array
 		for(Player player : offense.getPlayers()) {
-			if (!this.equals(player)){
+			if (!this.equals(player) && player.isReceiver() && player.isOpen()){
 				openPlayers.add(player);
 			}
 		}
@@ -61,6 +63,12 @@ public class QuarterBack extends Player {
 		}
 
 
+	}
+	
+	@Override
+	public boolean isReceiver() {
+		// because it aren't allowed to catch
+		return false;
 	}
 
 	@Override
