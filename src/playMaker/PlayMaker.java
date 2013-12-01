@@ -89,6 +89,7 @@ public class PlayMaker extends JFrame {
 		playOver = false;
 		loopCounter = 0;
 		sideBar.refreshPlayChoice();
+		sideBar.updateMessage(sideBar.getDEFAULT_MESSAGE());
 		repaint();
 	}
 
@@ -99,8 +100,9 @@ public class PlayMaker extends JFrame {
 		 * 2) Move them accordingly
 		 */
 
-
+		
 		if (!playOver) {
+			sideBar.updateMessage("Play in progress");
 
 			// this handles players making appropriate movement direction choices
 			// offensive moves first since they know their route, defense is trying to compensate after words
@@ -139,6 +141,7 @@ public class PlayMaker extends JFrame {
 			int randomness = generator.nextInt(30);
 			// Need to have loop counter reset and thrown set back to false when a new play is selected
 			if(loopCounter > (THROW_COUNT + randomness)) {
+				sideBar.updateMessage("Ball is thrown");
 				if(!thrown) {
 					thrown = true;
 					// Cast to reference the QB
@@ -161,8 +164,10 @@ public class PlayMaker extends JFrame {
 					ballDirection.y = ballTarget.y - ballLocation.y;
 
 					//Test if the ball is at it's target, an incomplete pass
-					if (ballDirection.getMagnitude() < ball.getCatchRadius()/4)
+					if (ballDirection.getMagnitude() < ball.getCatchRadius()/4) {
 						playOver = true;
+						sideBar.updateMessage("Ball hit the ground");
+					}
 
 					ball.move(ballDirection, ball.getSpeed());
 				}
@@ -227,8 +232,10 @@ public class PlayMaker extends JFrame {
 				if (blocked()) {
 
 					// play ends if player that has ball is tackled
-					if (p.isHasBall())
+					if (p.isHasBall()) {
 						playOver = true;
+						sideBar.updateMessage("Tackle is Made. Reset the teams.");
+					}
 
 					// return zero for direction so player doesn't move
 					return new Vector2D(0,.01);
@@ -347,6 +354,7 @@ public class PlayMaker extends JFrame {
 		} else {
 			animationTimer.stop();
 			paused = true;
+			sideBar.updateMessage("Paused");
 		}
 	}
 	/*

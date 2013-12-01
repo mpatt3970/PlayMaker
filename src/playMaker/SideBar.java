@@ -41,6 +41,10 @@ public class SideBar extends JPanel {
 		this.add(resetButton);
 	}
 	
+	public static String getDEFAULT_MESSAGE() {
+		return DEFAULT_MESSAGE;
+	}
+
 	public void toggle() {
 		playPause.toggle();
 	}

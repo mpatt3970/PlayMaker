@@ -47,7 +47,7 @@ public abstract class Player extends MovableObject {
 		offensiveDraw = loadDraw("/images/offensePlayer.png");
 		defensiveDraw = loadDraw("/images/defensivePlayer.png");
 		offensiveDrawBall = loadDraw("/images/offensePlayerBall.png");
-		defensiveDrawBall = loadDraw("/images/defensePlayerBall.png");
+		defensiveDrawBall = loadDraw("/images/defensivePlayerBall.png");
 	}
 
 	public Image loadDraw(String fileLocale) {
