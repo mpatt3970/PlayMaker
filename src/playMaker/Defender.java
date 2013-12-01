@@ -5,8 +5,10 @@ import java.awt.Point;
 public class Defender extends Player {
 	
 	
-	public Defender(int speed, boolean hasBall, Vector2D location, Team team) {
-		super(speed, hasBall, location, team);
+	public Defender(Vector2D location, Team team) {
+		super(location, team);
+		this.speed = 4;
+		this.hasBall = false;
 	}
 
 	public void grabBall() {

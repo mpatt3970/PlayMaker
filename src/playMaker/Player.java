@@ -9,8 +9,8 @@ public abstract class Player extends MovableObject {
 	public static final int PLAYER_SIZE_X = 30;
 	public static final int PLAYER_SIZE_Y = 40;
 
-	private int speed;
-	private boolean hasBall;
+	protected int speed;
+	protected boolean hasBall;
 	private Team team;
 	private boolean isOpen;
 
@@ -28,9 +28,7 @@ public abstract class Player extends MovableObject {
 	// half of their route
 	private double routeUpdateDistance = 50;
 
-	public Player(int speed, boolean hasBall, Vector2D location, Team team) {
-		this.speed = speed;
-		this.hasBall = hasBall;
+	public Player(Vector2D location, Team team) {
 		this.location = location;
 		this.team = team;
 
