@@ -24,7 +24,7 @@ public class PlayMaker extends JFrame {
 	private Team offense;
 	private Team defense;
 	//so we have a reference to the quarterback
-	private int qbIndex = 5;
+	private static int QB_INDEX = 5;
 
 	private Ball ball;
 
@@ -34,8 +34,8 @@ public class PlayMaker extends JFrame {
 
 
 	// this determines how many loops need to occur before the ball gets thrown
-	private static int THROW_COUNT = 115;
-	int loopCounter = 0;
+	private static int THROW_COUNT = 95;
+	private int loopCounter;
 	private boolean thrown;
 	private boolean paused;
 
@@ -54,11 +54,12 @@ public class PlayMaker extends JFrame {
 		drawable.addAll(offense.getPlayers());
 		drawable.addAll(defense.getPlayers());
 
-
 		// We can set this to false and call the processPlay when the GUI start button is pressed
 		paused = true;
 		thrown = false;
 
+		loopCounter = 0;
+		
 		//This one determines if the current play is over, ie the ball carrier was tackled
 		playOver = false;
 	}
@@ -73,6 +74,22 @@ public class PlayMaker extends JFrame {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
+	}
+	
+	public void reset() {
+		if (paused == false) {
+			sideBar.toggle();
+		}
+		offense = new Team(true);
+		defense = new Team(false);
+		drawable = new ArrayList<MovableObject>();
+		drawable.addAll(offense.getPlayers());
+		drawable.addAll(defense.getPlayers());
+		thrown = false;
+		playOver = false;
+		loopCounter = 0;
+		sideBar.refreshPlayChoice();
+		repaint();
 	}
 
 	public void processPlay() {
@@ -116,13 +133,16 @@ public class PlayMaker extends JFrame {
 				}
 			}
 
-
+			
+			// add some randomness to mix up the throw length
+			Random generator = new Random();
+			int randomness = generator.nextInt(30);
 			// Need to have loop counter reset and thrown set back to false when a new play is selected
-			if(loopCounter > THROW_COUNT) {
+			if(loopCounter > (THROW_COUNT + randomness)) {
 				if(!thrown) {
 					thrown = true;
 					// Cast to reference the QB
-					QuarterBack qb = (QuarterBack) offense.getPlayers().get(qbIndex);
+					QuarterBack qb = (QuarterBack) offense.getPlayers().get(QB_INDEX);
 
 					// Sets up the target accordingly to an open receiver
 					ball = qb.throwBall(offense);
@@ -234,7 +254,6 @@ public class PlayMaker extends JFrame {
 	public void loadPlayConfig(String offensePlay, String defensePlay) {
 		offense.loadPlay(offensePlay);
 		defense.loadPlay(defensePlay);
-
 		//repaint is here to update locations and draw the route lines
 		repaint();
 	}

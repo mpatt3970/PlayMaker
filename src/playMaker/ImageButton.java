@@ -34,6 +34,10 @@ public class ImageButton extends JPanel {
 		add(button);
 	}
 	
+	public void toggle() {
+		button.doClick();
+	}
+	
 	public ImageIcon getIcon(String fileName) {
 		URL url = getClass().getResource(fileName);
 		Image image = Toolkit.getDefaultToolkit().getImage(url);
