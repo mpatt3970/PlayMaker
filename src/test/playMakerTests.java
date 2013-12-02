@@ -69,7 +69,7 @@ public class playMakerTests {
 	@Test
 	public void testLoadPlay() {
 		// test that the load functions initializes some values correctly
-		playMaker.loadPlayConfig("testOffensePlay.txt", "testDefensePlay.txt");
+		playMaker.loadPlayConfig("4-3","testOffensePlay.txt", "testDefensePlay.txt");
 		
 		assertTrue(playMaker.getOffense().getPlayers().size() > 0);
 		assertTrue(playMaker.getDefense().getPlayers().size() > 0);
@@ -192,7 +192,7 @@ public class playMakerTests {
 		assertTrue(playMaker.getDefense().getPlayers().size() > 0);
 		
 		// test that ball is hiked (someone has it on the offense)
-		playMaker.loadPlayConfig("testOffensePlay.txt", "testDefensePlay.txt");
+		playMaker.loadPlayConfig("4-3","testOffensePlay.txt", "testDefensePlay.txt");
 		boolean foundBall = false;
 		for (Player p : playMaker.getOffense().getPlayers()) {
 			if (p.isHasBall())

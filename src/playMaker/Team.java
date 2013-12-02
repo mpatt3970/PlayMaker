@@ -100,6 +100,7 @@ public class Team {
 		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
 	}
 
+	
 
 	//The passed character just routes the function to the correct version
 	public void loadFormation(String name) {
@@ -113,6 +114,12 @@ public class Team {
 		} else if (name.equalsIgnoreCase("5-2")) {
 			loadFiveTwo();
 		} else if (name.equalsIgnoreCase("3-4")) {
+			loadThreeFour();
+		}
+		if (name.equalsIgnoreCase("5-2")) {
+			loadFiveTwo();
+		}
+		if(name.equalsIgnoreCase("3-4")) {
 			loadThreeFour();
 		}
 	}
@@ -204,10 +211,6 @@ public class Team {
 
 	}
 	
-	public void loadDefaultDirections() {
-		
-	}
-
 	public void loadFiveTwo() {
 		players.get(0).setAbsoluteLocation(new Vector2D(100,230));
 		players.get(1).setAbsoluteLocation(new Vector2D(220,240));
