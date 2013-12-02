@@ -13,7 +13,7 @@ public class Receiver extends Player {
 	
 	public Receiver(Vector2D location, Team team, PlayMaker playMaker) {
 		super(location, team, playMaker);
-		this.speed = 4;
+		this.speed = 3;
 		this.hasBall = false;
 	}
 	

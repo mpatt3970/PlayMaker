@@ -6,9 +6,11 @@ import java.util.Random;
 
 public class QuarterBack extends Player {
 	//Fine tune this to determine how much the throw leads the intended target
-	final double LEAD_TIME_FAR = 85;
+	final double LEAD_TIME_FAR = 110;
+	final double LEAD_TIME_MID = 85;
 	final double LEAD_TIME_CLOSE = 15;
-	final double CLOSE_FAR_CHANGING_DISTANCE = 200;
+	final double CLOSE_MID_CHANGING_DISTANCE = 200;
+	final double MID_FAR_CHANGING_DISTANCE = 300;
 
 	public QuarterBack(Vector2D location, Team team, PlayMaker playMaker) {
 		super(location, team, playMaker);
@@ -43,10 +45,17 @@ public class QuarterBack extends Player {
 			Vector2D distance = new Vector2D();
 			distance.x = playerTarget.x-this.location.x;
 			distance.y = playerTarget.y-this.location.y;
-
-			if (distance.getMagnitude() > CLOSE_FAR_CHANGING_DISTANCE) {
+			
+			if (distance.getMagnitude() > MID_FAR_CHANGING_DISTANCE) {
 				throwTarget.x = playerTarget.x + LEAD_TIME_FAR*playersDirection.x;
 				throwTarget.y = playerTarget.y + LEAD_TIME_FAR*playersDirection.y;
+				
+			}
+			
+			else if (distance.getMagnitude() > CLOSE_MID_CHANGING_DISTANCE) {
+				throwTarget.x = playerTarget.x + LEAD_TIME_MID*playersDirection.x;
+				throwTarget.y = playerTarget.y + LEAD_TIME_MID*playersDirection.y;
+				
 			} else {
 				throwTarget.x = playerTarget.x + LEAD_TIME_CLOSE*playersDirection.x;
 				throwTarget.y = playerTarget.y + LEAD_TIME_CLOSE*playersDirection.y;
