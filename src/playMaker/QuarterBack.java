@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class QuarterBack extends Player {
 	//Fine tune this to determine how much the throw leads the intended target
-	final double LEAD_TIME_FAR = 65;
+	final double LEAD_TIME_FAR = 70;
 	final double LEAD_TIME_CLOSE = 15;
 	final double CLOSE_FAR_CHANGING_DISTANCE = 200;
 
