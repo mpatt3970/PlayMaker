@@ -114,7 +114,37 @@ public class Team {
 		players.get(9).setAbsoluteLocation(new Vector2D(400,200));
 		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
 	}
-	//The passed character just routes the function to the correct version
+	//defense
+	public void loadThreeFour() {
+		players.get(0).setAbsoluteLocation(new Vector2D(100,230));
+		players.get(1).setAbsoluteLocation(new Vector2D(220,240));
+		players.get(2).setAbsoluteLocation(new Vector2D(255,130));
+		players.get(3).setAbsoluteLocation(new Vector2D(265,210));
+		players.get(4).setAbsoluteLocation(new Vector2D(320,200));
+		players.get(5).setAbsoluteLocation(new Vector2D(400,200));
+		players.get(6).setAbsoluteLocation(new Vector2D(360,240));
+		players.get(7).setAbsoluteLocation(new Vector2D(435,210));
+		players.get(8).setAbsoluteLocation(new Vector2D(445,150));
+		players.get(9).setAbsoluteLocation(new Vector2D(480,240));
+		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
+	}
+	
+	
+	//offensive formations
+	public void loadShotgun() {
+		
+	}
+	
+	public void loadProset() {
+		
+	}
+	
+	public void loadIFormation() {
+		
+	}
+	
+	
+	//The passed name just routes the function to the correct version
 	public void loadFormation(String name) {
 		//Default
 		if (name.equalsIgnoreCase("Default")) {
@@ -123,17 +153,23 @@ public class Team {
 		//Add others here and call there functions
 		else if (name.equalsIgnoreCase("4-3")) {
 			loadFourThree();
-		} else if (name.equalsIgnoreCase("5-2")) {
-			loadFiveTwo();
-		} else if (name.equalsIgnoreCase("3-4")) {
-			loadThreeFour();
 		}
 		else if (name.equalsIgnoreCase("5-2")) {
 			loadFiveTwo();
 		}
-		else if(name.equalsIgnoreCase("3-4")) {
+		else if (name.equalsIgnoreCase("3-4")) {
 			loadThreeFour();
-		} else {
+		}
+		else if (name.equalsIgnoreCase("Shotgun")) {
+			loadShotgun();
+		}
+		else if (name.equalsIgnoreCase("Proset")) {
+			loadProset();
+		}
+		else if (name.equalsIgnoreCase("IFormation")) {
+			loadIFormation();
+		}
+		else {
 			loadDefaultFormation(isOffense);
 		}
 	}
@@ -227,19 +263,7 @@ public class Team {
 	
 	
 
-	public void loadThreeFour() {
-		players.get(0).setAbsoluteLocation(new Vector2D(100,230));
-		players.get(1).setAbsoluteLocation(new Vector2D(220,240));
-		players.get(2).setAbsoluteLocation(new Vector2D(255,130));
-		players.get(3).setAbsoluteLocation(new Vector2D(265,210));
-		players.get(4).setAbsoluteLocation(new Vector2D(320,200));
-		players.get(5).setAbsoluteLocation(new Vector2D(400,200));
-		players.get(6).setAbsoluteLocation(new Vector2D(360,240));
-		players.get(7).setAbsoluteLocation(new Vector2D(435,210));
-		players.get(8).setAbsoluteLocation(new Vector2D(445,150));
-		players.get(9).setAbsoluteLocation(new Vector2D(480,240));
-		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
-	}
+	
 
 
 	/*
