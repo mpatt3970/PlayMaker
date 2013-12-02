@@ -34,10 +34,7 @@ public class Field extends JComponent {
 		g.setColor(Color.green);
 		g.fillRect(0, 0, sizeX, sizeY);
 		drawLines(g);
-		if(selected || first) { 
-			drawRoutes(g);
-			first = false;
-		}
+		drawRoutes(g);
 		// draw each drawableObject on each team
 		for (MovableObject toDraw : playMaker.getDrawable()) {
 			toDraw.draw(g);
@@ -60,12 +57,6 @@ public class Field extends JComponent {
 		g.setColor(Color.BLUE);
 		for(Player p : playMaker.getOffense().getPlayers()) {
 			if(p.getClass() == Receiver.class || p.getClass() == QuarterBack.class) {
-				p.drawRoute(g);
-			}
-		}
-		g.setColor(Color.RED);
-		for(Player p : playMaker.getDefense().getPlayers()) {
-			if(p.getClass() == Defender.class) {
 				p.drawRoute(g);
 			}
 		}

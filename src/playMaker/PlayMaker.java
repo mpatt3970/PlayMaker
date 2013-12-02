@@ -209,19 +209,7 @@ public class PlayMaker extends JFrame {
 			double magnitude = distance.getMagnitude();
 			
 			
-<<<<<<< HEAD
-			
-			
-			if (thrown) {
-				// react to ball
-			}
-			
-			
-			
-			
-=======
-		
->>>>>>> 782aaa9f92305415e8a1f40c9574302a0cb7867a
+
 			
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*Player.PLAYER_SIZE_X) {

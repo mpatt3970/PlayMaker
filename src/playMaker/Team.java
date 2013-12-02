@@ -110,6 +110,10 @@ public class Team {
 		//Add others here and call there functions
 		if (name.equalsIgnoreCase("4-3")) {
 			loadFourThree();
+		} else if (name.equalsIgnoreCase("5-2")) {
+			loadFiveTwo();
+		} else if (name.equalsIgnoreCase("3-4")) {
+			loadThreeFour();
 		}
 	}
 
@@ -119,86 +123,117 @@ public class Team {
 
 		// button listener will pass the correct file name to this function
 
+			Scanner scanner;
+			try {
+				FileReader reader = new FileReader(fileName);
+				scanner = new Scanner(reader);
+				//first line is the formation
+				loadFormation(scanner.nextLine());
+				//now load routes
+				for (Player current : players){
+					int direction = scanner.nextInt();
+					int direction2 = scanner.nextInt();
+					switch(direction) {
+					case 1:
+						current.setRouteDirection1(new Vector2D(1,0));
+						break;
+					case 2:
+						current.setRouteDirection1(new Vector2D(.5,-.5));
+						break;
+					case 3:
+						current.setRouteDirection1(new Vector2D(0,-1));
+						break;
+					case 4:
+						current.setRouteDirection1(new Vector2D(-.5,-.5));
+						break;
+					case 5:
+						current.setRouteDirection1(new Vector2D(-1,0));
+						break;
+					case 6:
+						current.setRouteDirection1(new Vector2D(-.5,.5));
+						break;
+					case 7:
+						current.setRouteDirection1(new Vector2D(0,1));
+						break;
+					case 8:
+						current.setRouteDirection1(new Vector2D(.5,.5));
+						break;	
+					case 9:
+						current.setRouteDirection1(new Vector2D(0,.01));
+						break;
+					}
 
-		Scanner scanner;
-		try {
-			FileReader reader = new FileReader(fileName);
-			scanner = new Scanner(reader);
-			//first line is the formation
-			loadFormation(scanner.nextLine());
-			//now load routes
-			for (Player current : players){
-				int direction = scanner.nextInt();
-				int direction2 = scanner.nextInt();
-				switch(direction) {
-				case 1:
-					current.setRouteDirection1(new Vector2D(1,0));
-					break;
-				case 2:
-					current.setRouteDirection1(new Vector2D(.5,-.5));
-					break;
-				case 3:
-					current.setRouteDirection1(new Vector2D(0,-1));
-					break;
-				case 4:
-					current.setRouteDirection1(new Vector2D(-.5,-.5));
-					break;
-				case 5:
-					current.setRouteDirection1(new Vector2D(-1,0));
-					break;
-				case 6:
-					current.setRouteDirection1(new Vector2D(-.5,.5));
-					break;
-				case 7:
-					current.setRouteDirection1(new Vector2D(0,1));
-					break;
-				case 8:
-					current.setRouteDirection1(new Vector2D(.5,.5));
-					break;	
-				case 9:
-					current.setRouteDirection1(new Vector2D(0,.01));
-					break;
+					switch(direction2) {
+					case 1:
+						current.setRouteDirection2(new Vector2D(1,0));
+						break;
+					case 2:
+						current.setRouteDirection2(new Vector2D(.5,-.5));
+						break;
+					case 3:
+						current.setRouteDirection2(new Vector2D(0,-1));
+						break;
+					case 4:
+						current.setRouteDirection2(new Vector2D(-.5,-.5));
+						break;
+					case 5:
+						current.setRouteDirection2(new Vector2D(-1,0));
+						break;
+					case 6:
+						current.setRouteDirection2(new Vector2D(-.5,.5));
+						break;
+					case 7:
+						current.setRouteDirection2(new Vector2D(0,1));
+						break;
+					case 8:
+						current.setRouteDirection2(new Vector2D(.5,.5));
+						break;	
+					case 9:
+						current.setRouteDirection1(new Vector2D(0,.01));
+						break;
+					}
 				}
-
-				switch(direction2) {
-				case 1:
-					current.setRouteDirection2(new Vector2D(1,0));
-					break;
-				case 2:
-					current.setRouteDirection2(new Vector2D(.5,-.5));
-					break;
-				case 3:
-					current.setRouteDirection2(new Vector2D(0,-1));
-					break;
-				case 4:
-					current.setRouteDirection2(new Vector2D(-.5,-.5));
-					break;
-				case 5:
-					current.setRouteDirection2(new Vector2D(-1,0));
-					break;
-				case 6:
-					current.setRouteDirection2(new Vector2D(-.5,.5));
-					break;
-				case 7:
-					current.setRouteDirection2(new Vector2D(0,1));
-					break;
-				case 8:
-					current.setRouteDirection2(new Vector2D(.5,.5));
-					break;	
-				case 9:
-					current.setRouteDirection1(new Vector2D(0,.01));
-					break;
-				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 
 		//As coded now 1 = -> and then counter clockwise at 45 degree amounts(like the unit circle)
 
 
+	}
+	
+	public void loadDefaultDirections() {
+		
+	}
+
+	public void loadFiveTwo() {
+		players.get(0).setAbsoluteLocation(new Vector2D(100,230));
+		players.get(1).setAbsoluteLocation(new Vector2D(220,240));
+		players.get(2).setAbsoluteLocation(new Vector2D(255,130));
+		players.get(3).setAbsoluteLocation(new Vector2D(275,200));
+		players.get(4).setAbsoluteLocation(new Vector2D(300,240));
+		players.get(5).setAbsoluteLocation(new Vector2D(350,240));
+		players.get(6).setAbsoluteLocation(new Vector2D(400,240));
+		players.get(7).setAbsoluteLocation(new Vector2D(425,200));
+		players.get(8).setAbsoluteLocation(new Vector2D(445,150));
+		players.get(9).setAbsoluteLocation(new Vector2D(480,240));
+		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
+	}
+
+	public void loadThreeFour() {
+		players.get(0).setAbsoluteLocation(new Vector2D(100,230));
+		players.get(1).setAbsoluteLocation(new Vector2D(220,240));
+		players.get(2).setAbsoluteLocation(new Vector2D(255,130));
+		players.get(3).setAbsoluteLocation(new Vector2D(265,210));
+		players.get(4).setAbsoluteLocation(new Vector2D(320,200));
+		players.get(5).setAbsoluteLocation(new Vector2D(400,200));
+		players.get(6).setAbsoluteLocation(new Vector2D(360,240));
+		players.get(7).setAbsoluteLocation(new Vector2D(435,210));
+		players.get(8).setAbsoluteLocation(new Vector2D(445,150));
+		players.get(9).setAbsoluteLocation(new Vector2D(480,240));
+		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
 	}
 
 
