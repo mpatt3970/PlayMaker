@@ -46,6 +46,7 @@ public class SelectPlaysPanel extends JPanel {
 		// Reset the throwing loop and boolean for a new play
 		frame.setLoopCounter(0);
 		frame.setThrown(false);
+		frame.setCaught(false);
 		frame.resetBall();
 		frame.setPlayOver(false);
 		if (frame.getPaused() == false) {

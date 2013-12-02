@@ -209,6 +209,7 @@ public class PlayMaker extends JFrame {
 			double magnitude = distance.getMagnitude();
 			
 			
+<<<<<<< HEAD
 			
 			
 			if (thrown) {
@@ -218,6 +219,9 @@ public class PlayMaker extends JFrame {
 			
 			
 			
+=======
+		
+>>>>>>> 782aaa9f92305415e8a1f40c9574302a0cb7867a
 			
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*Player.PLAYER_SIZE_X) {
@@ -237,8 +241,8 @@ public class PlayMaker extends JFrame {
 					netDirection.y += 2*distance.getUnitVector().y;
 				} else {
 					// move towards
-					netDirection.x -= 2*distance.getUnitVector().x;
-					netDirection.y -= 2*distance.getUnitVector().y;
+					netDirection.x -= 8*distance.getUnitVector().x;
+					netDirection.y -= 8*distance.getUnitVector().y;
 				}
 			}
 			else {
@@ -270,7 +274,22 @@ public class PlayMaker extends JFrame {
 				}
 
 			}
+			
+			// Modify routes once ball is caught
+			if (caught) {
+				// set direction towards the ball carrier
+				if (p.isHasBall()) {
+					//nothing to change here
+				} else if (player.isHasBall()){
+					// go towards the ball carrier
+					netDirection.x = player.getDirection().x - p.getDirection().x;
+					netDirection.y = player.getDirection().y - p.getDirection().y;
+					return netDirection;
+				}
+			}
 		}
+		
+	
 		return netDirection;
 	}
 
@@ -347,6 +366,7 @@ public class PlayMaker extends JFrame {
 	public void setThrown(boolean b) {
 		thrown = b;
 	}
+	
 
 	public void resetBall() {
 		drawable.remove(ball);
