@@ -229,8 +229,8 @@ public class PlayMaker extends JFrame {
 					netDirection.y += 2*distance.getUnitVector().y;
 				} else {
 					// move towards
-					netDirection.x -= 8*distance.getUnitVector().x;
-					netDirection.y -= 8*distance.getUnitVector().y;
+					netDirection.x -= 6*distance.getUnitVector().x;
+					netDirection.y -= 6*distance.getUnitVector().y;
 				}
 			}
 			else {
@@ -295,7 +295,7 @@ public class PlayMaker extends JFrame {
 	public boolean blocked() {
 		Random generator = new Random();
 		int chance = generator.nextInt(10);
-		if (chance < 5)
+		if (chance < 4)
 			return true;
 		else
 			return false;
@@ -316,7 +316,7 @@ public class PlayMaker extends JFrame {
 			}
 		};
 
-		animationTimer = new Timer(150, actionTimer);
+		animationTimer = new Timer(100, actionTimer);
 	}
 
 	/*
