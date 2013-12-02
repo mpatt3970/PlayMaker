@@ -133,15 +133,15 @@ public class Team {
 	//offensive formations
 	public void loadShotgun() {
 		players.get(0).setAbsoluteLocation(new Vector2D(100,300));
-		players.get(1).setAbsoluteLocation(new Vector2D(300,370));
+		players.get(1).setAbsoluteLocation(new Vector2D(130,310));
 		players.get(2).setAbsoluteLocation(new Vector2D(250,300));
 		players.get(3).setAbsoluteLocation(new Vector2D(300,300));
 		players.get(4).setAbsoluteLocation(new Vector2D(350,300));
-		players.get(5).setAbsoluteLocation(new Vector2D(350,330));
+		players.get(5).setAbsoluteLocation(new Vector2D(350,380));
 		players.get(6).setAbsoluteLocation(new Vector2D(400,300));
 		players.get(7).setAbsoluteLocation(new Vector2D(450,300));
 		players.get(8).setAbsoluteLocation(new Vector2D(500,320));
-		players.get(9).setAbsoluteLocation(new Vector2D(350,420));
+		players.get(9).setAbsoluteLocation(new Vector2D(370,360));
 		players.get(10).setAbsoluteLocation(new Vector2D(600,300));
 	}
 	
