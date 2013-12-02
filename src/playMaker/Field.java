@@ -60,6 +60,11 @@ public class Field extends JComponent {
 				p.drawRoute(g);
 			}
 		}
+		g.setColor(Color.RED);
+		for(Player p : playMaker.getDefense().getPlayers()) {
+			if(p.getClass() == Defender.class)
+				p.drawRoute(g);
+		}
 	}
 
 
