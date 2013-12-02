@@ -284,9 +284,10 @@ public class PlayMaker extends JFrame {
 
 	// this can be called when the user selects new play options from the combo boxes on the GUI
 	// the team loadPlay functions will initialize all positions and directions
-	public void loadPlayConfig(String offensePlay, String defensePlay) {
+	public void loadPlayConfig(String defenseFormation, String defensePlay, String offensePlay) {
 		offense.loadPlay(offensePlay);
 		defense.loadPlay(defensePlay);
+		defense.loadFormation(defenseFormation);
 		//repaint is here to update locations and draw the route lines
 		repaint();
 	}
