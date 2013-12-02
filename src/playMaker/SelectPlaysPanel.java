@@ -22,7 +22,7 @@ public class SelectPlaysPanel extends JPanel {
 		String title = "Formation";
 		base = new GenericComboBox(formations, title, this);
 		this.add(base);
-		String[] plays = {"run", "pass"};
+		String[] plays = {"defaultOffensePlay.txt", "testOffensePlay.txt"};
 		title = "Plays";
 		offense = new GenericComboBox(plays, title, this);
 		this.add(offense);
@@ -32,10 +32,10 @@ public class SelectPlaysPanel extends JPanel {
 
 	public void updateChoices() {
 		String defensePlay = base.getChoice();
-		//String offensePlay = offense.getChoice();
+		String offensePlay = offense.getChoice();
 		
 		//String defensePlay = "3-4.txt";
-		String offensePlay = "defaultOffensePlay.txt";
+		//String offensePlay = "defaultOffensePlay.txt";
 		
 		frame.loadPlayConfig(defensePlay,offensePlay);
 
