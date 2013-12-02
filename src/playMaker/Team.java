@@ -100,6 +100,14 @@ public class Team {
 		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
 	}
 
+	public void loadFiveTwo() {
+
+	}
+	
+	public void loadThreeFour() {
+		
+	}
+
 
 	//The passed character just routes the function to the correct version
 	public void loadFormation(String name) {
@@ -110,6 +118,12 @@ public class Team {
 		//Add others here and call there functions
 		if (name.equalsIgnoreCase("4-3")) {
 			loadFourThree();
+		}
+		if (name.equalsIgnoreCase("5-2")) {
+			loadFiveTwo();
+		}
+		if(name.equalsIgnoreCase("3-4")) {
+			loadThreeFour();
 		}
 	}
 
