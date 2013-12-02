@@ -39,10 +39,18 @@ public class SelectPlaysPanel extends JPanel {
 		//String coverage = secondary.getChoice();
 		//String play = offense.getChoice();
 		
+<<<<<<< HEAD
 		String coverage = "defaultDefensePlay.txt";
 		String play = "defaultOffensePlay.txt";
 		
 		frame.loadPlayConfig(formation,coverage, play);
+=======
+		
+		String coverage = "defaultDefensePlay.txt";
+		String play = "defaultOffensePlay.txt";
+		
+		frame.loadPlayConfig(formation,coverage,play);
+>>>>>>> 90354c0780da109055654ddca8dc0a8189182a4a
 		// Reset the throwing loop and boolean for a new play
 		frame.setLoopCounter(0);
 		frame.setThrown(false);
