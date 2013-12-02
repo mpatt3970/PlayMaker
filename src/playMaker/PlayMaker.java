@@ -72,7 +72,7 @@ public class PlayMaker extends JFrame {
 
 		field = new Field(this, DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
 		sideBar = new SideBar(this, DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
-
+		
 		this.add(sideBar, BorderLayout.WEST);
 		this.add(field, BorderLayout.CENTER);
 		this.setResizable(false);

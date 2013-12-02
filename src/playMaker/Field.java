@@ -34,7 +34,10 @@ public class Field extends JComponent {
 		g.setColor(Color.green);
 		g.fillRect(0, 0, sizeX, sizeY);
 		drawLines(g);
+		if (selected || first) {
+		first = false;
 		drawRoutes(g);
+		}
 		// draw each drawableObject on each team
 		for (MovableObject toDraw : playMaker.getDrawable()) {
 			toDraw.draw(g);
