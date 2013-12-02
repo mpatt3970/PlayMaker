@@ -229,8 +229,8 @@ public class PlayMaker extends JFrame {
 					netDirection.y += 2*distance.getUnitVector().y;
 				} else {
 					// move towards
-					netDirection.x -= 2*distance.getUnitVector().x;
-					netDirection.y -= 2*distance.getUnitVector().y;
+					netDirection.x -= 8*distance.getUnitVector().x;
+					netDirection.y -= 8*distance.getUnitVector().y;
 				}
 			}
 			else {
