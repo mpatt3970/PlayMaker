@@ -1,14 +1,11 @@
 package playMaker;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -20,6 +17,10 @@ public class PlayMaker extends JFrame {
 
 	private SideBar sideBar;
 	private Field field;
+
+	public Field getField() {
+		return field;
+	}
 
 	private Team offense;
 	private Team defense;
@@ -68,8 +69,10 @@ public class PlayMaker extends JFrame {
 	public void initGui() {
 		this.setSize(DEFAULT_SIZE_X, DEFAULT_SIZE_Y);
 		// instantiate gui components
-		sideBar = new SideBar(this, DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
+
 		field = new Field(this, DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
+		sideBar = new SideBar(this, DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
+
 		this.add(sideBar, BorderLayout.WEST);
 		this.add(field, BorderLayout.CENTER);
 		this.setResizable(false);
@@ -94,6 +97,7 @@ public class PlayMaker extends JFrame {
 		repaint();
 	}
 
+	
 	public void processPlay() {
 		/**
 		 * This function will step through the play
@@ -177,7 +181,7 @@ public class PlayMaker extends JFrame {
 				}
 			}
 
-
+			
 			// increment the loop count toward ball throwing time
 			loopCounter++;
 		}
@@ -376,6 +380,7 @@ public class PlayMaker extends JFrame {
 			sideBar.updateMessage("Paused");
 		}
 	}
+
 	/*
 	 * 
 	 */

@@ -1,6 +1,12 @@
 package playMaker;
 
-import java.awt.Point;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 
 public class Receiver extends Player {
 	// I figure the running back can be represented as a receiver
@@ -10,6 +16,6 @@ public class Receiver extends Player {
 		this.speed = 4;
 		this.hasBall = false;
 	}
-
+	
 	
 }

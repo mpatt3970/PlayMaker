@@ -13,23 +13,23 @@ public abstract class MovableObject {
 	 * 
 	 * Since anything that moves, also should be drawn, i put draw in here
 	 */
-	
+
 	protected Vector2D location;
 	protected Vector2D initialLocation;
-	
+
 	public void move(Vector2D direction, int speed) {
 		// This works with collision blocking
 		if(direction.getMagnitude() < .1) {
-			
+
 		} else {
-		// This is for all other movement
-		// vector along direction
-		Vector2D unit = direction.getUnitVector();
-		// add to current position
-		location.x += speed*unit.x;
-		location.y += speed*unit.y;
+			// This is for all other movement
+			// vector along direction
+			Vector2D unit = direction.getUnitVector();
+			// add to current position
+			location.x += speed*unit.x;
+			location.y += speed*unit.y;
 		}
-		
+
 	}
 
 	public Vector2D getLocation() {
@@ -47,7 +47,7 @@ public abstract class MovableObject {
 	public void setInitialLocation(Vector2D initialLocation) {
 		this.initialLocation = initialLocation;
 	}
-	
+
 	// Sets initialLocation as well as location
 	public void setAbsoluteLocation(Vector2D position) {
 		setInitialLocation(position);
@@ -56,8 +56,8 @@ public abstract class MovableObject {
 		copy.y = position.y;
 		setLocation(copy);
 	}
-	
-	
+
+
 	public abstract void draw(Graphics g);
-	
+
 }

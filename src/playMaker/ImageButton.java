@@ -29,6 +29,7 @@ public class ImageButton extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				frame.flipPaused();
+				frame.getField().setSelected(false);
 			}
 		});
 		add(button);
