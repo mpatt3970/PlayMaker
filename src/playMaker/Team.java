@@ -100,10 +100,21 @@ public class Team {
 		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
 	}
 
+	// defense formation
 	public void loadFiveTwo() {
-
+		players.get(0).setAbsoluteLocation(new Vector2D(100,230));
+		players.get(1).setAbsoluteLocation(new Vector2D(300,200));
+		players.get(2).setAbsoluteLocation(new Vector2D(255,130));
+		players.get(3).setAbsoluteLocation(new Vector2D(220,260));
+		players.get(4).setAbsoluteLocation(new Vector2D(280,240));
+		players.get(5).setAbsoluteLocation(new Vector2D(350,240));
+		players.get(6).setAbsoluteLocation(new Vector2D(420,240));
+		players.get(7).setAbsoluteLocation(new Vector2D(480,260));
+		players.get(8).setAbsoluteLocation(new Vector2D(445,130));
+		players.get(9).setAbsoluteLocation(new Vector2D(400,200));
+		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
 	}
-	
+	// defense formation
 	public void loadThreeFour() {
 		
 	}
@@ -116,14 +127,16 @@ public class Team {
 			loadDefaultFormation(isOffense);
 		}
 		//Add others here and call there functions
-		if (name.equalsIgnoreCase("4-3")) {
+		else if (name.equalsIgnoreCase("4-3")) {
 			loadFourThree();
 		}
-		if (name.equalsIgnoreCase("5-2")) {
+		else if (name.equalsIgnoreCase("5-2")) {
 			loadFiveTwo();
 		}
-		if(name.equalsIgnoreCase("3-4")) {
+		else if(name.equalsIgnoreCase("3-4")) {
 			loadThreeFour();
+		} else {
+			loadDefaultFormation(isOffense);
 		}
 	}
 
