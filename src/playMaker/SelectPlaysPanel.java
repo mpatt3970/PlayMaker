@@ -22,7 +22,7 @@ public class SelectPlaysPanel extends JPanel {
 		String title = "Formation";
 		base = new GenericComboBox(formations, title, this);
 		this.add(base);
-		String[] plays = {"Fly.txt","defaultOffensePlay.txt", "testOffensePlay.txt"};
+		String[] plays = {"Fly.txt","defaultOffensePlay.txt", "testOffensePlay.txt", "SweepLeft.txt", "SweepRight.txt", "Slants.txt", "Blast.txt", "Cross.txt", "Reverse.txt", "Screen.txt", "HailMary.txt"};
 		title = "Plays";
 		offense = new GenericComboBox(plays, title, this);
 		this.add(offense);

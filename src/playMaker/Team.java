@@ -276,7 +276,7 @@ public class Team {
 						current.setRouteDirection2(new Vector2D(.5,.5));
 						break;	
 					case 9:
-						current.setRouteDirection1(new Vector2D(0,.01));
+						current.setRouteDirection2(new Vector2D(0,.01));
 						break;
 					}
 				}
