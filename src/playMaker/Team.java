@@ -294,7 +294,6 @@ public class Team {
 						}
 						players.get(1).setIsOpen(true);
 						players.get(9).setIsOpen(true);
-						System.out.println("yo");
 					}
 				} else {
 					// reset when they lack a nextline aka a passing play

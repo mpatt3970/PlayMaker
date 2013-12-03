@@ -19,7 +19,7 @@ public class SelectPlaysPanel extends JPanel {
 		String title = "Formation";
 		base = new GenericComboBox(formations, title, this);
 		this.add(base);
-		String[] plays = {"Fly", "SweepLeft", "SweepRight", "Slants", "Blast", "Cross", "Reverse", "Screen", "HailMary"};
+		String[] plays = {"Fly", "SweepLeft", "SweepRight", "Slants", "Blast", "Cross", "Reverse", "Screen", "HailMary", "RushOffTackles", "Missile", "Flats"};
 		title = "Plays";
 		offense = new GenericComboBox(plays, title, this);
 		this.add(offense);
