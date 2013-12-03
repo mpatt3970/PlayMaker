@@ -197,9 +197,9 @@ public class PlayMaker extends JFrame {
 
 	}
 
-	public boolean checkForEdge(Player p) {
-		int borderDistance = 10;
-		if (p.getLocation().x < 0 + borderDistance || p.getLocation().x > DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X - borderDistance) {
+	public boolean checkForEdge(Player p, int borderDistance) {
+		int rightEdgeSeemsOffBy = 15;
+		if (p.getLocation().x < 0 + borderDistance || p.getLocation().x > DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X - rightEdgeSeemsOffBy - borderDistance) {
 			return true;
 		}
 		return false;
@@ -212,7 +212,7 @@ public class PlayMaker extends JFrame {
 		Vector2D netDirection = new Vector2D(0,0);
 		ArrayList<Player> otherPlayers;
 
-		if (checkForEdge(p)) {
+		if (checkForEdge(p, 10)) {
 			if (isOffense) {
 				return new Vector2D(0, -1);
 			} else {
@@ -297,8 +297,10 @@ public class PlayMaker extends JFrame {
 						reset();
 						sideBar.updateMessage("Touchdown!");
 					}
-					// make him run straight otherwise
-					return new Vector2D(0, -1);
+					// make him run straight once he's over halfway from the middle
+					if (checkForEdge(p, 150)) {
+						return new Vector2D(0, -1);
+					}
 				} else if (player.isHasBall()){
 					// go towards the ball carrier
 					netDirection.x = player.getDirection().x - p.getDirection().x;
