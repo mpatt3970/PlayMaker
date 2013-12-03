@@ -86,10 +86,5 @@ public class QuarterBack extends Player {
 		return false;
 	}
 
-	// This may be taken care of with a "throw" to a halfback/fullback
-	public void handOff() {
-
-	}
-
 
 }

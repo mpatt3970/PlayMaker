@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Team {
 
+	private PlayMaker playMaker;
 	private ArrayList<Player> players;
 	private boolean isOffense;
 
@@ -18,6 +19,7 @@ public class Team {
 	 */
 
 	public Team(boolean offense, PlayMaker playMaker) {
+		this.playMaker = playMaker;
 		isOffense = offense;
 		players = new ArrayList<Player>();
 		if (isOffense) {
@@ -128,8 +130,8 @@ public class Team {
 		players.get(9).setAbsoluteLocation(new Vector2D(480,240));
 		players.get(10).setAbsoluteLocation(new Vector2D(600,230));
 	}
-	
-	
+
+
 	//offensive formations
 	public void loadShotgun() {
 		players.get(0).setAbsoluteLocation(new Vector2D(100,300));
@@ -144,7 +146,7 @@ public class Team {
 		players.get(9).setAbsoluteLocation(new Vector2D(370,360));
 		players.get(10).setAbsoluteLocation(new Vector2D(600,300));
 	}
-	
+
 	public void loadProset() {
 		players.get(0).setAbsoluteLocation(new Vector2D(100,300));
 		players.get(1).setAbsoluteLocation(new Vector2D(300,370));
@@ -158,7 +160,7 @@ public class Team {
 		players.get(9).setAbsoluteLocation(new Vector2D(400,370));
 		players.get(10).setAbsoluteLocation(new Vector2D(600,300));
 	}
-	
+
 	public void loadIFormation() {
 		players.get(0).setAbsoluteLocation(new Vector2D(100,300));
 		players.get(1).setAbsoluteLocation(new Vector2D(350,390));
@@ -172,8 +174,8 @@ public class Team {
 		players.get(9).setAbsoluteLocation(new Vector2D(350,360));
 		players.get(10).setAbsoluteLocation(new Vector2D(600,300));
 	}
-	
-	
+
+
 	//The passed name just routes the function to the correct version
 	public void loadFormation(String name) {
 		//Default
@@ -210,90 +212,108 @@ public class Team {
 
 		// button listener will pass the correct file name to this function
 
-			Scanner scanner;
-			try {
-				FileReader reader = new FileReader(fileName);
-				scanner = new Scanner(reader);
-				//first line is the formation
-				loadFormation(scanner.nextLine());
-				//now load routes
-				for (Player current : players){
-					int direction = scanner.nextInt();
-					int direction2 = scanner.nextInt();
-					switch(direction) {
-					case 1:
-						current.setRouteDirection1(new Vector2D(1,0));
-						break;
-					case 2:
-						current.setRouteDirection1(new Vector2D(.5,-.5));
-						break;
-					case 3:
-						current.setRouteDirection1(new Vector2D(0,-1));
-						break;
-					case 4:
-						current.setRouteDirection1(new Vector2D(-.5,-.5));
-						break;
-					case 5:
-						current.setRouteDirection1(new Vector2D(-1,0));
-						break;
-					case 6:
-						current.setRouteDirection1(new Vector2D(-.5,.5));
-						break;
-					case 7:
-						current.setRouteDirection1(new Vector2D(0,1));
-						break;
-					case 8:
-						current.setRouteDirection1(new Vector2D(.5,.5));
-						break;	
-					case 9:
-						current.setRouteDirection1(new Vector2D(0,.01));
-						break;
-					}
-
-					switch(direction2) {
-					case 1:
-						current.setRouteDirection2(new Vector2D(1,0));
-						break;
-					case 2:
-						current.setRouteDirection2(new Vector2D(.5,-.5));
-						break;
-					case 3:
-						current.setRouteDirection2(new Vector2D(0,-1));
-						break;
-					case 4:
-						current.setRouteDirection2(new Vector2D(-.5,-.5));
-						break;
-					case 5:
-						current.setRouteDirection2(new Vector2D(-1,0));
-						break;
-					case 6:
-						current.setRouteDirection2(new Vector2D(-.5,.5));
-						break;
-					case 7:
-						current.setRouteDirection2(new Vector2D(0,1));
-						break;
-					case 8:
-						current.setRouteDirection2(new Vector2D(.5,.5));
-						break;	
-					case 9:
-						current.setRouteDirection2(new Vector2D(0,.01));
-						break;
-					}
+		Scanner scanner;
+		try {
+			FileReader reader = new FileReader(fileName);
+			scanner = new Scanner(reader);
+			//first line is the formation
+			loadFormation(scanner.nextLine());
+			//now load routes
+			for (Player current : players){
+				int direction = scanner.nextInt();
+				int direction2 = scanner.nextInt();
+				switch(direction) {
+				case 1:
+					current.setRouteDirection1(new Vector2D(1,0));
+					break;
+				case 2:
+					current.setRouteDirection1(new Vector2D(.5,-.5));
+					break;
+				case 3:
+					current.setRouteDirection1(new Vector2D(0,-1));
+					break;
+				case 4:
+					current.setRouteDirection1(new Vector2D(-.5,-.5));
+					break;
+				case 5:
+					current.setRouteDirection1(new Vector2D(-1,0));
+					break;
+				case 6:
+					current.setRouteDirection1(new Vector2D(-.5,.5));
+					break;
+				case 7:
+					current.setRouteDirection1(new Vector2D(0,1));
+					break;
+				case 8:
+					current.setRouteDirection1(new Vector2D(.5,.5));
+					break;	
+				case 9:
+					current.setRouteDirection1(new Vector2D(0,.01));
+					break;
 				}
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				switch(direction2) {
+				case 1:
+					current.setRouteDirection2(new Vector2D(1,0));
+					break;
+				case 2:
+					current.setRouteDirection2(new Vector2D(.5,-.5));
+					break;
+				case 3:
+					current.setRouteDirection2(new Vector2D(0,-1));
+					break;
+				case 4:
+					current.setRouteDirection2(new Vector2D(-.5,-.5));
+					break;
+				case 5:
+					current.setRouteDirection2(new Vector2D(-1,0));
+					break;
+				case 6:
+					current.setRouteDirection2(new Vector2D(-.5,.5));
+					break;
+				case 7:
+					current.setRouteDirection2(new Vector2D(0,1));
+					break;
+				case 8:
+					current.setRouteDirection2(new Vector2D(.5,.5));
+					break;	
+				case 9:
+					current.setRouteDirection2(new Vector2D(0,.01));
+					break;
+				}
 			}
+			// if there's a 'r' at the bottom, it means run play
+			// basically a shorter throwCount and only rbs are receivers
+			if (isOffense) {
+				if (scanner.hasNext()) {
+					String run = scanner.next();
+					if (run.equals("r")) {
+						playMaker.setThrowCount(5);
+						for (Player p : players) {
+							p.setIsOpen(false);
+						}
+						players.get(1).setIsOpen(true);
+						players.get(9).setIsOpen(true);
+						System.out.println("yo");
+					}
+				} else {
+					// reset when they lack a nextline aka a passing play
+					playMaker.setThrowCount(95);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
 
 		//As coded now 1 = -> and then counter clockwise at 45 degree amounts(like the unit circle)
 
 
 	}
-	
-	
 
-	
+
+
+
 
 
 	/*

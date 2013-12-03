@@ -17,7 +17,7 @@ public abstract class Player extends MovableObject {
 	protected int speed;
 	protected boolean hasBall;
 	private Team team;
-	private boolean isOpen;
+	protected boolean isOpen;
 
 	// store the buffered images, using static to save space
 	public static Image offensiveDraw;

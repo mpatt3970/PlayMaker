@@ -35,7 +35,7 @@ public class PlayMaker extends JFrame {
 
 
 	// this determines how many loops need to occur before the ball gets thrown
-	private static int THROW_COUNT = 95;
+	private int throwCount = 95;
 	private int loopCounter;
 	private boolean thrown;
 	private boolean paused;
@@ -144,8 +144,15 @@ public class PlayMaker extends JFrame {
 			// add some randomness to mix up the throw length
 			Random generator = new Random();
 			int randomness = generator.nextInt(30);
+			int condition = 0;
 			// Need to have loop counter reset and thrown set back to false when a new play is selected
-			if(loopCounter > (THROW_COUNT + randomness)) {
+			if (throwCount < 60) {
+				// a run play so the randomness is too much
+				condition = throwCount;
+			} else {
+				condition = (throwCount + randomness);
+			}
+			if(loopCounter > condition) {
 				sideBar.updateMessage("Ball is thrown");
 				if(!thrown) {
 					thrown = true;
@@ -379,6 +386,10 @@ public class PlayMaker extends JFrame {
 
 	public void setThrown(boolean b) {
 		thrown = b;
+	}
+	
+	public void setThrowCount(int tc) {
+		throwCount = tc;
 	}
 	
 
