@@ -358,6 +358,13 @@ public class PlayMaker extends JFrame {
 
 	public void resetBall() {
 		drawable.remove(ball);
+		for(Player player: offense.getPlayers()){
+			player.hasBall = false;
+		}
+		for(Player player: defense.getPlayers()){
+			player.hasBall = false;
+		}
+		offense.getPlayers().get(QB_INDEX).hasBall = true;
 		ball = null;
 	}
 
