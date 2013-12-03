@@ -283,6 +283,12 @@ public class PlayMaker extends JFrame {
 			if (caught) {
 				// set direction towards the ball carrier
 				if (p.isHasBall()) {
+					// if it's at the top, he scored.
+					if (p.getLocation().y < 0) {
+						reset();
+						sideBar.updateMessage("Touchdown!");
+					}
+					// make him run straight otherwise
 					return new Vector2D(0, -1);
 				} else if (player.isHasBall()){
 					// go towards the ball carrier
