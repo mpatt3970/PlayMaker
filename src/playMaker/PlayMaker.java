@@ -286,8 +286,8 @@ public class PlayMaker extends JFrame {
 					return new Vector2D(0, -1);
 				} else if (player.isHasBall()){
 					// go towards the ball carrier
-					netDirection.x = player.getDirection().x - p.getDirection().x;
-					netDirection.y = player.getDirection().y - p.getDirection().y;
+					netDirection.x = player.getLocation().x - p.getLocation().x;
+					netDirection.y = player.getLocation().y - p.getLocation().y;
 					return netDirection;
 				}
 			}
@@ -378,6 +378,13 @@ public class PlayMaker extends JFrame {
 
 	public void resetBall() {
 		drawable.remove(ball);
+		for(Player player: offense.getPlayers()){
+			player.hasBall = false;
+		}
+		for(Player player: defense.getPlayers()){
+			player.hasBall = false;
+		}
+		offense.getPlayers().get(QB_INDEX).hasBall = true;
 		ball = null;
 	}
 
