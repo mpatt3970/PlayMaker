@@ -288,7 +288,7 @@ public class Team {
 				if (scanner.hasNext()) {
 					String run = scanner.next();
 					if (run.equals("r")) {
-						playMaker.setThrowCount(5);
+						playMaker.setThrowCount(-5);
 						for (Player p : players) {
 							p.setIsOpen(false);
 						}

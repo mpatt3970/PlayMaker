@@ -61,7 +61,7 @@ public class PlayMaker extends JFrame {
 		thrown = false;
 
 		loopCounter = 0;
-		
+
 		//This one determines if the current play is over, ie the ball carrier was tackled
 		playOver = false;
 	}
@@ -72,14 +72,14 @@ public class PlayMaker extends JFrame {
 
 		field = new Field(this, DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
 		sideBar = new SideBar(this, DEFAULT_SIDEBAR_X, DEFAULT_SIZE_Y);
-		
+
 		this.add(sideBar, BorderLayout.WEST);
 		this.add(field, BorderLayout.CENTER);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
-	
+
 	public void reset() {
 		if (paused == false) {
 			sideBar.toggle();
@@ -97,7 +97,7 @@ public class PlayMaker extends JFrame {
 		repaint();
 	}
 
-	
+
 	public void processPlay() {
 		/**
 		 * This function will step through the play
@@ -105,42 +105,10 @@ public class PlayMaker extends JFrame {
 		 * 2) Move them accordingly
 		 */
 
-		
+
 		if (!playOver) {
 			sideBar.updateMessage("Play in progress");
 
-			// this handles players making appropriate movement direction choices
-			// offensive moves first since they know their route, defense is trying to compensate after words
-			for (Player p : offense.getPlayers()) {
-				Vector2D direction = findBestDirection(p,true);
-				p.move(direction, p.getSpeed());
-			}
-			for (Player p : defense.getPlayers()) {
-				Vector2D direction = findBestDirection(p,false);
-				p.move(direction, p.getSpeed());
-			}
-
-			//This loop is for catching the ball.  Offense gets the heads up once again.  The catch function
-			// takes care of setting hasBall correctly for each player
-			if (ball != null) {
-				//Offense
-				for (Player p : offense.getPlayers()) {
-					if (p.catchBall(ball)) {
-						drawable.remove(ball);
-						ball = null;
-					}
-				}
-				//Defense
-				for (Player p : defense.getPlayers()) {
-					if (p.catchBall(ball)) {
-						drawable.remove(ball);
-						ball = null;
-						playOver = true;
-					}
-				}
-			}
-
-			
 			// add some randomness to mix up the throw length
 			Random generator = new Random();
 			int randomness = generator.nextInt(30);
@@ -188,13 +156,47 @@ public class PlayMaker extends JFrame {
 				}
 			}
 
-			
+			// this handles players making appropriate movement direction choices
+			// offensive moves first since they know their route, defense is trying to compensate after words
+			for (Player p : offense.getPlayers()) {
+				Vector2D direction = findBestDirection(p,true);
+				p.move(direction, p.getSpeed());
+			}
+			for (Player p : defense.getPlayers()) {
+				Vector2D direction = findBestDirection(p,false);
+				p.move(direction, p.getSpeed());
+			}
+
+			//This loop is for catching the ball.  Offense gets the heads up once again.  The catch function
+			// takes care of setting hasBall correctly for each player
+			if (ball != null) {
+				//Offense
+				for (Player p : offense.getPlayers()) {
+					if (p.catchBall(ball)) {
+						drawable.remove(ball);
+						ball = null;
+					}
+				}
+				//Defense
+				for (Player p : defense.getPlayers()) {
+					if (p.catchBall(ball)) {
+						drawable.remove(ball);
+						ball = null;
+						playOver = true;
+					}
+				}
+			}
+
+
+
+
+
 			// increment the loop count toward ball throwing time
 			loopCounter++;
 		}
 
 	}
-	
+
 	public boolean checkForEdge(Player p) {
 		int borderDistance = 10;
 		if (p.getLocation().x < 0 + borderDistance || p.getLocation().x > DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X - borderDistance) {
@@ -217,7 +219,7 @@ public class PlayMaker extends JFrame {
 				return new Vector2D(0, 1);
 			}
 		}
-		
+
 		// Pick which players to iterate through 
 		if (isOffense)
 			otherPlayers = defense.getPlayers();
@@ -230,10 +232,10 @@ public class PlayMaker extends JFrame {
 			// local direction, or return the better direction to be used in the move function
 			distance = new Vector2D(p.getLocation().x - player.getLocation().x,p.getLocation().y - player.getLocation().y);
 			double magnitude = distance.getMagnitude();
-			
-			
 
-			
+
+
+
 			// if statements to determine what is the best direction to return according to the magnitude of the distance
 			if (magnitude > 3*Player.PLAYER_SIZE_X) {
 				// continue as normal, add players correct direction
@@ -285,7 +287,7 @@ public class PlayMaker extends JFrame {
 				}
 
 			}
-			
+
 			// Modify routes once ball is caught
 			if (caught) {
 				// set direction towards the ball carrier
@@ -305,8 +307,8 @@ public class PlayMaker extends JFrame {
 				}
 			}
 		}
-		
-	
+
+
 		return netDirection;
 	}
 
@@ -355,7 +357,7 @@ public class PlayMaker extends JFrame {
 	public ArrayList<MovableObject> getDrawable() {
 		return drawable;
 	}
-	
+
 	public void setDrawable(ArrayList<MovableObject> d) {
 		drawable = d;
 	}
@@ -387,11 +389,11 @@ public class PlayMaker extends JFrame {
 	public void setThrown(boolean b) {
 		thrown = b;
 	}
-	
+
 	public void setThrowCount(int tc) {
 		throwCount = tc;
 	}
-	
+
 
 	public void resetBall() {
 		drawable.remove(ball);
@@ -401,15 +403,15 @@ public class PlayMaker extends JFrame {
 	public void setPlayOver(boolean b) {
 		playOver = b;
 	}
-	
+
 	public boolean getPaused() {
 		return paused;
 	}
-	
+
 	public SideBar getSideBar() {
 		return sideBar;
 	}
-	
+
 	public void setCaught(boolean value) {
 		caught = value;
 	}
