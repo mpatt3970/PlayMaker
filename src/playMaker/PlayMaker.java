@@ -303,8 +303,8 @@ public class PlayMaker extends JFrame {
 					}
 				} else if (player.isHasBall()){
 					// go towards the ball carrier
-					netDirection.x = player.getDirection().x - p.getDirection().x;
-					netDirection.y = player.getDirection().y - p.getDirection().y;
+					netDirection.x = player.getLocation().x - p.getLocation().x;
+					netDirection.y = player.getLocation().y - p.getLocation().y;
 					return netDirection;
 				}
 			}
