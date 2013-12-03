@@ -250,8 +250,8 @@ public class PlayMaker extends JFrame {
 				// the two is so this has more influence on motion direction
 				if (isOffense) {
 					//move away
-					netDirection.x += 2*distance.getUnitVector().x;
-					netDirection.y += 2*distance.getUnitVector().y;
+					netDirection.x += distance.getUnitVector().x;
+					netDirection.y += distance.getUnitVector().y;
 				} else {
 					// move towards
 					netDirection.x -= 6*distance.getUnitVector().x;
