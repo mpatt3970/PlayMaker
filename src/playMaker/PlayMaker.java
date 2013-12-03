@@ -187,6 +187,14 @@ public class PlayMaker extends JFrame {
 		}
 
 	}
+	
+	public boolean checkForEdge(Player p) {
+		int borderDistance = 10;
+		if (p.getLocation().x < 0 + borderDistance || p.getLocation().y > DEFAULT_SIZE_X - DEFAULT_SIDEBAR_X - borderDistance) {
+			return true;
+		}
+		return false;
+	}
 
 	// this function loops over all other players to determine which direction the passed player should move
 	// it then returns that direction so it can be passed to the move function of player p
@@ -195,6 +203,14 @@ public class PlayMaker extends JFrame {
 		Vector2D netDirection = new Vector2D(0,0);
 		ArrayList<Player> otherPlayers;
 
+		if (checkForEdge(p)) {
+			if (isOffense) {
+				return new Vector2D(0, -1);
+			} else {
+				return new Vector2D(0, 1);
+			}
+		}
+		
 		// Pick which players to iterate through 
 		if (isOffense)
 			otherPlayers = defense.getPlayers();
@@ -267,7 +283,7 @@ public class PlayMaker extends JFrame {
 			if (caught) {
 				// set direction towards the ball carrier
 				if (p.isHasBall()) {
-					//nothing to change here
+					return new Vector2D(0, -1);
 				} else if (player.isHasBall()){
 					// go towards the ball carrier
 					netDirection.x = player.getDirection().x - p.getDirection().x;

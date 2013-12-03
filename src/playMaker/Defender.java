@@ -9,6 +9,7 @@ public class Defender extends Player {
 		super(location, team, playMaker);
 		this.speed = 4;
 		this.hasBall = false;
+		this.routeUpdateDistance = 90;
 	}
 
 	public void grabBall() {

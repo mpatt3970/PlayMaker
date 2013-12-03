@@ -16,6 +16,7 @@ public class QuarterBack extends Player {
 		super(location, team, playMaker);
 		this.speed = 2;
 		this.hasBall = true;
+		this.routeUpdateDistance = 60;
 	}
 
 	// Sets the target for the ball to an open receiver
