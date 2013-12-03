@@ -18,11 +18,11 @@ public class SelectPlaysPanel extends JPanel {
 		this.frame = frame;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(new EtchedBorder());
-		String[] formations = {"4-3.txt", "5-2.txt", "3-4.txt"};
+		String[] formations = {"4-3", "5-2", "3-4"};
 		String title = "Formation";
 		base = new GenericComboBox(formations, title, this);
 		this.add(base);
-		String[] plays = {"Fly.txt","defaultOffensePlay.txt", "testOffensePlay.txt", "SweepLeft.txt", "SweepRight.txt", "Slants.txt", "Blast.txt", "Cross.txt", "Reverse.txt", "Screen.txt", "HailMary.txt"};
+		String[] plays = {"Fly", "SweepLeft", "SweepRight", "Slants", "Blast", "Cross", "Reverse", "Screen", "HailMary"};
 		title = "Plays";
 		offense = new GenericComboBox(plays, title, this);
 		this.add(offense);
@@ -37,7 +37,7 @@ public class SelectPlaysPanel extends JPanel {
 		//String defensePlay = "3-4.txt";
 		//String offensePlay = "defaultOffensePlay.txt";
 		
-		frame.loadPlayConfig(defensePlay,offensePlay);
+		frame.loadPlayConfig(defensePlay + ".txt",offensePlay + ".txt");
 
 		// Reset the throwing loop and boolean for a new play
 		frame.setLoopCounter(0);
