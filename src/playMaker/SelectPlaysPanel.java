@@ -1,13 +1,10 @@
 package playMaker;
 
-import java.awt.Color;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 
 public class SelectPlaysPanel extends JPanel {
 
@@ -37,7 +34,6 @@ public class SelectPlaysPanel extends JPanel {
 		//String defensePlay = "3-4.txt";
 		//String offensePlay = "defaultOffensePlay.txt";
 		
-		frame.loadPlayConfig(defensePlay + ".txt",offensePlay + ".txt");
 
 		// Reset the throwing loop and boolean for a new play
 		frame.setLoopCounter(0);
@@ -49,5 +45,14 @@ public class SelectPlaysPanel extends JPanel {
 			frame.getSideBar().toggle();
 		}
 		frame.getField().setSelected(true);
+		Team off = new Team(true, frame);
+		Team def = new Team(false, frame);
+		ArrayList<MovableObject> d = new ArrayList<MovableObject>();
+		d.addAll(off.getPlayers());
+		d.addAll(def.getPlayers());
+		frame.setOffense(off);
+		frame.setDefense(def);
+		frame.setDrawable(d);
+		frame.loadPlayConfig(defensePlay + ".txt",offensePlay + ".txt");
 	}
 }

@@ -326,6 +326,10 @@ public class PlayMaker extends JFrame {
 	public ArrayList<MovableObject> getDrawable() {
 		return drawable;
 	}
+	
+	public void setDrawable(ArrayList<MovableObject> d) {
+		drawable = d;
+	}
 
 	public Team getOffense() {
 		return offense;
