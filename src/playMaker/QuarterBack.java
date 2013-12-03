@@ -8,7 +8,7 @@ public class QuarterBack extends Player {
 	//Fine tune this to determine how much the throw leads the intended target
 	final double LEAD_TIME_FAR = 110;
 	final double LEAD_TIME_MID = 85;
-	final double LEAD_TIME_CLOSE = 15;
+	final double LEAD_TIME_CLOSE = 35;
 	final double CLOSE_MID_CHANGING_DISTANCE = 200;
 	final double MID_FAR_CHANGING_DISTANCE = 300;
 
